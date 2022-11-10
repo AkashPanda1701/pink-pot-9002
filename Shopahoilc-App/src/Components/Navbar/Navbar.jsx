@@ -1,5 +1,6 @@
 import "./Navbar.css";
 import Logo from "./Logo.jpg";
+import logo2 from "./logo2.png";
 import { Link, useNavigate } from "react-router-dom";
 import { BsSearch, BsTruck, BsBag } from "react-icons/bs";
 import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai";
@@ -25,7 +26,8 @@ const Navbar = () => {
         <div>
           <div className="navLogo">
             <Link to="/">
-              <img src={Logo} alt="logo" />
+              <img src={Logo} alt="logo" className="navLogo1" />
+              <img src={logo2} alt="logo" className="navLogo2" />
             </Link>
           </div>
           <div>
@@ -34,7 +36,7 @@ const Navbar = () => {
               <input type="search" placeholder="search" />
             </div>
           </div>
-          <div>
+          <div className="navIcons">
             <div>
               <BsTruck fontSize="20px" onClick={() => Navigate("/orders")} />
             </div>

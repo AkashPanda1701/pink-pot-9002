@@ -1,0 +1,22 @@
+.singleProduct {
+  width: 80%;
+  margin: auto;
+  padding: 3rem 0;
+  display: flex;
+  justify-content: space-between;
+}
+.singleProduct > div:nth-child(1) {
+  width: 40%;
+  border: 1px solid rgb(101, 97, 97);
+  padding: 3rem;
+}
+.singleProduct > div:nth-child(1) img {
+  width: 100%;
+}
+.singleProduct > div:nth-child(2) {
+  width: 55%;
+  border: 1px solid blue;
+}
+.proRatings{
+  display: flex;
+}
