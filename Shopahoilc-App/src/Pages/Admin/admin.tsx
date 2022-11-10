@@ -43,7 +43,7 @@ interface LinkItemProps {
 const LinkItems: Array<LinkItemProps> = [
 
   { name: 'Dashboard', icon: FiCompass },
-  { name: 'Orders', icon: FiStar },
+  { name: 'ProductsAdd', icon: FiStar },
   { name: 'Cart', icon: FiSettings },
 ];
 
@@ -108,7 +108,10 @@ src='https://i.postimg.cc/B66M6yz9/Black-White-Minimalist-Business-Logo.png'
       </Flex>
       {LinkItems.map((link) => (
         <NavItem key={link.name} icon={link.icon}>
+       
           {link.name}
+          
+
         </NavItem>
       ))}
     </Box>
@@ -121,7 +124,7 @@ interface NavItemProps extends FlexProps {
 }
 const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
   return (
-    <Link href="#" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+    <Link href="addProduct" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
       <Flex
         align="center"
         p="4"
@@ -141,13 +144,15 @@ const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
             _groupHover={{
               color: 'white',
             }}
-            as={icon}
-          />
+            as={icon} />
         )}
         {children}
       </Flex>
     </Link>
+    
+    
   );
+  
 };
 
 interface MobileProps extends FlexProps {
@@ -183,6 +188,22 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         /> */}
       </Text>
 
+      < Link href="/" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+  <Flex
+        align="center"
+        p="2"
+        mx="4"
+        borderRadius="lg"
+        role="group"
+        cursor="pointer"
+        _hover={{
+          bg: 'cyan.100',
+          color: 'black',
+        }}
+        >Home
+      </Flex>
+      </Link>
+
       <HStack spacing={{ base: '0', md: '6' }}>
         <IconButton
           size="lg"
@@ -208,7 +229,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                   alignItems="flex-start"
                   spacing="1px"
                   ml="2">
-                  <Text fontSize="sm">Justina Clark</Text>
+                  <Text fontSize="sm">Yogesh Yadav</Text>
                   <Text fontSize="xs" color="gray.600">
                     Admin
                   </Text>
@@ -221,11 +242,14 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
             <MenuList
               bg={useColorModeValue('white', 'gray.900')}
               borderColor={useColorModeValue('gray.200', 'gray.700')}>
-              <MenuItem>Profile</MenuItem>
-              <MenuItem>Settings</MenuItem>
-              <MenuItem>Billing</MenuItem>
+              <MenuItem>< Link href="/admin/cart" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+  
+        Cart
+      
+      </Link></MenuItem>
+              
               <MenuDivider />
-              <MenuItem>Sign out</MenuItem>
+              <MenuItem>< Link href="/login" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}> Sign Out</Link></MenuItem>
             </MenuList>
           </Menu>
         </Flex>

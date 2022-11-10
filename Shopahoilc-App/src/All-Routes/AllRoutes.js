@@ -8,6 +8,7 @@ import AllProduct from '../Pages/Product/AllProduct';
 import SingleProduct from '../Pages/Product/SingleProduct';
 import Signup from '../Pages/Signup/Signup';
 import Admin from "../Pages/Admin/admin"
+import AddProduct from '../Pages/Admin/AddProduct/AddProduct';
 
 /*
 Dont make any changes to this file
@@ -24,6 +25,7 @@ const AllRoutes = () => {
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/admin/dashboard" element={ <Admin> <Dashboard /> </Admin >} />
+            <Route path="/admin/addProduct" element={ <Admin> <AddProduct /> </Admin >} />
 
         </Routes>
     );
