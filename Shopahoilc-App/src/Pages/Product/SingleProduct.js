@@ -74,6 +74,7 @@ function SingleProduct() {
   }
 
   return (
+
     <div className="singleProduct">
       <div>
         <img src={data[0].imageUrl} alt="productImage" />
@@ -149,6 +150,7 @@ function SingleProduct() {
           </div>
         </div>
       </div>
+
     </div>
   );
 }

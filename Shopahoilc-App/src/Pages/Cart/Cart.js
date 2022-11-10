@@ -12,7 +12,9 @@ function Cart() {
       h="auto"
       m="auto"
       mt="20px"
-      border="1px solid red"
+      mb="20px"
+      // border="1px solid red"
+      p="10px"
     >
       <Heading
         fontSize={{ lg: "25px", md: "20px", base: "25px" }}
@@ -24,7 +26,7 @@ function Cart() {
       <Flex
         gap={{ lg: "15px", md: "15px" }}
         h="auto"
-        flexDirection={{ lg: "row", md: "row", base: "column" }}
+        flexDirection={{ lg: "row", md: "row", base: "column-reverse" }}
       >
         <Left />
         <Right />
