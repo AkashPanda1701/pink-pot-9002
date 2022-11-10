@@ -2,7 +2,10 @@
     display: grid;
     grid-template-columns: repeat(5,1fr);
     column-gap: 1rem;
-    border:1px solid red;
+
+    width:85%;
+    margin: auto;
+    margin-top: 3rem;
 }
 .product_el_one{
     grid-column: 1/2;
