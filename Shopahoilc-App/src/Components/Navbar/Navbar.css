@@ -56,7 +56,7 @@
 .nav3 {
   width: 100%;
   background-color: black;
-  position: fixed;
+  position: sticky;
   z-index: 999;
   height: 45px;
   line-height: 45px;
