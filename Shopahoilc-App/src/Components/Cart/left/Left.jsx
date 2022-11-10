@@ -2,6 +2,7 @@ import React from "react";
 import CreditCard from "../left/CreditCard";
 import { Box } from "@chakra-ui/react";
 import GetItShipped from "./GetItShipped";
+
 const Left = () => {
   return (
     <Box
