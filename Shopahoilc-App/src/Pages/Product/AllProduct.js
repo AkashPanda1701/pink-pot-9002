@@ -22,9 +22,9 @@ function AllProduct() {
   },[])
 
   return (
-    <div>
-      {/* <div>Navebar</div>   */}
-      <div>
+    
+  
+     
         <div className="product_body">
           <Hide below="1000px">
         <div  className='product_el_one ' >
@@ -179,9 +179,9 @@ function AllProduct() {
           </div>
         </div>
         
-      </div>
-      {/* <div>Footer</div> */}
-    </div>
+     
+      
+   
   )
 }
 
