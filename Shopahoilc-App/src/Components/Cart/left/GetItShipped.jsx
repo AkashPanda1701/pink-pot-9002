@@ -19,6 +19,8 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import CartCrud from "./CartCrud";
+import Under15 from "./Under15";
 
 const data = [
   {
@@ -173,20 +175,21 @@ const GetItShipped = () => {
   const [display, setDisplay] = useState(false);
   return (
     <Box
-      w={{ lg: "100%" }}
+      w="100%"
       background="#E2E8F0"
       mt="30px"
       h="auto"
       borderRadius="5px"
       p="10px"
     >
-      <Heading fontSize={{ lg: "20px" }}>Get It Shipped({count})</Heading>
+      <Heading fontSize="20px">Get It Shipped({count})</Heading>
       <Box
         background="white"
         w={{ lg: "100%" }}
         borderRadius="10px"
         h="auto"
         m="auto"
+        p="10px 0px"
         mt="20px"
       >
         <Flex gap={3} p="10px">
@@ -326,7 +329,12 @@ const GetItShipped = () => {
             })}
           </SimpleGrid>
         ) : null}
+        <CartCrud />
       </Box>
+      <Text my={2} fontWeight={"bold"}>
+        Add These Under 1250
+      </Text>
+      <Under15 />
     </Box>
   );
 };
