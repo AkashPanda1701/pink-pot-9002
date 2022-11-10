@@ -1,0 +1,103 @@
+{
+  "data": [
+      {
+          "imageUrl": "https://www.sephora.com/productimages/sku/s2518959-main-zoom.jpg?imwidth=270&imwidth=164",
+          "brand": "Rare Beauty by Selena Gomez",
+          "name": "Soft Pinch Liquid Blush",
+          "stars": 4.5,
+          "numReviews": 2300,
+          "price": 20,
+          "category": "makeup",
+          "type": "face",
+          "id": 1
+      },
+      {
+          "imageUrl": "https://www.sephora.com/productimages/sku/s2116028-main-zoom.jpg?imwidth=270&imwidth=164",
+          "brand": "Charlotte Tilbury",
+          "name": "Hollywood Flawless Filter",
+          "stars": 4.5,
+          "numReviews": 1700,
+          "price": 15,
+          "category": "makeup",
+          "type": "face",
+          "id": 2
+      },
+      {
+          "imageUrl": "https://www.sephora.com/productimages/sku/s2428837-main-zoom.jpg?imwidth=270&pb=allure-clean-2020&imwidth=164",
+          "brand": "ILIA",
+          "name": "Super Serum Skin Tint SPF 40 Foundation",
+          "stars": 4,
+          "numReviews": 2500,
+          "price": 48,
+          "category": "makeup",
+          "type": "face",
+          "id": 3
+      },
+      {
+          "imageUrl": "https://www.sephora.com/productimages/sku/s1478403-main-zoom.jpg?imwidth=270&imwidth=164",
+          "brand": "NARS",
+          "name": "Radiant Creamy Concealer",
+          "stars": 4.5,
+          "numReviews": 12300,
+          "price": 13,
+          "category": "makeup",
+          "type": "face",
+          "id": 4
+      },
+      {
+          "imageUrl": "https://www.sephora.com/productimages/sku/s2551851-main-zoom.jpg?imwidth=270&imwidth=164",
+          "brand": "Charlotte Tilbury",
+          "name": "Beautiful Skin Medium Coverage Liquid Foundation with Hyaluronic Acid",
+          "stars": 4.5,
+          "numReviews": 287,
+          "price": 44,
+          "category": "makeup",
+          "type": "face",
+          "id": 5
+      },
+      {
+          "imageUrl": "https://www.sephora.com/productimages/sku/s2431864-main-zoom.jpg?imwidth=270&imwidth=164",
+          "brand": "Fenty Beauty by Rihanna",
+          "name": "Eaze Drop Blurring Skin Tint",
+          "stars": 4,
+          "numReviews": 1100,
+          "price": 32,
+          "category": "makeup",
+          "type": "face",
+          "id": 6
+      },
+      {
+          "imageUrl": "https://www.sephora.com/productimages/sku/s2116333-main-zoom.jpg?imwidth=270&imwidth=164",
+          "brand": "Charlotte Tilbury",
+          "name": "Airbrush Flawless Finish Setting Powder",
+          "stars": 4,
+          "numReviews": 1600,
+          "price": 25,
+          "category": "makeup",
+          "type": "face",
+          "id": 7
+      },
+      {
+          "imageUrl": "https://www.sephora.com/productimages/sku/s2514586-main-zoom.jpg?imwidth=270&imwidth=164",
+          "brand": "NARS",
+          "name": "Light Reflecting Advanced Skincare Foundation",
+          "stars": 4.5,
+          "numReviews": 233,
+          "price": 49,
+          "category": "makeup",
+          "type": "face",
+          "id": 8
+      },
+      {
+          "imageUrl": "https://www.sephora.com/productimages/sku/s2407294-main-zoom.jpg?imwidth=270&imwidth=164",
+          "brand": "Charlotte Tilbury",
+          "name": "Mini Hollywood Flawless Filter",
+          "stars": 4,
+          "numReviews": 218,
+          "price": 15,
+          "category": "makeup",
+          "type": "face",
+          "id": 9
+      }
+  ]
+}

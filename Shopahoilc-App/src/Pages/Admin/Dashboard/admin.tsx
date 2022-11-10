@@ -99,7 +99,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
           
 <Image
-src='https://i.postimg.cc/B66M6yz9/Black-White-Minimalist-Business-Logo.png'
+src='http://localhost:3000/static/media/Logo.bbc24cab81d0da219ebe.jpg'
 />
 
 
@@ -245,6 +245,11 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
               <MenuItem>< Link href="/admin/cart" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
   
         Cart
+      
+      </Link></MenuItem>
+      <MenuItem>< Link href="/admin/dashboard" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+  
+        Dashboard
       
       </Link></MenuItem>
               

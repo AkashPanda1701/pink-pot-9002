@@ -5,7 +5,7 @@ import {
     Input,
     Button,Box
   } from "@chakra-ui/react";
-  import reducer from "./reducer";
+  import reducer from "../reducer";
   import { useState, useReducer } from "react";
   const initialState = {
     name: "",
