@@ -2,18 +2,19 @@ import React from 'react'
 import "./AllProduct.css" 
 import {useEffect,useState} from "react"
 import axios from "axios"
-import { StarIcon,ChevronDownIcon } from '@chakra-ui/icons'
-import { Show, Hide } from '@chakra-ui/react'
+import { StarIcon } from '@chakra-ui/icons'
 import {
   Accordion,
+  Show,
+   Hide,
+  Img,
   AccordionItem,
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
-  Box,Image,Button
+  Box
 } from '@chakra-ui/react'
 import PorMenue from './Pro_component/pro_menue'
-
 
 function AllProduct() {
   const [data,setdata]=useState() 
@@ -45,37 +46,37 @@ function AllProduct() {
     <AccordionPanel pb={4}>
       <div>
      <input type="checkbox"/>
-      <lable>Bellow-500</lable>
+      <label>Bellow-500</label>
       </div>
 
       <div>
      <input type="checkbox"/>
-      <lable>Bellow-500</lable>
+      <label>Bellow-500</label>
       </div>
 
       <div>
      <input type="checkbox"/>
-      <lable>Bellow-500</lable>
+      <label>Bellow-500</label>
       </div>
 
        <div>
      <input type="checkbox"/>
-      <lable>Bellow-500</lable>
+      <label>Bellow-500</label>
       </div>
 
       <div>
      <input type="checkbox"/>
-      <lable>Bellow-500</lable>
+      <label>Bellow-500</label>
       </div>
 
       <div>
      <input type="checkbox"/>
-      <lable>Bellow-500</lable>
+      <label>Bellow-500</label>
       </div>
 
       <div>
-       <lable>Max:</lable><input Style={"width:50px"}  />
-       <lable>Min:</lable><input Style={"width:50px"}  />
+       <label>Max:</label><input Style={"width:50px"}  />
+       <label>Min:</label><input Style={"width:50px"}  />
 
       </div>
     
@@ -95,33 +96,33 @@ function AllProduct() {
     <AccordionPanel pb={4}>
     <div>
       <input type="checkbox"/>
-      <lable>
+      <label>
         4 & up
-      </lable>
+      </label>
     </div>
     <div>
       <input type="checkbox"/>
-      <lable>
+      <label>
         3 & up
-      </lable>
+      </label>
     </div>
 
     <div>
       <input type="checkbox"/>
-      <lable>
+      <label>
         2 & up
-      </lable>
+      </label>
     </div>
     <div>
       <input type="checkbox"/>
-      <lable>
+      <label>
         1 & up
-      </lable>
+      </label>
     </div>
     </AccordionPanel>
   </AccordionItem>
 </Accordion>
-<img src="https://pubsaf.global.ssl.fastly.net/prmt/c51f158aecb4ec7f50e6cd8d3c3cc53b" Style="margin:auto;margin-top:1rem"/>
+<Img src="https://pubsaf.global.ssl.fastly.net/prmt/c51f158aecb4ec7f50e6cd8d3c3cc53b" m='auto' mt='1rem' alt='Img'/>
         </div>
         </Hide>
 
@@ -130,7 +131,7 @@ function AllProduct() {
 
 
         <div className='prod_el_main'>
-          <img src="https://pubsaf.global.ssl.fastly.net/prmt/a6dc8a737b657f4258f633774d92ed79" />
+          <Img src="https://pubsaf.global.ssl.fastly.net/prmt/a6dc8a737b657f4258f633774d92ed79" />
           <Show below="1000px">
    <PorMenue/>
         </Show>
@@ -138,7 +139,7 @@ function AllProduct() {
         
           {data && data.map(el=>(
               <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-              <Image src={el.imageUrl}/>
+              <Img src={el.ImgUrl}/>
         
               <Box p='6'>
         

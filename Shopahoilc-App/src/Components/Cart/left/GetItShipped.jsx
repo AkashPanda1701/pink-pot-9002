@@ -172,6 +172,8 @@ const data = [
 const GetItShipped = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [count, setCount] = useState(0);
+  console.log('setCount: ', setCount);
+  
   const [display, setDisplay] = useState(false);
   return (
     <Box

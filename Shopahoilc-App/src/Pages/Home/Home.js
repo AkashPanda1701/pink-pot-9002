@@ -132,9 +132,9 @@ function Home() {
             customTransition="1s"
             transitionDuration={1000}
           >
-            {Data[0].map((elem) => {
+            {Data[0].map((elem,index) => {
               return (
-                <div className="proCon">
+                <div key={index} className="proCon">
                   <div>
                     <img src={elem.imageUrl} alt="proImg" />
                     <span className="homeLook">Quiclook</span>
@@ -155,9 +155,9 @@ function Home() {
             customTransition="1s"
             transitionDuration={1000}
           >
-            {Data[1].map((elem) => {
+            {Data[1].map((elem,index) => {
               return (
-                <div className="proCon">
+                <div key={index} className="proCon">
                   <div>
                     <img src={elem.imageUrl} alt="proImg" />
                     <span className="homeLook">Quiclook</span>
@@ -178,9 +178,9 @@ function Home() {
             customTransition="1s"
             transitionDuration={1000}
           >
-            {Data[2].map((elem) => {
+            {Data[2].map((elem,index) => {
               return (
-                <div className="proCon">
+                <div key={index} className="proCon">
                   <div>
                     <img src={elem.imageUrl} alt="proImg" />
                     <span className="homeLook">Quiclook</span>
@@ -202,9 +202,9 @@ function Home() {
             customTransition="1s"
             transitionDuration={1000}
           >
-            {Data[3].map((elem) => {
+            {Data[3].map((elem,index) => {
               return (
-                <div className="homeFeatures">
+                <div key={index} className="homeFeatures">
                   <div>
                     <p>{elem.name}</p>
                   </div>
@@ -224,9 +224,9 @@ function Home() {
             customTransition="1s"
             transitionDuration={1000}
           >
-            {Data[4].map((elem) => {
+            {Data[4].map((elem,index) => {
               return (
-                <div className="homeFeatures">
+                <div key={index} className="homeFeatures">
                   <div>
                     <p>{elem.name}</p>
                   </div>

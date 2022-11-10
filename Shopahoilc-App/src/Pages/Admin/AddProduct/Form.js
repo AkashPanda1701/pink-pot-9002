@@ -1,12 +1,11 @@
 import {
     FormControl,
     FormLabel,
-    FormHelperText,
     Input,
     Button,Box
   } from "@chakra-ui/react";
   import reducer from "../reducer";
-  import { useState, useReducer } from "react";
+  import { useReducer } from "react";
   const initialState = {
     name: "",
     url: "",
