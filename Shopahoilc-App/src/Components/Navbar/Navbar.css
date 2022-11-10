@@ -53,6 +53,9 @@
 .navLogo > a > img {
   width: 220px;
 }
+.navLogo2 {
+  display: none;
+}
 .nav3 {
   width: 100%;
   background-color: black;
@@ -143,6 +146,10 @@
   display: none;
 }
 @media screen and (max-width: 970px) {
+  .navWrapper {
+    width: 95%;
+    position: sticky;
+  }
   .nav1 {
     font-size: 13px;
   }
@@ -166,6 +173,8 @@
   }
   .btn {
     display: block;
+    height: 100%;
+    top: 12px;
   }
   .navLink {
     position: fixed;
@@ -245,7 +254,7 @@
     display: none;
   }
   .nav2 > div {
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     justify-content: space-evenly;
   }
@@ -268,14 +277,33 @@
     top: 106px;
   }
 }
-@media screen and (max-width: 410px) {
+@media screen and (max-width: 450px) {
   .nav1 {
     display: none;
+  }
+  .nav2 {
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .navIcons {
+    padding-right: 60px;
   }
   .navLogo > a > img {
     width: 100px;
   }
   .navLink {
     top: 86px;
+  }
+  .navLogo1 {
+    display: none;
+  }
+  .navLogo2 {
+    display: block;
+  }
+  .navLogo > a > img {
+    width: 50px;
+    margin-left: 0;
+    padding-left: 0;
   }
 }

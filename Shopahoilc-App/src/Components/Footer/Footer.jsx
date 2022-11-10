@@ -1,16 +1,13 @@
-import React from "react";
 import "./Footer.css";
 import { RiCustomerService2Line } from "react-icons/ri";
 import { GoLocation } from "react-icons/go";
 import { AiFillAppstore } from "react-icons/ai";
 import { FaMobileAlt, FaTiktok } from "react-icons/fa";
 import {
-  BsFillCreditCard2BackFill,
   BsInstagram,
   BsTwitter,
   BsYoutube,
   BsPinterest,
-  BsSnapchat,
 } from "react-icons/bs";
 import { ImFacebook2 } from "react-icons/im";
 
@@ -23,38 +20,31 @@ const Footer = () => {
       <div className="mainFooter">
         <div className="footer2">
           <div>
-            <GoLocation fontSize="1.7rem" />
+            <GoLocation fontSize="1.4rem" />
             <div>
               <p>Find a Store</p>
               <p>Choose Your Store</p>
             </div>
           </div>
           <div>
-            <RiCustomerService2Line fontSize="1.7rem" />
+            <RiCustomerService2Line fontSize="1.4rem" />
             <div>
               <p>Live Beauty Help</p>
               <p>Chat is unavailable</p>
             </div>
           </div>
           <div>
-            <AiFillAppstore fontSize="1.7rem" />
+            <AiFillAppstore fontSize="1.4rem" />
             <div>
               <p>Get the App</p>
               <p>Text “APP” to 365481</p>
             </div>
           </div>
           <div>
-            <FaMobileAlt fontSize="1.7rem" />
+            <FaMobileAlt fontSize="1.4rem" />
             <div>
               <p>Get Sephora Text Alerts</p>
               <p>Sign up Now</p>
-            </div>
-          </div>
-          <div>
-            <BsFillCreditCard2BackFill fontSize="1.7rem" />
-            <div>
-              <p>Sephora Credit Card Program</p>
-              <p>Want 25% off your Sephora purchase1? DETAILS</p>
             </div>
           </div>
         </div>
@@ -110,7 +100,7 @@ const Footer = () => {
             <p>Sephora Accelerate</p>
             <p>Checkout on Instagram</p>
           </div>
-          <div>
+          <div className="hide">
             <h3>My Sephora</h3>
             <p>Beauty Insider</p>
             <p>Sephora Credit Card</p>
@@ -126,7 +116,7 @@ const Footer = () => {
         <div className="footer4">
           <h1>We Belong to Something Beautiful</h1>
           <div>
-            <input placeholder="Enter your Email Adress" />
+            <input placeholder="Enter your Email Adress" className="hide" />
             <button>Sign Up</button>
           </div>
         </div>
