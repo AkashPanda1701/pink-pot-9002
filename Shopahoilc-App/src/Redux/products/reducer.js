@@ -1,3 +1,4 @@
+import SingleProduct from "../../Pages/Product/SingleProduct";
 import {
   ADD_PRODUCT_FAILURE,
   ADD_PRODUCT_REQUEST,
@@ -18,11 +19,12 @@ import {
 
 const initialState = {
   AllProducts: { loading: false, error: false },
-  SingleProduct: { loading: false, error: false, data: {} },
+  Product: { loading: false, error: false },
   AddProduct: { loading: false, error: false },
   UpdateProduct: { loading: false, error: false },
   DeleteProduct: { loading: false, error: false },
   data: [],
+  singleData: [],
 };
 
 export default function productsReducer(
@@ -51,18 +53,22 @@ export default function productsReducer(
     case GET_SINGLE_PRODUCT_REQUEST:
       return {
         ...state,
-        SingleProduct: { loading: true, error: false },
+        Product: { loading: true, error: false },
       };
     case GET_SINGLE_PRODUCT_SUCCESS:
       return {
         ...state,
-        SingleProduct: { loading: false, error: false, data: payload },
+        Product: {
+          loading: false,
+          error: false,
+        },
+        data: [...state.data, payload],
       };
 
     case GET_SINGLE_PRODUCT_FAILURE:
       return {
         ...state,
-        SingleProduct: { loading: false, error: true },
+        Product: { loading: false, error: true },
       };
 
     case ADD_PRODUCT_REQUEST:

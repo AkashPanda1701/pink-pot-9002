@@ -1,11 +1,11 @@
 import "./SingleProduct.css";
-import Data from "./data.json";
 import { useState, useEffect } from "react";
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { TiTick } from "react-icons/ti";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { AiOutlineStar, AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { useParams } from "react-router-dom";
 import {
   NumberInput,
   NumberInputField,
@@ -20,110 +20,113 @@ import {
   useToast,
   Select,
 } from "@chakra-ui/react";
-const responsive1 = {
-  superLargeDesktop: {
-    breakpoint: { max: 4000, min: 3000 },
-    items: 9,
-    slidesToSlide: 9,
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 6,
-    slidesToSlide: 6,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 3,
-    slidesToSlide: 3,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 2,
-    slidesToSlide: 2,
-  },
-};
+import { useDispatch, useSelector } from "react-redux";
+import { getSingleProduct } from "../../Redux/products/actions";
+// const responsive1 = {
+//   superLargeDesktop: {
+//     breakpoint: { max: 4000, min: 3000 },
+//     items: 9,
+//     slidesToSlide: 9,
+//   },
+//   desktop: {
+//     breakpoint: { max: 3000, min: 1024 },
+//     items: 6,
+//     slidesToSlide: 6,
+//   },
+//   tablet: {
+//     breakpoint: { max: 1024, min: 464 },
+//     items: 3,
+//     slidesToSlide: 3,
+//   },
+//   mobile: {
+//     breakpoint: { max: 464, min: 0 },
+//     items: 2,
+//     slidesToSlide: 2,
+//   },
+// };
 function SingleProduct() {
-  const [loading, setLoading] = useState(true);
-  const [value, setValue] = useState(0);
-  const toast = useToast();
-  const data = Data[0];
-  const [fav, setFav] = useState(true);
-  const auth = true;
-  const stars = data[0].stars;
-  const reviews = data[0].numReviews;
-  const handleChange = (value) => setValue(value);
-  const checkAuth = () => {
-    if (auth) {
-      setFav(!fav);
-      toast({
-        title: "Product Added",
-        description: "We have added your product",
-        status: "success",
-        duration: 3000,
-        isClosable: true,
-        position: "top",
-      });
-    } else {
-      toast({
-        title: "Login Required",
-        description: "Cannot add products without login",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        position: "top",
-      });
-    }
-  };
-  console.log(value);
-  const ratingStar = Array.from({ length: 5 }, (elem, index) => {
-    let number = index + 0.5;
-    return (
-      <span key={index}>
-        {stars >= index + 1 ? (
-          <FaStar />
-        ) : stars >= number ? (
-          <FaStarHalfAlt />
-        ) : (
-          <AiOutlineStar />
-        )}
-      </span>
-    );
-  });
-
-  console.log(ratingStar);
+  // const [loading, setLoading] = useState(false);
+  // const [value, setValue] = useState(0);
+  const [data, setData] = useState([]);
+  const Product = useSelector((store) => store.products);
+  const { id } = useParams();
+  console.log(id);
+  const dispatch = useDispatch();
   useEffect(() => {
-    setLoading(false);
-  }, []);
-  console.log(data);
-  if (loading) {
-    return <div></div>;
-  }
+    dispatch(getSingleProduct(id));
+  }, [dispatch, id]);
+
+  // console.log(Product.data[0].brand);
+  // const toast = useToast();
+  // const [fav, setFav] = useState(true);
+  // const auth = true;
+  // const { stars, numReviews } = data;
+
+  // const handleChange = (value) => setValue(value);
+  // const checkAuth = () => {
+  //   if (auth) {
+  //     setFav(!fav);
+  //     toast({
+  //       title: "Product Added",
+  //       description: "We have added your product",
+  //       status: "success",
+  //       duration: 3000,
+  //       isClosable: true,
+  //       position: "top",
+  //     });
+  //   } else {
+  //     toast({
+  //       title: "Login Required",
+  //       description: "Cannot add products without login",
+  //       status: "error",
+  //       duration: 3000,
+  //       isClosable: true,
+  //       position: "top",
+  //     });
+  //   }
+  // };
+  // const ratingStar = Array.from({ length: 5 }, (elem, index) => {
+  //   let number = index + 0.5;
+  //   return (
+  //     <span key={index}>
+  //       {stars >= index + 1 ? (
+  //         <FaStar />
+  //       ) : stars >= number ? (
+  //         <FaStarHalfAlt />
+  //       ) : (
+  //         <AiOutlineStar />
+  //       )}
+  //     </span>
+  //   );
+  // });
+  // if (loading) {
+  //   return <div></div>;
+  // }
 
   return (
     <>
-      <div className="singleProduct">
+      <h1>Working</h1>
+      {/* <div className="singleProduct">
         <div>
-          <img src={data[0].imageUrl} alt="productImage" />
+          <img src={data.imageUrl} alt="productImage" />
         </div>
         <div>
           <div className="proNames">
-            <h1>{data[0].brand}</h1>
-            <p>{data[0].name}</p>
+            <h1>{data.brand}</h1>
+            <p>{data.name}</p>
           </div>
           <div className="proRatings">
             {ratingStar}
             {stars}
-            <span>( {reviews} Custumer reviews )</span>
+            <span>( {numReviews} Costumer reviews )</span>
           </div>
           <div className="proPrices">
             <p>
               Old Price :{" "}
-              <span className="proOld">
-                $ {data[0].price + data[0].price / 10}
-              </span>
+              <span className="proOld">$ {data.price + data.price / 10}</span>
             </p>
             <p>
-              New Price : <span>$ {data[0].price} ( 10% off)</span>
+              New Price : <span>$ {data.price} ( 10% off)</span>
             </p>
           </div>
           <div className="proDetails">
@@ -145,7 +148,7 @@ function SingleProduct() {
                 <span className="proTick">
                   <TiTick />
                 </span>
-                Category : <span>{data[0].category}</span>
+                Category : <span>{data.category}</span>
               </li>
               <li>
                 <span className="proTick">
@@ -201,8 +204,8 @@ function SingleProduct() {
             </div>
           </div>
         </div>
-      </div>
-      <div className="proContainer">
+      </div> */}
+      {/* <div className="proContainer">
         <h1 className="homeHead">You may also like</h1>
         <div className="hc1">
           <Carousel
@@ -226,7 +229,7 @@ function SingleProduct() {
             })}
           </Carousel>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
