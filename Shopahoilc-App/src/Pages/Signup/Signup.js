@@ -94,7 +94,7 @@ function Signup() {
               type={"text"}
               onChange={handleChange}
               name="name"
-              placeholder="First name"
+              placeholder="Username"
               value={formData.name}
             />
           </InputGroup>
