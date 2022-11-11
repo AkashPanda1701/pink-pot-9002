@@ -4,7 +4,7 @@ import {
   Flex,
   Heading,
   Image,
-  Select,
+  // Select,
   Text,
 } from "@chakra-ui/react";
 import React from "react";
@@ -81,11 +81,12 @@ const CartCrud = () => {
                 </Text>
                 <Flex
                   mt="10px"
+                  align={"center"}
                   w={{ lg: "90%", md: "90%", base: "100%" }}
                   gap={{ lg: 3, md: 3, base: 0 }}
                   flexDirection={{ lg: "row", md: "column", base: "column" }}
                 >
-                  <Select
+                  {/* <Select
                     w={{ lg: "80px", md: "100px", sm: "100px" }}
                     m={{ lg: "2px", md: "auto", base: "auto" }}
                     placeholder="1"
@@ -99,8 +100,28 @@ const CartCrud = () => {
                     <option value="8">8</option>
                     <option value="9">9</option>
                     <option value="10">10</option>
-                  </Select>
-
+                  </Select> */}
+                  <Flex w="100px" justify={"center"} align="center" gap={1}>
+                    <Button
+                      w="50px"
+                      h="40px"
+                      variant={"ghost"}
+                      fontSize="35px"
+                      fontWeight={"bold"}
+                    >
+                      -
+                    </Button>
+                    <Text fontWeight={"bold"}>1</Text>
+                    <Button
+                      w="50px"
+                      h="40px"
+                      variant={"ghost"}
+                      fontSize="30px"
+                      fontWeight={"bold"}
+                    >
+                      +
+                    </Button>
+                  </Flex>
                   <Button
                     variant="link"
                     color={"blue"}
