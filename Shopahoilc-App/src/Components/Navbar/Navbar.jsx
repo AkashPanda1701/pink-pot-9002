@@ -7,6 +7,18 @@ import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai";
 import { RiAdminLine } from "react-icons/ri";
 import { MdOutlineCancel } from "react-icons/md";
 import { FaBars } from "react-icons/fa";
+import {
+  Button,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverFooter,
+  PopoverHeader,
+  PopoverTrigger,
+  Portal,
+} from "@chakra-ui/react";
 
 const Navbar = () => {
   const Auth = false;
@@ -42,29 +54,38 @@ const Navbar = () => {
             </div>
             |
             <div>
-              <AiOutlineHeart
-                fontSize="20px"
-                onClick={() => Navigate("/wishlist")}
-              />
-            </div>
-            |
-            <div>
               <BsBag fontSize="20px" onClick={() => Navigate("/cart")} />
             </div>
             |
             <div>
-              {Auth ? (
-                user ? (
-                  <AiOutlineUser fontSize="20px" />
-                ) : (
-                  <RiAdminLine fontSize="20px" />
-                )
-              ) : (
-                <p onClick={() => Navigate("/login")}>
-                  <AiOutlineUser fontSize="20px" />
-                  <span className="navLogin">Login</span>
-                </p>
-              )}
+              <p>
+                <AiOutlineUser fontSize="20px" />
+                <span className="navLogin">
+                  <Popover>
+                    <PopoverTrigger>
+                      <Button>Get Started</Button>
+                    </PopoverTrigger>
+                    <Portal>
+                      <PopoverContent>
+                        <PopoverArrow />
+                        <PopoverHeader>Header</PopoverHeader>
+                        <PopoverCloseButton />
+                        <PopoverBody>
+                          <Link to="/login">
+                            <Button colorScheme="blue">Login</Button>
+                          </Link>
+                          <br></br>
+                          <br></br>
+                          <Link to="/signup">
+                            <Button colorScheme="blue">Sign Up</Button>
+                          </Link>
+                        </PopoverBody>
+                        <PopoverFooter>This is the footer</PopoverFooter>
+                      </PopoverContent>
+                    </Portal>
+                  </Popover>
+                </span>
+              </p>
             </div>
           </div>
         </div>
@@ -79,13 +100,15 @@ const Navbar = () => {
               <MdOutlineCancel />
             </label>
             <li>
-              <Link to="" className="desktopItem">
+              <Link to={`/products?category=all`} className="desktopItem">
                 New
               </Link>
               <input type="checkbox" id="showMega" />
-              <label for="showMega" className="mobileItem">
-                New
-              </label>
+              <Link to={`/products?category=`}>
+                <label for="showMega" className="mobileItem">
+                  New
+                </label>
+              </Link>
               <div className="megaBox">
                 <div className="contentBox">
                   <div className="rowBox">
@@ -150,7 +173,9 @@ const Navbar = () => {
               </div>
             </li>
             <li>
-              <Link to="">MakeUp</Link>
+              <Link to={`/products?category=makeup`} className="desktopItem">
+                Make Up
+              </Link>
               <div className="megaBox">
                 <div className="contentBox">
                   <div className="rowBox">
@@ -284,7 +309,9 @@ const Navbar = () => {
               </div>
             </li>
             <li>
-              <Link to="">Skincare </Link>
+              <Link to={`/products?category=skincare`} className="desktopItem">
+                Skincare
+              </Link>
               <div className="megaBox">
                 <div className="contentBox">
                   <div className="rowBox">
@@ -401,7 +428,7 @@ const Navbar = () => {
               </div>
             </li>
             <li>
-              <Link to="">Hair</Link>
+              <Link to="/products?category=hair">Hair</Link>
               <div className="megaBox">
                 <div className="contentBox">
                   <div className="rowBox">
@@ -480,7 +507,7 @@ const Navbar = () => {
               </div>
             </li>
             <li>
-              <Link to="">Fragrance</Link>
+              <Link to="/products?category=fragrance">Fragrance</Link>
               <div className="megaBox">
                 <div className="contentBox">
                   <div className="rowBox">
@@ -545,7 +572,7 @@ const Navbar = () => {
               </div>
             </li>
             <li>
-              <Link to="">Tools & Brushes</Link>
+              <Link to="/products?category=tools">Tools & Brushes</Link>
               <div className="megaBox">
                 <div className="contentBox">
                   <div className="rowBox">
@@ -610,7 +637,7 @@ const Navbar = () => {
               </div>
             </li>
             <li>
-              <Link to="">Bath & Body</Link>
+              <Link to="/products?category=bath">Bath & Body</Link>
               <div className="megaBox">
                 <div className="contentBox">
                   <div className="rowBox">
@@ -675,7 +702,7 @@ const Navbar = () => {
               </div>
             </li>
             <li>
-              <Link to="">Beauty Under $20</Link>
+              <Link to="/products?category=skincare">Beauty Under $20</Link>
               <div className="megaBox">
                 <div className="contentBox">
                   <div className="rowBox">

@@ -14,21 +14,20 @@ import {
   AccordionIcon,
   Box,
 } from "@chakra-ui/react";
+import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import PorMenue from "./Pro_component/pro_menue";
 import { getAllProducts } from "../../Redux/products/actions";
 
 function AllProduct() {
-  const {
-    AllProducts,
-    data,
-  } = useSelector((store) => store.products);
-  console.log(AllProducts, data);
-
+  const { AllProducts, data } = useSelector((store) => store.products);
+  const search = useLocation().search;
+  const query = new URLSearchParams(search).get("category");
+  console.log(data);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllProducts());
-  }, [dispatch]);
+    dispatch(getAllProducts({ category: query }));
+  }, [dispatch, query]);
 
   return (
     <div className="product_body">

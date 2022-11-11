@@ -3,13 +3,9 @@ import { RiCustomerService2Line } from "react-icons/ri";
 import { GoLocation } from "react-icons/go";
 import { AiFillAppstore } from "react-icons/ai";
 import { FaMobileAlt, FaTiktok } from "react-icons/fa";
-import {
-  BsInstagram,
-  BsTwitter,
-  BsYoutube,
-  BsPinterest,
-} from "react-icons/bs";
+import { BsInstagram, BsTwitter, BsYoutube, BsPinterest } from "react-icons/bs";
 import { ImFacebook2 } from "react-icons/im";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -117,7 +113,9 @@ const Footer = () => {
           <h1>We Belong to Something Beautiful</h1>
           <div>
             <input placeholder="Enter your Email Adress" className="hide" />
-            <button>Sign Up</button>
+            <Link to="/signup">
+              <button>Sign Up</button>
+            </Link>
           </div>
         </div>
         <div className="footer5">

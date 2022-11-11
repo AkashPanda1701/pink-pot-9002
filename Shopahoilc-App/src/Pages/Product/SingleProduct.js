@@ -22,6 +22,7 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts, getSingleProduct } from "../../Redux/products/actions";
+import { addProductToCart } from "../../Redux/cart/actions";
 const responsive1 = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 3000 },
@@ -47,17 +48,21 @@ const responsive1 = {
 function SingleProduct() {
   // const [loading, setLoading] = useState(false);
   const [value, setValue] = useState(0);
-  const { Product: { loading, error }, singleData: data, AllProducts: { loading: prodLoad, error: prodErr }, data: products } = useSelector((store) => store.products);
+  console.log(value);
+  const {
+    Product: { loading, error },
+    singleData: data,
+    AllProducts: { loading: prodLoad, error: prodErr },
+    data: products,
+  } = useSelector((store) => store.products);
+  const cartState = useSelector((store) => store.carts);
+  console.log(cartState);
   const { id } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getSingleProduct(id));
     dispatch(getAllProducts({ category: data.category }));
   }, [dispatch, id, data.category]);
-
-
-
-
   const toast = useToast();
   const [fav, setFav] = useState(true);
   const auth = true;
@@ -198,7 +203,13 @@ function SingleProduct() {
             </Select>
           </div>
           <div className="proAdd">
-            <button onClick={checkAuth}>Add to Basket</button>
+            <button
+              onClick={() => {
+                dispatch(addProductToCart(data._id, value));
+              }}
+            >
+              Add to Basket
+            </button>
             <div onClick={checkAuth}>
               {fav ? <AiFillHeart /> : <AiOutlineHeart />}
             </div>
@@ -209,29 +220,34 @@ function SingleProduct() {
       <div className="proContainer">
         <h1 className="homeHead">You may also like</h1>
         <div className="hc1">
-          {prodLoad ? "Loading Similar Products" : <Carousel
-            responsive={responsive1}
-            customTransition="1s"
-            transitionDuration={1000}
-          >
-            {prodLoad ? "" : products.map((elem, index) => {
-              return (
-                <div key={index} className="proCon">
-                  <Link to={`/products/${elem._id}`}>
-                    <div>
-                      <img src={elem.imageUrl} alt="proImg" />
-                      <span className="homeLook">Quiclook</span>
-                    </div>
-                    <div>
-                      <h1>{elem.brand}</h1>
-                      <p>{elem.name}</p>
-                    </div>
-                  </Link>
-                </div>
-              );
-            })}
-          </Carousel>
-          }
+          {prodLoad ? (
+            "Loading Similar Products"
+          ) : (
+            <Carousel
+              responsive={responsive1}
+              customTransition="1s"
+              transitionDuration={1000}
+            >
+              {prodLoad
+                ? ""
+                : products.map((elem, index) => {
+                    return (
+                      <div key={index} className="proCon">
+                        <Link to={`/products/${elem._id}`}>
+                          <div>
+                            <img src={elem.imageUrl} alt="proImg" />
+                            <span className="homeLook">Quiclook</span>
+                          </div>
+                          <div>
+                            <h1>{elem.brand}</h1>
+                            <p>{elem.name}</p>
+                          </div>
+                        </Link>
+                      </div>
+                    );
+                  })}
+            </Carousel>
+          )}
         </div>
       </div>
     </>

@@ -1,7 +1,8 @@
-import Carousel from 'react-multi-carousel';
+import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "./Home.css";
 import Data from "./db.json";
+import { Link } from "react-router-dom";
 const responsive = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 3000 },
@@ -132,18 +133,20 @@ function Home() {
             customTransition="1s"
             transitionDuration={1000}
           >
-            {Data[0].map((elem,index) => {
+            {Data[0].map((elem, index) => {
               return (
-                <div key={index} className="proCon">
-                  <div>
-                    <img src={elem.imageUrl} alt="proImg" />
-                    <span className="homeLook">Quiclook</span>
+                <Link to={`/products/${elem._id}`}>
+                  <div key={index} className="proCon">
+                    <div>
+                      <img src={elem.imageUrl} alt="proImg" />
+                      <span className="homeLook">Quiclook</span>
+                    </div>
+                    <div>
+                      <h1>{elem.brand}</h1>
+                      <p>{elem.name}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h1>{elem.brand}</h1>
-                    <p>{elem.name}</p>
-                  </div>
-                </div>
+                </Link>
               );
             })}
           </Carousel>
@@ -155,18 +158,20 @@ function Home() {
             customTransition="1s"
             transitionDuration={1000}
           >
-            {Data[1].map((elem,index) => {
+            {Data[1].map((elem, index) => {
               return (
-                <div key={index} className="proCon">
-                  <div>
-                    <img src={elem.imageUrl} alt="proImg" />
-                    <span className="homeLook">Quiclook</span>
+                <Link to={`/products/${elem._id}`}>
+                  <div key={index} className="proCon">
+                    <div>
+                      <img src={elem.imageUrl} alt="proImg" />
+                      <span className="homeLook">Quiclook</span>
+                    </div>
+                    <div>
+                      <h1>{elem.brand}</h1>
+                      <p>{elem.name}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h1>{elem.brand}</h1>
-                    <p>{elem.name}</p>
-                  </div>
-                </div>
+                </Link>
               );
             })}
           </Carousel>
@@ -178,18 +183,20 @@ function Home() {
             customTransition="1s"
             transitionDuration={1000}
           >
-            {Data[2].map((elem,index) => {
+            {Data[2].map((elem, index) => {
               return (
-                <div key={index} className="proCon">
-                  <div>
-                    <img src={elem.imageUrl} alt="proImg" />
-                    <span className="homeLook">Quiclook</span>
+                <Link to={`/products/${elem._id}`}>
+                  <div key={index} className="proCon">
+                    <div>
+                      <img src={elem.imageUrl} alt="proImg" />
+                      <span className="homeLook">Quiclook</span>
+                    </div>
+                    <div>
+                      <h1>{elem.brand}</h1>
+                      <p>{elem.name}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h1>{elem.brand}</h1>
-                    <p>{elem.name}</p>
-                  </div>
-                </div>
+                </Link>
               );
             })}
           </Carousel>
@@ -202,7 +209,7 @@ function Home() {
             customTransition="1s"
             transitionDuration={1000}
           >
-            {Data[3].map((elem,index) => {
+            {Data[3].map((elem, index) => {
               return (
                 <div key={index} className="homeFeatures">
                   <div>
@@ -224,7 +231,7 @@ function Home() {
             customTransition="1s"
             transitionDuration={1000}
           >
-            {Data[4].map((elem,index) => {
+            {Data[4].map((elem, index) => {
               return (
                 <div key={index} className="homeFeatures">
                   <div>
