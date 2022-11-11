@@ -1,4 +1,4 @@
-function reducer (state, action) {
+function Areducer (state, action) {
     switch(action.type){
       case "UPDATE" :
         return {
@@ -9,4 +9,4 @@ function reducer (state, action) {
           return state
     }
   }
-  export default reducer
+  export default Areducer

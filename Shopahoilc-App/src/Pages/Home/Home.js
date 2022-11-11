@@ -1,4 +1,4 @@
-import Carousel from "react-multi-carousel";
+import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
 import "./Home.css";
 import Data from "./db.json";
