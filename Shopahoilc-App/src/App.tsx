@@ -11,9 +11,9 @@ Dont make any changes to this file
 function App() {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       <AllRoutes />
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
