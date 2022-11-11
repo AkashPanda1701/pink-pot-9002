@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import axios from "axios"
+import React, { useEffect } from 'react'
 import {
     Modal,
     ModalOverlay,
@@ -33,7 +32,6 @@ function Dashboard() {
     const finalRef = React.useRef(null)
     
     const {
-      AllProducts,
       data: { products: data },
     } = useSelector((store) => store.products);
 

@@ -50,9 +50,9 @@ function SingleProduct() {
   const [value, setValue] = useState(0);
   console.log(value);
   const {
-    Product: { loading, error },
+    Product: { loading },
     singleData: data,
-    AllProducts: { loading: prodLoad, error: prodErr },
+    AllProducts: { loading: prodLoad },
     data: products,
   } = useSelector((store) => store.products);
   const cartState = useSelector((store) => store.carts);

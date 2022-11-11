@@ -1,4 +1,3 @@
-import SingleProduct from "../../Pages/Product/SingleProduct";
 import {
   ADD_PRODUCT_FAILURE,
   ADD_PRODUCT_REQUEST,

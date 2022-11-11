@@ -3,8 +3,7 @@ import Logo from "./Logo.jpg";
 import logo2 from "./logo2.png";
 import { Link, useNavigate } from "react-router-dom";
 import { BsSearch, BsTruck, BsBag } from "react-icons/bs";
-import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai";
-import { RiAdminLine } from "react-icons/ri";
+import { AiOutlineUser } from "react-icons/ai";
 import { MdOutlineCancel } from "react-icons/md";
 import { FaBars } from "react-icons/fa";
 import {
@@ -21,8 +20,7 @@ import {
 } from "@chakra-ui/react";
 
 const Navbar = () => {
-  const Auth = false;
-  const user = true;
+ 
   const Navigate = useNavigate();
   return (
     <div>

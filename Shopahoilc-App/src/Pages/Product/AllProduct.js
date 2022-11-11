@@ -20,7 +20,7 @@ import PorMenue from "./Pro_component/pro_menue";
 import { getAllProducts } from "../../Redux/products/actions";
 
 function AllProduct() {
-  const { AllProducts, data } = useSelector((store) => store.products);
+  const {  data } = useSelector((store) => store.products);
   const search = useLocation().search;
   const query = new URLSearchParams(search).get("category");
   console.log(data);
