@@ -1,10 +1,9 @@
 import {
     AUTH_LOGIN_FAILURE,
     AUTH_LOGIN_REQUEST,
+    AUTH_LOGIN_RESET,
     AUTH_LOGIN_SUCCESS,
-    AUTH_LOGOUT_FAILURE,
-    AUTH_LOGOUT_REQUEST,
-    AUTH_LOGOUT_SUCCESS,
+    AUTH_LOGOUT,
     AUTH_REGISTER_FAILURE,
     AUTH_REGISTER_REQUEST,
     AUTH_REGISTER_RESET,
@@ -15,7 +14,7 @@ import {
   const initialState = {
     userLogin: { loading: false, error: false , message:''},
     userRegister: { loading: false, error: false, message:'' },
-    userLogout: { loading: false, error: false, message:'' },
+    userLogout: { message:'' },
     data: {
       isAuthenticated: !!TOKEN,
       token: TOKEN,
@@ -46,27 +45,24 @@ import {
           ...state,
           userLogin: { loading: false, error: true ,message:payload.message},
         };
-      case AUTH_LOGOUT_REQUEST:
-        return {
-          ...state,
-          userLogout: { loading: true, error: false },
-        };
-      case AUTH_LOGOUT_SUCCESS:
+      
+        case AUTH_LOGIN_RESET:
+          return {
+            ...state,
+            userLogin: { loading: false, error: false ,message:''},
+          };
+      case AUTH_LOGOUT:
         localStorage.removeItem("token");
         return {
           ...state,
-          userLogout: { loading: false, error: false ,message:payload.message},
+          userLogout: { message:'Logout Successfully'},
           data: {
             isAuthenticated: false,
             token: null,
             user: null,
           },
         };
-      case AUTH_LOGOUT_FAILURE:
-        return {
-          ...state,
-          userLogout: { loading: false, error: true ,message:payload.message},
-        };
+      
       case AUTH_REGISTER_REQUEST:
         return {
           ...state,
