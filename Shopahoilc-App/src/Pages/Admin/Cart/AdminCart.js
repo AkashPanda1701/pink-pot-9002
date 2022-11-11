@@ -1,6 +1,6 @@
 import React from "react";
 import {FormLabel,Input} from "@chakra-ui/react"
-import reducer from "../reducer";
+import Areducer from "../reducer";
 import {Box,
 Image,
 Text,
@@ -14,7 +14,7 @@ import axios from "axios";
   };
 
 function AdminCart() {
-  const [reducerState, dispatch] = useReducer(reducer, initialState);
+  const [reducerState, dispatch] = useReducer(Areducer, initialState);
 
   const [data, setProd] = useState([])
   useEffect(() => {

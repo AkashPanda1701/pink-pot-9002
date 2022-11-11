@@ -21,8 +21,9 @@ import {
     SimpleGrid,
     Button,
     
-  } from '@chakra-ui/react';
-
+   } from '@chakra-ui/react';
+  import { getAllProducts } from "../../../Redux/products/actions";
+  import { useSelector, useDispatch } from "react-redux";
  
 function Dashboard() {
 
@@ -30,22 +31,28 @@ function Dashboard() {
   
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
+    
+    const {
+      AllProducts,
+      data: { products: data },
+    } = useSelector((store) => store.products);
+
+    // console.log(AllProducts, data);
   
-    const [data, setProd] = useState([])
+    const dispatch = useDispatch();
     useEffect(() => {
-        axios.get("http://localhost:8080/data").then((d) => {
-          setProd(d.data);
-        });
-      }, []);
-    //   console.log(data)
+      dispatch(getAllProducts());
+    }, [dispatch]);
+
 
       return (
 <Box >
 <SimpleGrid   columns={4}  spacingX='40px' spacingY='50px'>
 
-{data.map((item) => (
+{data &&
+            data.map((item) => (
     <Box  margin="auto" padding={8} border='1px' borderColor='lightblue'>
-     <div key={item.id}>
+     <div key={item._id}>
         <Image
           src={item.imageUrl}
           alt={`Picture of ${item.name}`}
@@ -55,9 +62,9 @@ function Dashboard() {
   <Text as="b" color="grey">Category: {item.category}</Text>
   <Text  color="grey" >Brand: {item.brand}</Text>
 
-   <Text color="grey"> Stars:{item.stars}</Text> 
+   {/* <Text color="grey"> Stars:{item.stars}</Text>  */}
   
-  <Text  color="grey" >Price: {item.price}</Text>
+  <Text  color="grey" >Price: {item.price}₹</Text>
 
   <Button  marginTop={5} colorScheme='red' variant='outline'>Delete</Button>
   
