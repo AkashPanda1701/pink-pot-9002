@@ -17,9 +17,9 @@ const CreditCard = () => {
         alignItems="center"
         ml="10px"
         mt="10px"
-        spacing={{ lg: 6, md: 6, sm: 5 }}
+        spacing={{ lg: 16, md: 6, sm: 5 }}
       >
-        <Box w={{ lg: "30px", md: "60px", sm: "80px" }}>
+        <Box w={{ lg: "50px", md: "70px", base: "100px" }}>
           {" "}
           <Image src="https://www.sephora.com/contentimages/creditcard/cardicon/CreditCard.svg" />
         </Box>
