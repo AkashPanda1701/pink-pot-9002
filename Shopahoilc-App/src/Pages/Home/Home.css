@@ -135,10 +135,10 @@
   width: 45%;
 }
 .homeFeatures > div:nth-child(2) {
-  
   display: flex;
   justify-content: center;
-} 
+}
+
 @media screen and (max-width: 700px) {
   .HomeSlider1,
   .HomeSlider2,
