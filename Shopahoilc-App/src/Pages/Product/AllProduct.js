@@ -21,7 +21,7 @@ import { getAllProducts } from "../../Redux/products/actions";
 function AllProduct() {
   const {
     AllProducts,
-    data: { products: data },
+    data,
   } = useSelector((store) => store.products);
   console.log(AllProducts, data);
 

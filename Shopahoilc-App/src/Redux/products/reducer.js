@@ -24,7 +24,7 @@ const initialState = {
   UpdateProduct: { loading: false, error: false },
   DeleteProduct: { loading: false, error: false },
   data: [],
-  singleData: [],
+  singleData: {}
 };
 
 export default function productsReducer(
@@ -41,7 +41,7 @@ export default function productsReducer(
       return {
         ...state,
         AllProducts: { loading: false, error: false },
-        data: payload,
+        data: payload.products,
       };
 
     case GET_ALL_PRODUCTS_FAILURE:
@@ -62,7 +62,7 @@ export default function productsReducer(
           loading: false,
           error: false,
         },
-        data: [...state.data, payload],
+        singleData: payload,
       };
 
     case GET_SINGLE_PRODUCT_FAILURE:

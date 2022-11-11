@@ -5,7 +5,7 @@ import { TiTick } from "react-icons/ti";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { AiOutlineStar, AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   NumberInput,
   NumberInputField,
@@ -21,92 +21,92 @@ import {
   Select,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSingleProduct } from "../../Redux/products/actions";
-// const responsive1 = {
-//   superLargeDesktop: {
-//     breakpoint: { max: 4000, min: 3000 },
-//     items: 9,
-//     slidesToSlide: 9,
-//   },
-//   desktop: {
-//     breakpoint: { max: 3000, min: 1024 },
-//     items: 6,
-//     slidesToSlide: 6,
-//   },
-//   tablet: {
-//     breakpoint: { max: 1024, min: 464 },
-//     items: 3,
-//     slidesToSlide: 3,
-//   },
-//   mobile: {
-//     breakpoint: { max: 464, min: 0 },
-//     items: 2,
-//     slidesToSlide: 2,
-//   },
-// };
+import { getAllProducts, getSingleProduct } from "../../Redux/products/actions";
+const responsive1 = {
+  superLargeDesktop: {
+    breakpoint: { max: 4000, min: 3000 },
+    items: 9,
+    slidesToSlide: 9,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 6,
+    slidesToSlide: 6,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 3,
+    slidesToSlide: 3,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 2,
+    slidesToSlide: 2,
+  },
+};
 function SingleProduct() {
   // const [loading, setLoading] = useState(false);
-  // const [value, setValue] = useState(0);
-  const [data, setData] = useState([]);
-  const Product = useSelector((store) => store.products);
+  const [value, setValue] = useState(0);
+  const { Product: { loading, error }, singleData: data, AllProducts: { loading: prodLoad, error: prodErr }, data: products } = useSelector((store) => store.products);
   const { id } = useParams();
-  console.log(id);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getSingleProduct(id));
-  }, [dispatch, id]);
+    dispatch(getAllProducts({ category: data.category }));
+  }, [dispatch, id, data.category]);
 
-  // console.log(Product.data[0].brand);
-  // const toast = useToast();
-  // const [fav, setFav] = useState(true);
-  // const auth = true;
-  // const { stars, numReviews } = data;
 
-  // const handleChange = (value) => setValue(value);
-  // const checkAuth = () => {
-  //   if (auth) {
-  //     setFav(!fav);
-  //     toast({
-  //       title: "Product Added",
-  //       description: "We have added your product",
-  //       status: "success",
-  //       duration: 3000,
-  //       isClosable: true,
-  //       position: "top",
-  //     });
-  //   } else {
-  //     toast({
-  //       title: "Login Required",
-  //       description: "Cannot add products without login",
-  //       status: "error",
-  //       duration: 3000,
-  //       isClosable: true,
-  //       position: "top",
-  //     });
-  //   }
-  // };
-  // const ratingStar = Array.from({ length: 5 }, (elem, index) => {
-  //   let number = index + 0.5;
-  //   return (
-  //     <span key={index}>
-  //       {stars >= index + 1 ? (
-  //         <FaStar />
-  //       ) : stars >= number ? (
-  //         <FaStarHalfAlt />
-  //       ) : (
-  //         <AiOutlineStar />
-  //       )}
-  //     </span>
-  //   );
-  // });
-  // if (loading) {
-  //   return <div></div>;
-  // }
+
+
+  const toast = useToast();
+  const [fav, setFav] = useState(true);
+  const auth = true;
+  const { stars, numReviews } = data;
+
+  const handleChange = (value) => setValue(value);
+  const checkAuth = () => {
+    if (auth) {
+      setFav(!fav);
+      toast({
+        title: "Product Added",
+        description: "We have added your product",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+        position: "top",
+      });
+    } else {
+      toast({
+        title: "Login Required",
+        description: "Cannot add products without login",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        position: "top",
+      });
+    }
+  };
+  const ratingStar = Array.from({ length: 5 }, (elem, index) => {
+    let number = index + 0.5;
+    return (
+      <span key={index}>
+        {stars >= index + 1 ? (
+          <FaStar />
+        ) : stars >= number ? (
+          <FaStarHalfAlt />
+        ) : (
+          <AiOutlineStar />
+        )}
+      </span>
+    );
+  });
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
-      <h1>Working</h1>
-      {/* <div className="singleProduct">
+      <div className="singleProduct">
         <div>
           <img src={data.imageUrl} alt="productImage" />
         </div>
@@ -204,32 +204,36 @@ function SingleProduct() {
             </div>
           </div>
         </div>
-      </div> */}
-      {/* <div className="proContainer">
+      </div>
+
+      <div className="proContainer">
         <h1 className="homeHead">You may also like</h1>
         <div className="hc1">
-          <Carousel
+          {prodLoad ? "Loading Similar Products" : <Carousel
             responsive={responsive1}
             customTransition="1s"
             transitionDuration={1000}
           >
-            {Data[1].map((elem, index) => {
+            {prodLoad ? "" : products.map((elem, index) => {
               return (
                 <div key={index} className="proCon">
-                  <div>
-                    <img src={elem.imageUrl} alt="proImg" />
-                    <span className="homeLook">Quiclook</span>
-                  </div>
-                  <div>
-                    <h1>{elem.brand}</h1>
-                    <p>{elem.name}</p>
-                  </div>
+                  <Link to={`/products/${elem._id}`}>
+                    <div>
+                      <img src={elem.imageUrl} alt="proImg" />
+                      <span className="homeLook">Quiclook</span>
+                    </div>
+                    <div>
+                      <h1>{elem.brand}</h1>
+                      <p>{elem.name}</p>
+                    </div>
+                  </Link>
                 </div>
               );
             })}
           </Carousel>
+          }
         </div>
-      </div> */}
+      </div>
     </>
   );
 }

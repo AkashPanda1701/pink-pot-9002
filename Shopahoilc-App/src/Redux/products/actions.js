@@ -17,11 +17,17 @@ import {
   UPDATE_PRODUCT_SUCCESS,
 } from "./actionTypes";
 
-export const getAllProducts = () => async (dispatch) => {
+export const getAllProducts = (query) => async (dispatch) => {
+  console.log(query);
   try {
     dispatch({ type: GET_ALL_PRODUCTS_REQUEST });
+    let q = "";
+    for(let key in query){
+      q += `${key}=${query[key]}&`
+    }
+    console.log(q);
 
-    const res = await axios.get("https://shopaholic.onrender.com/product");
+    const res = await axios.get(`https://shopaholic.onrender.com/product?${q}`);
     console.log("res: ", res);
 
     dispatch({ type: GET_ALL_PRODUCTS_SUCCESS, payload: res.data });
@@ -39,7 +45,7 @@ export const getSingleProduct = (id) => async (dispatch) => {
     const res = await axios.get(
       `https://shopaholic.onrender.com/product/${id}`
     );
-    console.log("res: ", res);
+    // console.log("res: ", res);
 
     dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: res.data.product });
   } catch (error) {
