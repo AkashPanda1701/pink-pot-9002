@@ -186,7 +186,7 @@ function Checkout() {
           borderRadius={"5px"}
           h="100%"
           p="20px 20px"
-          mt={{ md: "20px" }}
+          mt={{ md: "20px", base: "20px" }}
           mb="20px"
         >
           <Flex w="100%" justify={"space-between"}>
@@ -263,7 +263,7 @@ function Checkout() {
               </Button>
             </Link>
             <Divider mt="10px" />
-            <Button
+            {/* <Button
               w="80%"
               display={"block"}
               m="auto"
@@ -271,7 +271,7 @@ function Checkout() {
               borderRadius={"20px"}
             >
               Place Order
-            </Button>
+            </Button> */}
           </Box>
         </Stack>
       </Flex>
