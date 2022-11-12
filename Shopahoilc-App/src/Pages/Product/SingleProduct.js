@@ -4,7 +4,7 @@ import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { TiTick } from "react-icons/ti";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { AiOutlineStar, AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineStar } from "react-icons/ai";
 import { Link, useParams } from "react-router-dom";
 import {
   NumberInput,
@@ -22,7 +22,7 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts, getSingleProduct } from "../../Redux/products/actions";
-import { addProductToCart, getCart } from "../../Redux/cart/actions";
+import { addProductToCart } from "../../Redux/cart/actions";
 const responsive1 = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 3000 },
@@ -47,47 +47,35 @@ const responsive1 = {
 };
 function SingleProduct() {
   // const [loading, setLoading] = useState(false);
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(1);
   const {
     Product: { loading },
     singleData: data,
     AllProducts: { loading: prodLoad },
     data: products,
   } = useSelector((store) => store.products);
+  let auth = useSelector((store) => store.auth);
   const { id } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getSingleProduct(id));
     dispatch(getAllProducts({ category: data.category }));
   }, [dispatch, id, data.category]);
-  const toast = useToast();
-  const [fav, setFav] = useState(true);
-  const auth = true;
   const { stars, numReviews } = data;
-
   const handleChange = (value) => setValue(value);
-  const checkAuth = () => {
-    if (auth) {
-      setFav(!fav);
-      toast({
-        title: "Product Added",
-        description: "We have added your product",
-        status: "success",
-        duration: 3000,
-        isClosable: true,
-        position: "top",
-      });
-    } else {
-      toast({
-        title: "Login Required",
-        description: "Cannot add products without login",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-        position: "top",
-      });
-    }
+  console.log(auth);
+  const toast = useToast();
+  const productAdded = () => {
+    toast({
+      title: "Product Added",
+      description: "We have added your product to Basket",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+      position: "top",
+    });
   };
+  // };
   const ratingStar = Array.from({ length: 5 }, (elem, index) => {
     let number = index + 0.5;
     return (
@@ -109,7 +97,7 @@ function SingleProduct() {
   return (
     <>
       <div className="singleProduct">
-        <div>
+        <div className="singleImage">
           <img src={data.imageUrl} alt="productImage" />
         </div>
         <div>
@@ -120,15 +108,17 @@ function SingleProduct() {
           <div className="proRatings">
             {ratingStar}
             {stars}
-            <span>( {numReviews} Costumer reviews )</span>
           </div>
+          <span className="proreviews">( {numReviews} Costumer reviews )</span>
           <div className="proPrices">
             <p>
               Old Price :{" "}
-              <span className="proOld">$ {data.price + data.price / 10}</span>
+              <span className="proOld">
+                ₹ {(data.price + data.price / 10) * 81}
+              </span>
             </p>
             <p>
-              New Price : <span>$ {data.price} ( 10% off)</span>
+              New Price : <span>₹ {data.price * 81} ( 10% off)</span>
             </p>
           </div>
           <div className="proDetails">
@@ -174,6 +164,7 @@ function SingleProduct() {
                 mr="2rem"
                 value={value}
                 onChange={handleChange}
+                zIndex="0"
               >
                 <NumberInputField />
                 <NumberInputStepper>
@@ -183,9 +174,10 @@ function SingleProduct() {
               </NumberInput>
               <Slider
                 flex="1"
-                focusThumbOnChange={false}
+                focusThumbOnChange={true}
                 value={value}
                 onChange={handleChange}
+                zIndex="0"
               >
                 <SliderTrack>
                   <SliderFilledTrack />
@@ -193,23 +185,29 @@ function SingleProduct() {
                 <SliderThumb fontSize="sm" boxSize="32px" children={value} />
               </Slider>
             </Flex>
-            <Select placeholder="Select Size" className="proSlider" width="sm">
-              <option value="option1">Small</option>
-              <option value="option2">Medium</option>
-              <option value="option3">Large</option>
-            </Select>
+            <div className="selector">
+              <Select placeholder="Select Size" width="xs" zIndex="0">
+                <option value="option1">Small</option>
+                <option value="option2">Medium</option>
+                <option value="option3">Large</option>
+              </Select>
+            </div>
           </div>
           <div className="proAdd">
-            <button
-              onClick={() => {
-                dispatch(addProductToCart(data._id, value));
-              }}
-            >
-              Add to Basket
-            </button>
-            <div onClick={checkAuth}>
-              {fav ? <AiFillHeart /> : <AiOutlineHeart />}
-            </div>
+            {auth ? (
+              <button
+                onClick={() => {
+                  dispatch(addProductToCart(data._id, value));
+                  productAdded();
+                }}
+              >
+                Add to Basket
+              </button>
+            ) : (
+              <Link to="/signup">
+                <button>SignUp to add to Basket</button>
+              </Link>
+            )}
           </div>
         </div>
       </div>
