@@ -1,17 +1,15 @@
 import { Box, Flex, Heading, useToast } from "@chakra-ui/react";
-import React from "react";
 import "./Cart.css";
 import Left from "../../Components/Cart/left/Left";
 import Right from "../../Components/Cart/right/Right";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function Cart() {
   const auth = useSelector((store) => store.auth);
   const toast = useToast();
-  const navigate = useNavigate();
-
-  if (!auth.data.isAuthenticated) {
+  console.log(auth);
+  if (auth.data.isAuthenticated === false) {
     toast({
       title: "Login Error",
       description: "Please login first to access cart",
@@ -20,7 +18,15 @@ function Cart() {
       isClosable: true,
       position: "top",
     });
-    navigate("/signup");
+    toast({
+      title: "Redirecting",
+      description: "Redirecting to signup page",
+      status: "error",
+      duration: 3000,
+      isClosable: true,
+      position: "top",
+    });
+    return <Navigate to="/signup" />;
   }
 
   return (
