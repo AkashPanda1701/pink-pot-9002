@@ -51,7 +51,7 @@ const Footer = () => {
             <p>Newsroom</p>
             <p>Careers</p>
             <p>Sephora Social Impact</p>
-            <p>Supply Chain Transparency</p>
+            <p>Supply Transparency</p>
             <p>Affiliates</p>
             <p>Sephora Events</p>
             <p>Gift Cards</p>
@@ -66,14 +66,14 @@ const Footer = () => {
             <p>Order Status</p>
             <p>Purchase History</p>
             <p>Account Settings</p>
-            <p>Beauty Advisor Recommendations</p>
+            <p>Beauty Advisor</p>
             <p>Beauty Offers</p>
             <p>Quizzes & Buying Guides</p>
           </div>
           <div>
             <h3>Customer Service</h3>
             <p>Returns & Exchanges</p>
-            <p>Delivery and Pickup Options</p>
+            <p>Delivery and Pickup</p>
             <p>Shipping</p>
             <p>Billing</p>
             <p>International Shipments</p>
@@ -90,7 +90,7 @@ const Footer = () => {
             <p>Canada - Français</p>
             <p>Accessibility</p>
             <p>Klarna & Afterpay</p>
-            <p>Loves Book a Reservation</p>
+            <p>Loves Book</p>
             <p>Rewards Bazaar</p>
             <p>Report a Vulnerability</p>
             <p>Sephora Accelerate</p>
@@ -104,7 +104,7 @@ const Footer = () => {
             <p>Order Status</p>
             <p>Purchase History</p>
             <p>Account Settings</p>
-            <p>Beauty Advisor Recommendations</p>
+            <p>Beauty Advisor</p>
             <p>Beauty Offers</p>
             <p>Quizzes & Buying Guides</p>
           </div>

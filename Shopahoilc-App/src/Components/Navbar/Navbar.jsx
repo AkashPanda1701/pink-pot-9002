@@ -13,8 +13,6 @@ import {
   PopoverBody,
   PopoverCloseButton,
   PopoverContent,
-  PopoverFooter,
-  PopoverHeader,
   PopoverTrigger,
   Portal,
 } from "@chakra-ui/react";
@@ -24,8 +22,7 @@ import { getCart } from "../../Redux/cart/actions";
 const Navbar = () => {
   const Navigate = useNavigate();
   const dispatch = useDispatch();
-  const cartState = useSelector((state) => state.carts);
-  console.log("cart", cartState);
+  const auth = useSelector((state) => state.auth);
   useEffect(() => {
     dispatch(getCart());
   }, [dispatch]);
@@ -67,29 +64,35 @@ const Navbar = () => {
                 <Link to="/signup">
                   <AiOutlineUser fontSize="20px" />
                 </Link>
-                <span className="navLogin">
-                  <Popover>
-                    <PopoverTrigger>
-                      <Button>Get Started</Button>
-                    </PopoverTrigger>
-                    <Portal className="xxx">
-                      <PopoverContent>
-                        <PopoverArrow />
-                        <PopoverCloseButton />
-                        <PopoverBody>
-                          <Link to="/login" className="xxx">
-                            <Button colorScheme="blue">Login</Button>
-                          </Link>
-                          <br></br>
-                          <br></br>
-                          <Link to="/signup">
-                            <Button colorScheme="blue">Sign Up</Button>
-                          </Link>
-                        </PopoverBody>
-                      </PopoverContent>
-                    </Portal>
-                  </Popover>
-                </span>
+                {auth.data.isAuthenticated ? (
+                  <Button h="30px" w="60px" className="navLogout">
+                    Logout
+                  </Button>
+                ) : (
+                  <span className="navLogin">
+                    <Popover>
+                      <PopoverTrigger>
+                        <Button>Get Started</Button>
+                      </PopoverTrigger>
+                      <Portal className="xxx">
+                        <PopoverContent>
+                          <PopoverArrow />
+                          <PopoverCloseButton />
+                          <PopoverBody>
+                            <Link to="/login" className="xxx">
+                              <Button colorScheme="blue">Login</Button>
+                            </Link>
+                            <br></br>
+                            <br></br>
+                            <Link to="/signup">
+                              <Button colorScheme="blue">Sign Up</Button>
+                            </Link>
+                          </PopoverBody>
+                        </PopoverContent>
+                      </Portal>
+                    </Popover>
+                  </span>
+                )}
               </p>
             </div>
           </div>
