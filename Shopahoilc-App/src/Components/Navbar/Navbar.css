@@ -62,6 +62,7 @@
   position: sticky;
   height: 45px;
   line-height: 45px;
+  z-index: 1;
 }
 
 .navWrapper {
@@ -85,6 +86,7 @@
   text-decoration: none;
   color: white;
   font-weight: 400;
+  font-size: 15px;
   padding: 5px 15px;
   border-radius: 5px;
   transition: all 0.3s ease;
@@ -144,6 +146,12 @@
 .mobileItem {
   display: none;
 }
+.navLogin {
+  z-index: 2;
+}
+.xxx {
+  z-index: 2;
+}
 @media screen and (max-width: 970px) {
   .navWrapper {
     width: 95%;
@@ -182,13 +190,15 @@
     width: 100%;
     max-width: 350px;
     display: block;
-    top: 146px;
-    /* left: 0; */
+    top: 0px;
     left: -100%;
     overflow-y: auto;
     line-height: 50px;
     padding: 50px 10px;
     transition: all 0.4s;
+  }
+  .navCancel {
+    top: 1rem;
   }
   #menuBtn:checked ~ .navLink {
     left: 0;
@@ -243,11 +253,9 @@
     margin: 0;
   }
 }
-
 .navWrapper input {
   display: none;
 }
-
 @media screen and (max-width: 690px) {
   .navSearch {
     display: none;
