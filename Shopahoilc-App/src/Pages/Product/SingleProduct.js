@@ -220,7 +220,7 @@ function SingleProduct() {
             </div>
           </div>
           <div className="proAdd">
-            {auth ? (
+            {auth.data.isAuthenticated ? (
               <button
                 onClick={() => {
                   dispatch(addProductToCart(data._id, value));

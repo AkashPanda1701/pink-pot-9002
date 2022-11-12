@@ -70,7 +70,14 @@ export const addProductToCart = (id, value) => async (dispatch) => {
 export const updateProductInCart = (id, quantity) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_CART_REQUEST });
-
+    dispatch({
+      type: UPDATE_CART_SUCCESS,
+      payload: {
+        quantity,
+        id,
+        message: "Quantity changed successfully",
+      },
+    });
     const res = await fetch(`https://shopaholic.onrender.com/cart/${id}`, {
       method: "PUT",
       body: JSON.stringify({
@@ -83,16 +90,6 @@ export const updateProductInCart = (id, quantity) => async (dispatch) => {
     });
     let data = await res.json();
     console.log("res: ", data);
-
-    dispatch({
-      type: UPDATE_CART_SUCCESS,
-
-      payload: {
-        quantity,
-        id,
-        message: data.message,
-      },
-    });
   } catch (error) {
     dispatch({
       type: UPDATE_CART_FAILURE,

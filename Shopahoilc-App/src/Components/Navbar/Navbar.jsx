@@ -15,14 +15,17 @@ import {
   PopoverContent,
   PopoverTrigger,
   Portal,
+  useToast,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getCart } from "../../Redux/cart/actions";
+import { AUTH_LOGOUT } from "../../Redux/auth/actionTypes";
 const Navbar = () => {
   const Navigate = useNavigate();
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+  const toast = useToast();
   useEffect(() => {
     dispatch(getCart());
   }, [dispatch]);
@@ -65,7 +68,21 @@ const Navbar = () => {
                   <AiOutlineUser fontSize="20px" />
                 </Link>
                 {auth.data.isAuthenticated ? (
-                  <Button h="30px" w="60px" className="navLogout">
+                  <Button
+                    h="30px"
+                    w="60px"
+                    className="navLogout"
+                    onClick={() => {
+                      dispatch({ type: AUTH_LOGOUT });
+                      toast({
+                        title: "Logged out successfully",
+                        status: "success",
+                        duration: 3000,
+                        isClosable: true,
+                        position: "top",
+                      });
+                    }}
+                  >
                     Logout
                   </Button>
                 ) : (

@@ -138,6 +138,7 @@ function Signup() {
         <Img
           w={"100%"}
           h={"100%"}
+          objectFit="contain"
           src="https://www.bms.co.in/wp-content/uploads/2015/05/Shopaholic.jpg"
         />
       </Box>

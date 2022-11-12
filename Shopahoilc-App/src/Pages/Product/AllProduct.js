@@ -13,6 +13,10 @@ import {
   AccordionPanel,
   AccordionIcon,
   Box,
+  SkeletonCircle,
+  SkeletonText,
+  Grid,
+  Skeleton,
 } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -24,7 +28,7 @@ function AllProduct() {
   const search = useLocation().search;
   const query = new URLSearchParams(search).get("category");
   const {
-    Product: { loading },
+    AllProducts: { loading },
   } = useSelector((store) => store.products);
   console.log(loading);
   const dispatch = useDispatch();
@@ -32,7 +36,37 @@ function AllProduct() {
     dispatch(getAllProducts({ category: query }));
   }, [dispatch, query]);
   if (loading) {
-    return <h1>Loading...</h1>;
+    return (
+      <Grid
+        w={{
+          base: "100%",
+          md: "90%",
+          lg: "80%",
+        }}
+        m="auto"
+        templateColumns={{
+          base: "repeat(2,1fr)",
+          md: "repeat(3,1fr)",
+          lg: "repeat(4,1fr)",
+        }}
+        gap="10"
+        p="10"
+      >
+        {new Array(20).fill(0).map(() => (
+          <Box w=" 100%" m="auto" boxShadow="lg" bg="white">
+            <Skeleton size="10" h="180px" />
+            <SkeletonText
+              w="80%"
+              m="auto"
+              mb="20px"
+              mt="4"
+              noOfLines={4}
+              spacing="4"
+            />
+          </Box>
+        ))}
+      </Grid>
+    );
   }
   return (
     <div className="product_body">
