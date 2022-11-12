@@ -125,14 +125,36 @@ li span {
   width: 80%;
   margin: auto;
 }
+
+/* Skeleton css */
+.skeleton {
+  display: flex;
+  width: 80%;
+  margin: 4rem auto;
+  justify-content: space-between;
+}
+.skeleton > div {
+  width: 48%;
+}
+
 @media screen and (max-width: 810px) {
   .singleProduct {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
   }
+  .skeleton {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .skeleton > div {
+    width: 100%;
+  }
+ 
   .singleProduct > div:nth-child(1) {
-    width: 80%;
+    width: 100%;
+
   }
   .singleProduct > div:nth-child(2) {
     width: 100%;
