@@ -139,7 +139,7 @@ function Home() {
                   <div key={index} className="proCon">
                     <div>
                       <img src={elem.imageUrl} alt="proImg" />
-                      <span className="homeLook">Quiclook</span>
+                      <span className="homeLook">Quicklook</span>
                     </div>
                     <div>
                       <h1>{elem.brand}</h1>

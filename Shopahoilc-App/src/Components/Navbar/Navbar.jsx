@@ -13,15 +13,19 @@ import {
   PopoverBody,
   PopoverCloseButton,
   PopoverContent,
-  PopoverFooter,
-  PopoverHeader,
   PopoverTrigger,
   Portal,
 } from "@chakra-ui/react";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getCart } from "../../Redux/cart/actions";
 const Navbar = () => {
- 
   const Navigate = useNavigate();
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+  useEffect(() => {
+    dispatch(getCart());
+  }, [dispatch]);
   return (
     <div>
       <nav className="nav1">
@@ -57,32 +61,38 @@ const Navbar = () => {
             |
             <div>
               <p>
-                <AiOutlineUser fontSize="20px" />
-                <span className="navLogin">
-                  <Popover>
-                    <PopoverTrigger>
-                      <Button>Get Started</Button>
-                    </PopoverTrigger>
-                    <Portal>
-                      <PopoverContent>
-                        <PopoverArrow />
-                        <PopoverHeader>Header</PopoverHeader>
-                        <PopoverCloseButton />
-                        <PopoverBody>
-                          <Link to="/login">
-                            <Button colorScheme="blue">Login</Button>
-                          </Link>
-                          <br></br>
-                          <br></br>
-                          <Link to="/signup">
-                            <Button colorScheme="blue">Sign Up</Button>
-                          </Link>
-                        </PopoverBody>
-                        <PopoverFooter>This is the footer</PopoverFooter>
-                      </PopoverContent>
-                    </Portal>
-                  </Popover>
-                </span>
+                <Link to="/signup">
+                  <AiOutlineUser fontSize="20px" />
+                </Link>
+                {auth.data.isAuthenticated ? (
+                  <Button h="30px" w="60px" className="navLogout">
+                    Logout
+                  </Button>
+                ) : (
+                  <span className="navLogin">
+                    <Popover>
+                      <PopoverTrigger>
+                        <Button>Get Started</Button>
+                      </PopoverTrigger>
+                      <Portal className="xxx">
+                        <PopoverContent>
+                          <PopoverArrow />
+                          <PopoverCloseButton />
+                          <PopoverBody>
+                            <Link to="/login" className="xxx">
+                              <Button colorScheme="blue">Login</Button>
+                            </Link>
+                            <br></br>
+                            <br></br>
+                            <Link to="/signup">
+                              <Button colorScheme="blue">Sign Up</Button>
+                            </Link>
+                          </PopoverBody>
+                        </PopoverContent>
+                      </Portal>
+                    </Popover>
+                  </span>
+                )}
               </p>
             </div>
           </div>
@@ -98,7 +108,7 @@ const Navbar = () => {
               <MdOutlineCancel />
             </label>
             <li>
-              <Link to={`/products?category=all`} className="desktopItem">
+              <Link to={`/products?category=`} className="desktopItem">
                 New
               </Link>
               <input type="checkbox" id="showMega" />

@@ -1,9 +1,15 @@
 import { Box, Button, Divider, Flex, Stack, Text } from "@chakra-ui/react";
 import React from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Right = () => {
   const navigate = useNavigate();
+  const { carts } = useSelector((state) => state.carts);
+  let total = carts.reduce(
+    (ac, ele) => ac + ele.productId.price * ele.quantity,
+    0
+  );
   const checkout = () => {
     navigate("/checkout");
   };
@@ -19,25 +25,24 @@ const Right = () => {
     >
       <Flex w="100%" justify={"space-between"}>
         <Text>Merchandise Subtotal</Text>
-        <Text fontWeight={"bold"}>$15.00</Text>
+        <Text fontWeight={"bold"}>₹ {total * 82}</Text>
       </Flex>
       <Flex w="100%" justify={"space-between"}>
         <Text>Shipping & Handling</Text>
-        <Text fontWeight={"bold"}>TBD</Text>
+        <Text fontWeight={"bold"}>₹ 200</Text>
       </Flex>
       <Flex w="100%" justify={"space-between"}>
-        <Text>Estimated Tax & Other Fees</Text>
-        <Text fontWeight={"bold"}>TBD</Text>
+        <Text>Tax (Inc.)</Text>
+        <Text fontWeight={"bold"}>{(total * 82) / 100}</Text>
       </Flex>
       <Divider />
       <Flex w="100%" justify={"space-between"}>
         <Text>Estimated Total</Text>
-        <Text fontWeight={"bold"}>$15.00</Text>
+        <Text fontWeight={"bold"}>₹ {total * 82 + 200}</Text>
       </Flex>
-      <Box w="70%">
+      <Box w="100%" fontSize="13px">
         <Text>
-          or 4 payments of $3.75 with <strong>Klarna.</strong> or{" "}
-          <strong>afterpay</strong>
+          or 4 payments of ₹ {(total * 82) / 4} with <strong>SBI</strong> or <strong> afterpay</strong>
         </Text>
       </Box>
       <Text fontSize={"12px"} color="grey">

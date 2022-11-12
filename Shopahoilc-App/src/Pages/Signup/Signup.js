@@ -30,10 +30,9 @@ function Signup() {
   const [formData, setFormData] = React.useState(initialState);
   const authState = useSelector((state) => state.auth.userRegister);
   const dispatch = useDispatch();
- 
 
   React.useEffect(() => {
-    if (authState.message==='User already exists') {
+    if (authState.message === "User already exists") {
       toast({
         title: authState.message,
         status: "error",
@@ -43,27 +42,22 @@ function Signup() {
       });
       dispatch({ type: AUTH_REGISTER_RESET });
     }
-     if(authState.message==='User Registered Successfully'){
+    if (authState.message === "User Registered Successfully") {
       toast({
-        
-        title: authState.message ,
+        title: authState.message,
         status: "success",
         duration: 3000,
         isClosable: true,
         position: "top",
       });
-      
+
       dispatch({ type: AUTH_REGISTER_RESET });
 
       setTimeout(() => {
         navigate("/login");
       }, 4000);
-
     }
-
-  }, [ dispatch, navigate,authState.error, authState.message, toast]);
-
-
+  }, [dispatch, navigate, authState.error, authState.message, toast]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -72,8 +66,6 @@ function Signup() {
     e.preventDefault();
     // console.log(formData);
     dispatch(authRegister(formData));
-
-   
   };
   return (
     <Grid
@@ -135,9 +127,10 @@ function Signup() {
             fontSize="18px"
             w={"100%"}
           >
-            {
-              authState.loading ? 'Registering...' : 'Register'
-            }
+            {authState.loading ? "Registering..." : "Register"}
+          </Button>
+          <Button onClick={() => navigate("/login")}>
+            Already a User ? Login
           </Button>
         </Stack>
       </Box>
@@ -152,4 +145,4 @@ function Signup() {
   );
 }
 
-export default Signup
+export default Signup;

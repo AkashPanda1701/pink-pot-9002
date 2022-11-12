@@ -20,7 +20,7 @@ import PorMenue from "./Pro_component/pro_menue";
 import { getAllProducts } from "../../Redux/products/actions";
 
 function AllProduct() {
-  const {  data } = useSelector((store) => store.products);
+  const { data } = useSelector((store) => store.products);
   const search = useLocation().search;
   const query = new URLSearchParams(search).get("category");
   console.log(data);
@@ -116,7 +116,7 @@ function AllProduct() {
             </AccordionItem>
           </Accordion>
           <Img
-            src="https://pubsaf.global.ssl.fastly.net/prmt/c51f158aecb4ec7f50e6cd8d3c3cc53b"
+            src="https://pubsaf.global.ssl.fastly.net/prmt/2b3c4a8bcedc1e3939b716fe3b3dc904"
             m="auto"
             mt="1rem"
             alt="Img"
@@ -125,7 +125,7 @@ function AllProduct() {
       </Hide>
 
       <div className="prod_el_main">
-        <Img src="https://pubsaf.global.ssl.fastly.net/prmt/a6dc8a737b657f4258f633774d92ed79" />
+        <Img src="https://pubsaf.global.ssl.fastly.net/prmt/b37a3d4788a3a4c3f8a92f194d801148" />
         <Show below="1000px">
           <PorMenue />
         </Show>
@@ -137,39 +137,43 @@ function AllProduct() {
                 borderWidth="1px"
                 borderRadius="lg"
                 overflow="hidden"
+                boxShadow="md"
               >
                 <Link to={`/products/${el._id}`}>
-                  <Img src={el.imageUrl} />
-                </Link>
+                  <div className="proPageImage">
+                    <Img src={el.imageUrl} p="3" />
+                    <span className="prolook">Quicklook</span>
+                  </div>
 
-                <Box p="6">
-                  <Box
-                    mt="1"
-                    fontWeight="semibold"
-                    as="h4"
-                    lineHeight="tight"
-                    noOfLines={1}
-                  >
-                    {el.name}
-                  </Box>
-                  <Box display="flex" mt="2" alignItems="center">
-                    {Array(5)
-                      .fill("")
-                      .map((_, i) => (
-                        <StarIcon
-                          key={i}
-                          color={i < el.stars ? "teal.500" : "gray.300"}
-                        />
-                      ))}
-                    <Box as="span" ml="2" color="gray.600" fontSize="sm">
+                  <Box p="6">
+                    <Box
+                      mt="1"
+                      fontWeight="semibold"
+                      as="h4"
+                      lineHeight="tight"
+                      noOfLines={1}
+                    >
+                      {el.name}
+                    </Box>
+                    <Box display="flex" mt="2" alignItems="center">
+                      {Array(5)
+                        .fill("")
+                        .map((_, i) => (
+                          <StarIcon
+                            key={i}
+                            color={i < el.stars ? "teal.500" : "gray.300"}
+                          />
+                        ))}
+                    </Box>
+                    <Box mt="2" color="gray.600" fontSize="sm">
                       {el.numReviews} reviews
                     </Box>
+                    <Box>
+                      ₹ {el.price * 81}
+                      <Box as="span" color="gray.600" fontSize="sm"></Box>
+                    </Box>
                   </Box>
-                  <Box>
-                    {el.price * 70}
-                    <Box as="span" color="gray.600" fontSize="sm"></Box>
-                  </Box>
-                </Box>
+                </Link>
               </Box>
             ))}
         </div>

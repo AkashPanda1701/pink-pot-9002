@@ -30,7 +30,6 @@ function Cart() {
       m="auto"
       mt="20px"
       mb="20px"
-      // border="1px solid red"
       p="10px"
     >
       <Heading
@@ -39,7 +38,6 @@ function Cart() {
       >
         My Basket
       </Heading>
-      {/* height is just for temporary use */}
       <Flex
         gap={{ lg: "15px", md: "15px" }}
         h="auto"

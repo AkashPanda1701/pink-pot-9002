@@ -32,6 +32,7 @@ export default function cartReducer(state = initialState, { type, payload }) {
         error: false,
       };
     case GET_CART_SUCCESS:
+      console.log("payload", payload);
       return {
         ...state,
         loading: false,
@@ -66,34 +67,35 @@ export default function cartReducer(state = initialState, { type, payload }) {
         message: payload.message,
       };
 
-      case UPDATE_CART_REQUEST:
-        return {
-            ...state,
-            loading: true,
-            error: false,
-        };
-        case UPDATE_CART_SUCCESS:
-            return {
-                ...state,
-                loading: false,
-                error: false,
-                carts: state.carts.map((cart) => {
-                    if (cart._id === payload.updatedItem._id) {
-                        return payload.updatedItem;
-                    }
-                    return cart;
-                }),
-                message: payload.message,
-            };
+    case UPDATE_CART_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+    case UPDATE_CART_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        carts: state.carts.map((cart) => {
+          if (cart._id === payload.id) {
+            cart.quantity = payload.quantity;
+            return cart;
+          }
+          return cart;
+        }),
+        message: payload.message,
+      };
 
-            case UPDATE_CART_FAILURE:
-                return {
-                    ...state,
-                    loading: false,
-                    error: true,
-                    message: payload.message,
-                };
-                
+    case UPDATE_CART_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        message: payload.message,
+      };
+
     case REMOVE_FROM_CART_REQUEST:
       return {
         ...state,
