@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import "./AllProduct.css";
 import { useEffect } from "react";
 import { StarIcon } from "@chakra-ui/icons";
@@ -23,12 +23,17 @@ function AllProduct() {
   const { data } = useSelector((store) => store.products);
   const search = useLocation().search;
   const query = new URLSearchParams(search).get("category");
-  console.log(data);
+  const {
+    Product: { loading },
+  } = useSelector((store) => store.products);
+  console.log(loading);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllProducts({ category: query }));
   }, [dispatch, query]);
-
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
   return (
     <div className="product_body">
       <Hide below="1000px">

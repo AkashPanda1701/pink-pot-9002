@@ -19,6 +19,10 @@ import {
   SliderThumb,
   useToast,
   Select,
+  Box,
+  SkeletonCircle,
+  SkeletonText,
+  Skeleton,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts, getSingleProduct } from "../../Redux/products/actions";
@@ -46,9 +50,8 @@ const responsive1 = {
   },
 };
 function SingleProduct() {
-  // const [loading, setLoading] = useState(false);
   const [value, setValue] = useState(1);
-  const {
+  let {
     Product: { loading },
     singleData: data,
     AllProducts: { loading: prodLoad },
@@ -75,7 +78,7 @@ function SingleProduct() {
       position: "top",
     });
   };
-  // };
+  console.log(loading);
   const ratingStar = Array.from({ length: 5 }, (elem, index) => {
     let number = index + 0.5;
     return (
@@ -91,7 +94,30 @@ function SingleProduct() {
     );
   });
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="skeleton">
+        <div>
+          <Skeleton h="full">
+            <div>contents wrapped</div>
+            <div>won't be visible</div>
+          </Skeleton>
+        </div>
+        <div>
+          <Box padding="6" boxShadow="lg" bg="white">
+            <SkeletonCircle size="10" />
+            <SkeletonText mt="4" noOfLines={4} spacing="4" />
+          </Box>
+          <Box padding="6" boxShadow="lg" bg="white">
+            <SkeletonCircle size="10" />
+            <SkeletonText mt="4" noOfLines={4} spacing="4" />
+          </Box>
+          <Box padding="6" boxShadow="lg" bg="white">
+            <SkeletonCircle size="10" />
+            <SkeletonText mt="4" noOfLines={4} spacing="4" />
+          </Box>
+        </div>
+      </div>
+    );
   }
 
   return (
