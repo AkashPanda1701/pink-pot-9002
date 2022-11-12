@@ -64,19 +64,20 @@ const Navbar = () => {
             |
             <div>
               <p>
-                <AiOutlineUser fontSize="20px" />
+                <Link to="/signup">
+                  <AiOutlineUser fontSize="20px" />
+                </Link>
                 <span className="navLogin">
                   <Popover>
                     <PopoverTrigger>
                       <Button>Get Started</Button>
                     </PopoverTrigger>
-                    <Portal>
+                    <Portal className="xxx">
                       <PopoverContent>
                         <PopoverArrow />
-                        <PopoverHeader>Header</PopoverHeader>
                         <PopoverCloseButton />
                         <PopoverBody>
-                          <Link to="/login">
+                          <Link to="/login" className="xxx">
                             <Button colorScheme="blue">Login</Button>
                           </Link>
                           <br></br>
@@ -85,7 +86,6 @@ const Navbar = () => {
                             <Button colorScheme="blue">Sign Up</Button>
                           </Link>
                         </PopoverBody>
-                        <PopoverFooter>This is the footer</PopoverFooter>
                       </PopoverContent>
                     </Portal>
                   </Popover>
