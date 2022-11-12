@@ -8,28 +8,35 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
-// import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-
-const data = [
-  {
-    imageUrl:
-      "https://www.sephora.com/productimages/sku/s2518959-main-zoom.jpg?imwidth=270&imwidth=164",
-    brand: "Rare Beauty by Selena Gomez",
-    name: "Soft Pinch Liquid Blush",
-    stars: 4.5,
-    numReviews: 2300,
-    price: 20,
-    category: "makeup",
-    type: "face",
-    id: 1,
-  },
-];
+import {
+  removeProductFromCart,
+  updateProductInCart,
+} from "../../../Redux/cart/actions";
+import { useState } from "react";
+// const data = [
+//   {
+//     imageUrl:
+//       "https://www.sephora.com/productimages/sku/s2518959-main-zoom.jpg?imwidth=270&imwidth=164",
+//     brand: "Rare Beauty by Selena Gomez",
+//     name: "Soft Pinch Liquid Blush",
+//     stars: 4.5,
+//     numReviews: 2300,
+//     price: 20,
+//     category: "makeup",
+//     type: "face",
+//     id: 1,
+//   },
+// ];
 
 const CartCrud = () => {
+  const { carts: data, loading } = useSelector((store) => store.carts);
+  const dispatch = useDispatch();
+  console.log(data);
   return (
     <Box w="100%" mt="30px">
-      {data.length === 0 ? (
+      {data?.length === 0 ? (
         <Flex
           w="90%"
           p="20px 0px"
@@ -58,7 +65,6 @@ const CartCrud = () => {
           return (
             <Flex
               w="90%"
-              // border="1px solid grey"
               p="20px 0px"
               m="auto"
               mt="5px"
@@ -69,15 +75,15 @@ const CartCrud = () => {
               flexDirection={{ lg: "row", md: "row", base: "column" }}
             >
               <Image
-                src={el.imageUrl}
+                src={el.productId.imageUrl}
                 w={{ lg: "auto", md: "auto", base: "150px" }}
                 h="100px"
               />
               <Box w="68%">
-                <Text fontWeight={"bold"}>{el.brand}</Text>
-                <Text>{el.name}</Text>
+                <Text fontWeight={"bold"}>{el.productId.brand}</Text>
+                <Text>{el.productId.name}</Text>
                 <Text>
-                  <strong>Category</strong>: {el.category}
+                  <strong>Category</strong>: {el.productId.category}
                 </Text>
                 <Flex
                   mt="10px"
@@ -86,21 +92,6 @@ const CartCrud = () => {
                   gap={{ lg: 3, md: 3, base: 0 }}
                   flexDirection={{ lg: "row", md: "column", base: "column" }}
                 >
-                  {/* <Select
-                    w={{ lg: "80px", md: "100px", sm: "100px" }}
-                    m={{ lg: "2px", md: "auto", base: "auto" }}
-                    placeholder="1"
-                  >
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                  </Select> */}
                   <Flex w="100px" justify={"center"} align="center" gap={1}>
                     <Button
                       w="50px"
@@ -108,16 +99,23 @@ const CartCrud = () => {
                       variant={"ghost"}
                       fontSize="35px"
                       fontWeight={"bold"}
+                      onClick={() => {
+                        dispatch(updateProductInCart(el._id, el.quantity - 1));
+                      }}
+                      disabled={el.quantity === 1}
                     >
                       -
                     </Button>
-                    <Text fontWeight={"bold"}>1</Text>
+                    <Text fontWeight={"bold"}>{el.quantity}</Text>
                     <Button
                       w="50px"
                       h="40px"
                       variant={"ghost"}
                       fontSize="30px"
                       fontWeight={"bold"}
+                      onClick={() => {
+                        dispatch(updateProductInCart(el._id, el.quantity + 1));
+                      }}
                     >
                       +
                     </Button>
@@ -133,6 +131,8 @@ const CartCrud = () => {
                     variant={"link"}
                     color="blue"
                     _hover={{ textDecoration: "underline" }}
+                    onClick={() => dispatch(removeProductFromCart(el._id))}
+                    disabled={el.quantity === 20}
                   >
                     Remove
                   </Button>
@@ -141,7 +141,7 @@ const CartCrud = () => {
               <Box>
                 <Text>
                   <strong>₹</strong>
-                  {Math.round(el.price * 81.66)}/-
+                  {Math.round(el.productId.price * 81.66 * el.quantity)}/-
                 </Text>
               </Box>
             </Flex>

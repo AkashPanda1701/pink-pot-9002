@@ -22,7 +22,7 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts, getSingleProduct } from "../../Redux/products/actions";
-import { addProductToCart } from "../../Redux/cart/actions";
+import { addProductToCart, getCart } from "../../Redux/cart/actions";
 const responsive1 = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 3000 },
@@ -48,15 +48,12 @@ const responsive1 = {
 function SingleProduct() {
   // const [loading, setLoading] = useState(false);
   const [value, setValue] = useState(0);
-  console.log(value);
   const {
     Product: { loading },
     singleData: data,
     AllProducts: { loading: prodLoad },
     data: products,
   } = useSelector((store) => store.products);
-  const cartState = useSelector((store) => store.carts);
-  console.log(cartState);
   const { id } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {

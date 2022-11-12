@@ -17,6 +17,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { authLogin } from "../../Redux/auth/actions";
+import { getCart } from "../../Redux/cart/actions";
 
 const initialState = {
   email : "",
@@ -30,7 +31,8 @@ function Login() {
 const authState = useSelector((state) => state.auth.userLogin);
 // console.log('authState: ', authState);
 const dispatch = useDispatch();
-
+const cartState =useSelector((state) => state.carts)
+console.log('cartState: ', cartState);
 
   React.useEffect(() => {
   }, [onOpen]);
@@ -55,6 +57,9 @@ const dispatch = useDispatch();
       });
     }
      if(authState.message==='Login successful'){
+
+
+      dispatch(getCart())
       toast({
         
         title: authState.message ,
@@ -63,6 +68,7 @@ const dispatch = useDispatch();
         isClosable: true,
         position: "top",
       });
+
 
       setTimeout(() => {
         navigate("/");

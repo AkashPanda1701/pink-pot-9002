@@ -18,14 +18,16 @@ export const getCart = () => async (dispatch) => {
   try {
     dispatch({ type: GET_CART_REQUEST });
 
-    const res = await axios.get("/api/cart", {
+    const res = await fetch("https://shopaholic.onrender.com/cart", {
       headers: {
-        token: `Bearer ${localStorage.getItem("token")}`,
+        token: localStorage.getItem("token"),
+        "Content-Type": "application/json",
       },
     });
-    console.log("res: ", res);
+    const data = await res.json();
+    console.log("res: ", data);
 
-    dispatch({ type: GET_CART_SUCCESS, payload: res.data });
+    dispatch({ type: GET_CART_SUCCESS, payload: data.carts });
   } catch (error) {
     dispatch({
       type: GET_CART_FAILURE,
@@ -37,21 +39,24 @@ export const addProductToCart = (id, value) => async (dispatch) => {
   console.log(id, value);
   try {
     dispatch({ type: ADD_TO_CART_REQUEST });
-    const res = await axios.post(`https://shopaholic.onrender.com/cart`, {
-      body: {
+    const res = await fetch(`https://shopaholic.onrender.com/cart`, {
+      method: "POST",
+      body: JSON.stringify({
         productId: id,
         quantity: value,
-      },
+      }),
       headers: {
         token: localStorage.getItem("token"),
+        "Content-Type": "application/json",
       },
     });
-    console.log("res: ", res);
+    const data = await res.json();
+    console.log("res: ", data);
     dispatch({
       type: ADD_TO_CART_SUCCESS,
       payload: {
-        newCartItem: res.data.newCartItem,
-        message: res.data.message,
+        newCartItem: data.newCartItem,
+        message: data.message,
       },
     });
   } catch (error) {
@@ -66,22 +71,26 @@ export const updateProductInCart = (id, quantity) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_CART_REQUEST });
 
-    const res = await axios.put(`/api/cart/${id}`, {
-      body: {
+    const res = await fetch(`https://shopaholic.onrender.com/cart/${id}`, {
+      method: "PUT",
+      body: JSON.stringify({
         quantity: quantity,
-      },
+      }),
       headers: {
-        token: `Bearer ${localStorage.getItem("token")}`,
+        token: localStorage.getItem("token"),
+        "Content-Type": "application/json",
       },
     });
-    console.log("res: ", res);
+    let data = await res.json();
+    console.log("res: ", data);
 
     dispatch({
       type: UPDATE_CART_SUCCESS,
 
       payload: {
-        updatedItem: res.data.updatedItem,
-        message: res.data.message,
+        quantity,
+        id,
+        message: data.message,
       },
     });
   } catch (error) {
@@ -96,18 +105,21 @@ export const removeProductFromCart = (id) => async (dispatch) => {
   try {
     dispatch({ type: REMOVE_FROM_CART_REQUEST });
 
-    const res = await axios.delete(`/api/cart/${id}`, {
+    const res = await fetch(`https://shopaholic.onrender.com/cart/${id}`, {
+      method: "DELETE",
       headers: {
-        token: `Bearer ${localStorage.getItem("token")}`,
+        token: localStorage.getItem("token"),
+        "Content-Type": "application/json",
       },
     });
-    console.log("res: ", res);
+    let data = await res.json();
+    console.log("res: ", data);
 
     dispatch({
       type: REMOVE_FROM_CART_SUCCESS,
       payload: {
         id,
-        message: res.data.message,
+        message: data.message,
       },
     });
   } catch (error) {

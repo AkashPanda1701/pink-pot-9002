@@ -18,10 +18,17 @@ import {
   PopoverTrigger,
   Portal,
 } from "@chakra-ui/react";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getCart } from "../../Redux/cart/actions";
 const Navbar = () => {
- 
   const Navigate = useNavigate();
+  const dispatch = useDispatch();
+  const cartState = useSelector((state) => state.carts);
+  console.log("cart", cartState);
+  useEffect(() => {
+    dispatch(getCart());
+  }, [dispatch]);
   return (
     <div>
       <nav className="nav1">
@@ -98,7 +105,7 @@ const Navbar = () => {
               <MdOutlineCancel />
             </label>
             <li>
-              <Link to={`/products?category=all`} className="desktopItem">
+              <Link to={`/products?category=`} className="desktopItem">
                 New
               </Link>
               <input type="checkbox" id="showMega" />
