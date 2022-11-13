@@ -51,7 +51,7 @@ const Right = () => {
         Shipping & taxes calculated during checkout
       </Text>
       <Flex justify={"center"}>
-        {total == 0 ? (
+        {total === 0 ? (
           <Button
             w="70%"
             background={"#cf112c"}

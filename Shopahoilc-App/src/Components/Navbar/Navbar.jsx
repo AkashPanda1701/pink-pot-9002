@@ -2,7 +2,7 @@ import "./Navbar.css";
 import Logo from "./Logo.jpg";
 import logo2 from "./logo2.png";
 import { Link, useNavigate } from "react-router-dom";
-import { BsSearch, BsTruck, BsBag } from "react-icons/bs";
+import { BsSearch,  BsBag } from "react-icons/bs";
 import { AiOutlineUser } from "react-icons/ai";
 import { MdOutlineCancel } from "react-icons/md";
 import { FaBars } from "react-icons/fa";
