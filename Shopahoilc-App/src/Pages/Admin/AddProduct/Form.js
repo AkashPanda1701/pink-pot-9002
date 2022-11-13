@@ -1,126 +1,124 @@
-import {
-    FormControl,
-    FormLabel,
-    Input,
-    Button,Box
-  } from "@chakra-ui/react";
-  import reducer from "../reducer";
-  import { useReducer } from "react";
-  const initialState = {
-    name: "",
-    url: "",
-    category: "",
-    price : "",
-    brand: ""
-  };
-  
-  const Form = () => {
-    const [reducerState, dispatch] = useReducer(reducer, initialState);
-  
-    function submit() {
-      console.log({
-        name: reducerState.name,
-        Imageurl: reducerState.Imageurl,
-        category: reducerState.category,
-        price: reducerState.price,
-        brand: reducerState.brand,
-      });
+import { FormControl, FormLabel, Input, Button, Box } from "@chakra-ui/react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../../Redux/products/actions";
+const initialState = {
+  name: "",
+  imageUrl: "",
+  category: "",
+  price: 0,
+  brand: "",
+  numReviews: "",
+  stars: 0,
+  type: "",
+};
+
+const Form = () => {
+  const [formData, setFormData] = useState(initialState);
+  const dispatch = useDispatch();
+  function handleChange({ target }) {
+    let val = target.value;
+    if (target.name === "price" || target.name === "stars") {
+      val = +target.value;
     }
+    setFormData({ ...formData, [target.name]: val });
+  }
+  function submit() {
+    dispatch(addProduct(formData));
+  }
 
-   
-    return (
-      <FormControl margin="auto" width="70%" bg="white" id="form" ml={40} p={100}>
-
-        <Box marginLeft="40">
+  return (
+    <FormControl margin="auto" width="70%" bg="white" id="form" ml={40}>
+      <Box marginLeft="40">
         <FormLabel>Product Name</FormLabel>
         <Input
-        mb="15px"
-       width="70%"
+          mb="15px"
+          width="70%"
           type="text"
           placeholder="Product name"
-          value={reducerState.name}
-          onChange={(e) =>
-            dispatch({
-              type: "UPDATE",
-              value: e.target.value,
-              key: "name"
-            })
-          }
+          name="name"
+          onChange={handleChange}
         />
         <FormLabel>Image Url</FormLabel>
         <Input
-        mb="15px"
-        width="70%"
+          mb="15px"
+          width="70%"
           type="url"
           placeholder="Product image url"
-          value={reducerState.Imageurl}
-          onChange={(e) =>
-            dispatch({
-              type: "UPDATE",
-              value: e.target.value,
-              key: "Imageurl"
-            })
-          }
+          name="imageUrl"
+          onChange={handleChange}
         />
         <FormLabel>Category</FormLabel>
         <Input
-        mb="15px"
-        width="70%"
+          mb="15px"
+          width="70%"
           type="text"
-          placeholder="like... Mackup,hair and mant more"
-          value={reducerState.category}
-          onChange={(e) =>
-            dispatch({
-              type: "UPDATE",
-              value: e.target.value,
-              key: "category"
-            })
-          }
+          placeholder="product category"
+          name="category"
+          onChange={handleChange}
         />
 
-<FormLabel>Brand</FormLabel>
+        <FormLabel>Brand</FormLabel>
         <Input
-        mb="15px"
-        width="70%"
+          mb="15px"
+          width="70%"
           type="text"
           placeholder="enter brand name"
-          value={reducerState.brand}
-          onChange={(e) =>
-            dispatch({
-              type: "UPDATE",
-              value: e.target.value,
-              key: "brand"
-            })
-          }
+          name="brand"
+          onChange={handleChange}
+        />
+        <FormLabel>Reviews</FormLabel>
+        <Input
+          mb="15px"
+          width="70%"
+          type="number"
+          placeholder="No. of Reviews"
+          name="numReviews"
+          onChange={handleChange}
+        />
+        <FormLabel>Rating</FormLabel>
+        <Input
+          mb="15px"
+          width="70%"
+          type="text"
+          placeholder="enter rating"
+          name="stars"
+          onChange={handleChange}
+        />
+        <FormLabel>Type</FormLabel>
+        <Input
+          mb="15px"
+          width="70%"
+          type="text"
+          placeholder="Enter product type"
+          name="type"
+          onChange={handleChange}
         />
 
         <FormLabel>Price</FormLabel>
         <Input
-        mb="15px"
-        width="70%"
+          mb="15px"
+          width="70%"
           type="number"
-          placeholder="in indian ruppes..."
-          value={reducerState.price}
-          onChange={(e) =>
-            dispatch({
-              type: "UPDATE",
-              value: e.target.value,
-              key: "price"
-            })
-          }
+          placeholder="Product price in $"
+          name="price"
+          onChange={handleChange}
         />
         <br />
-        <Button onClick={() => submit()} mt={4} colorScheme="teal" type="submit">
+        <Button
+          onClick={() => submit()}
+          mt={4}
+          colorScheme="teal"
+          type="submit"
+        >
           submit
         </Button>
 
-        <Button ml="200"mt={4} colorScheme="red" type="button">
+        <Button ml="200" mt={4} colorScheme="red" type="button">
           reset
         </Button>
-
-        </Box>
-      </FormControl>
-    );
-  };
-  export default Form;
-  
+      </Box>
+    </FormControl>
+  );
+};
+export default Form;

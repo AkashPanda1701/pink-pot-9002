@@ -23,7 +23,7 @@ const initialState = {
   UpdateProduct: { loading: false, error: false },
   DeleteProduct: { loading: false, error: false },
   data: [],
-  singleData: {}
+  singleData: {},
 };
 
 export default function productsReducer(
@@ -94,11 +94,12 @@ export default function productsReducer(
         UpdateProduct: { loading: true, error: false },
       };
     case UPDATE_PRODUCT_SUCCESS:
+      console.log(payload);
       return {
         ...state,
         UpdateProduct: { loading: false, error: false },
         data: state.data.map((item) =>
-          item.id === payload.id ? payload : item
+          item._id === payload._id ? payload : item
         ),
       };
 
@@ -117,7 +118,7 @@ export default function productsReducer(
       return {
         ...state,
         DeleteProduct: { loading: false, error: false },
-        data: state.data.filter((item) => item.id !== payload),
+        data: state.data.filter((item) => item._id !== payload),
       };
 
     case DELETE_PRODUCT_FAILURE:

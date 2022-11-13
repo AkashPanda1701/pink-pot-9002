@@ -54,10 +54,10 @@ const Navbar = () => {
             </div>
           </div>
           <div className="navIcons">
-            <div>
+            {/* <div>
               <BsTruck fontSize="20px" onClick={() => Navigate("/orders")} />
             </div>
-            |
+            | */}
             <div>
               <BsBag fontSize="20px" onClick={() => Navigate("/cart")} />
             </div>

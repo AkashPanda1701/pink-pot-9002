@@ -9,15 +9,12 @@ import {
   Hide,
   Img,
   AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
   Box,
-  SkeletonCircle,
   SkeletonText,
   Grid,
   Skeleton,
   Button,
+  Select,
 } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -25,10 +22,13 @@ import PorMenue from "./Pro_component/pro_menue";
 import { getAllProducts } from "../../Redux/products/actions";
 
 function AllProduct() {
-  let [page, setPage] = useState(1);
-  const { data } = useSelector((store) => store.products);
   const search = useLocation().search;
   const query = new URLSearchParams(search).get("category");
+  let [page, setPage] = useState(1);
+  const [price, setPrice] = useState([]);
+  const [sort, setSort] = useState("numReviews");
+  const [orderBy, setOrderBy] = useState("");
+  const { data } = useSelector((store) => store.products);
 
   let length;
   if (query === "") {
@@ -46,14 +46,20 @@ function AllProduct() {
   } else if (query === "bath") {
     length = 39;
   }
-
+  const [prevQuery, setPrevQuery] = useState(query);
   const {
     AllProducts: { loading },
   } = useSelector((store) => store.products);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllProducts({ category: query, page: page }));
-  }, [dispatch, query, page]);
+    if (prevQuery !== query) {
+      setPage(1);
+    }
+    dispatch(
+      getAllProducts({ category: query, page: page, price, sort, orderBy })
+    );
+    setPrevQuery(query);
+  }, [dispatch, query, page, prevQuery, price, sort, orderBy]);
   if (loading) {
     return (
       <Grid
@@ -95,82 +101,43 @@ function AllProduct() {
 
           <Accordion allowToggle>
             <AccordionItem>
-              <h2>
-                <AccordionButton>
-                  <Box flex="1" textAlign="left">
-                    <h5>Price</h5>
-                  </Box>
-                  <AccordionIcon />
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4}>
-                <div>
-                  <input type="checkbox" />
-                  <label>Bellow-500</label>
-                </div>
-
-                <div>
-                  <input type="checkbox" />
-                  <label>Bellow-500</label>
-                </div>
-
-                <div>
-                  <input type="checkbox" />
-                  <label>Bellow-500</label>
-                </div>
-
-                <div>
-                  <input type="checkbox" />
-                  <label>Bellow-500</label>
-                </div>
-
-                <div>
-                  <input type="checkbox" />
-                  <label>Bellow-500</label>
-                </div>
-
-                <div>
-                  <input type="checkbox" />
-                  <label>Bellow-500</label>
-                </div>
-
-                <div>
-                  <label>Max:</label>
-                  <input Style={"width:50px"} />
-                  <label>Min:</label>
-                  <input Style={"width:50px"} />
-                </div>
-              </AccordionPanel>
+              <Select
+                placeholder="Price ₹"
+                onChange={({ target }) => {
+                  let array = target.value.split(":").map(Number);
+                  for (let i = 0; i < array.length; i++) {
+                    array[i] = array[i] / 81;
+                  }
+                  console.log("array", array);
+                  setPrice(array);
+                }}
+                textAlign="center"
+              >
+                <option value="0:500">Below 500</option>
+                <option value="500:1000">500 - 1000</option>
+                <option value="1000:1500">1000 - 1500</option>
+                <option value="1500:2000">1500 - 2000</option>
+                <option value="2000:2500">2000 - 2500</option>
+                <option value="2500:10000000">Above 2500</option>
+              </Select>
             </AccordionItem>
-
             <AccordionItem>
-              <h2>
-                <AccordionButton>
-                  <Box flex="1" textAlign="left">
-                    <h5 Style={"font-size=12.5px"}> Ratings</h5>
-                  </Box>
-                  <AccordionIcon />
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4}>
-                <div>
-                  <input type="checkbox" />
-                  <label>4 & up</label>
-                </div>
-                <div>
-                  <input type="checkbox" />
-                  <label>3 & up</label>
-                </div>
-
-                <div>
-                  <input type="checkbox" />
-                  <label>2 & up</label>
-                </div>
-                <div>
-                  <input type="checkbox" />
-                  <label>1 & up</label>
-                </div>
-              </AccordionPanel>
+              <Select
+                placeholder="Reviews"
+                textAlign="center"
+                onChange={({ target }) => {
+                  if (target.value === "increasing") {
+                    setSort("numReviews");
+                    setOrderBy("asc");
+                  } else {
+                    setSort("numReviews");
+                    setOrderBy("desc");
+                  }
+                }}
+              >
+                <option value="increasing">Low to High</option>
+                <option value="decreasing">High to Low</option>
+              </Select>
             </AccordionItem>
           </Accordion>
           <Img
@@ -185,7 +152,11 @@ function AllProduct() {
       <div className="prod_el_main">
         <Img src="https://pubsaf.global.ssl.fastly.net/prmt/b37a3d4788a3a4c3f8a92f194d801148" />
         <Show below="1000px">
-          <PorMenue />
+          <PorMenue
+            setPrice={setPrice}
+            setOrderBy={setOrderBy}
+            setSort={setSort}
+          />
         </Show>
         <div className="product_el_two">
           {data &&

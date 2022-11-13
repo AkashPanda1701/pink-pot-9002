@@ -55,7 +55,7 @@ function Signup() {
 
       setTimeout(() => {
         navigate("/login");
-      }, 4000);
+      }, 2000);
     }
   }, [dispatch, navigate, authState.error, authState.message, toast]);
 

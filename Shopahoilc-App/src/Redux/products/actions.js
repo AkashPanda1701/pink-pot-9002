@@ -56,13 +56,22 @@ export const getSingleProduct = (id) => async (dispatch) => {
 };
 
 export const addProduct = (data) => async (dispatch) => {
+  console.log(data);
   try {
     dispatch({ type: ADD_PRODUCT_REQUEST });
 
-    const res = await axios.post("/api/product", data);
-    console.log("res: ", res);
+    const res = await fetch("https://shopaholic.onrender.com/product", {
+      body: JSON.stringify(data),
+      method: "POST",
+      headers: {
+        token: localStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
+    });
+    let data1 = await res.json();
+    console.log("res: ", data1);
 
-    dispatch({ type: ADD_PRODUCT_SUCCESS, payload: res.data });
+    dispatch({ type: ADD_PRODUCT_SUCCESS, payload: data1 });
   } catch (error) {
     dispatch({
       type: ADD_PRODUCT_FAILURE,
@@ -71,13 +80,22 @@ export const addProduct = (data) => async (dispatch) => {
 };
 
 export const updateProduct = (id, data) => async (dispatch) => {
+  console.log(id);
   try {
     dispatch({ type: UPDATE_PRODUCT_REQUEST });
 
-    const res = await axios.put(`/api/product/${id}`, data);
-    console.log("res: ", res);
+    const res = await fetch(`https://shopaholic.onrender.com/product/${id}`, {
+      body: JSON.stringify(data),
+      method: "PUT",
+      headers: {
+        token: localStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
+    });
+    let data1 = await res.json();
+    console.log("res: ", data1);
 
-    dispatch({ type: UPDATE_PRODUCT_SUCCESS, payload: res.data });
+    dispatch({ type: UPDATE_PRODUCT_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
       type: UPDATE_PRODUCT_FAILURE,
@@ -89,10 +107,16 @@ export const deleteProduct = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_PRODUCT_REQUEST });
 
-    const res = await axios.delete(`/api/product/${id}`);
-    console.log("res: ", res);
-
-    dispatch({ type: DELETE_PRODUCT_SUCCESS, payload: res.data });
+    const res = await fetch(`https://shopaholic.onrender.com/product/${id}`, {
+      method: "DELETE",
+      headers: {
+        token: localStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
+    });
+    let data1 = await res.json();
+    console.log("res: ", data1);
+    dispatch({ type: DELETE_PRODUCT_SUCCESS, payload: id });
   } catch (error) {
     dispatch({
       type: DELETE_PRODUCT_FAILURE,

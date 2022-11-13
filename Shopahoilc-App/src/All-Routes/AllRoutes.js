@@ -9,7 +9,6 @@ import SingleProduct from '../Pages/Product/SingleProduct';
 import Signup from '../Pages/Signup/Signup';
 import Admin from "../Pages/Admin/Dashboard/admin"
 import AddProduct from '../Pages/Admin/AddProduct/AddProduct';
-import AdminCart from "../Pages/Admin/Cart/AdminCart";
 import Navbar from "../Components/Navbar/Navbar";
 import Footer from "../Components/Footer/Footer";
 
@@ -30,8 +29,6 @@ const AllRoutes = () => {
             {/* Admin Routes */}
             <Route path="/admin/dashboard"  element={ <Admin> <Dashboard /> </Admin >} />
             <Route path="/admin/addProduct" element={ <Admin> <AddProduct/> </Admin >} />
-            <Route path="/admin/cart"       element={ <Admin> <AdminCart /> </Admin >} />
-
         </Routes>
     );
 }

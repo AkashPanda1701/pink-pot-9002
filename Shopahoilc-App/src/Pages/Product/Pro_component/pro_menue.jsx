@@ -1,123 +1,59 @@
-import {Menu,MenuButton,MenuList,MenuGroup,MenuDivider} from '@chakra-ui/react'
-import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-  Box,Button
-} from '@chakra-ui/react'
-import { ChevronDownIcon } from '@chakra-ui/icons'
-import "../AllProduct.css"
-export default function PorMenue(){
-    return(<div className="Prod_menu" Style="margin:0.7rem">
-             <Menu>
-  <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-    Actions
-  </MenuButton>
-  <MenuList>
-  <MenuGroup title='Filter'>
-  <Accordion allowToggle>
-  <AccordionItem>
-    <h2>
-      <AccordionButton>
-        <Box flex='1' textAlign='left'>
-          <h5>Price</h5>
-          
-        </Box>
-        <AccordionIcon />
-      </AccordionButton>
-    </h2>
-    <AccordionPanel pb={4}>
-      <div>
-     <input type="checkbox"/>
-      <lable>Bellow-500</lable>
-      </div>
-
-      <div>
-     <input type="checkbox"/>
-      <lable>Bellow-500</lable>
-      </div>
-
-      <div>
-     <input type="checkbox"/>
-      <lable>Bellow-500</lable>
-      </div>
-
-       <div>
-     <input type="checkbox"/>
-      <lable>Bellow-500</lable>
-      </div>
-
-      <div>
-     <input type="checkbox"/>
-      <lable>Bellow-500</lable>
-      </div>
-
-      <div>
-     <input type="checkbox"/>
-      <lable>Bellow-500</lable>
-      </div>
-
-      <div>
-       <lable>Max:</lable><input Style={"width:50px"} />
-       <lable>Min:</lable><input Style={"width:50px"} />
-
-      </div>
-    
-    </AccordionPanel>
-  </AccordionItem>
-
-      </Accordion>
-    </MenuGroup>
-    <MenuDivider />
-
-    <MenuGroup title='Filter'>
-    <Accordion allowToggle>
-    <AccordionItem>
-    <h2>
-      <AccordionButton>
-        <Box flex='1' textAlign='left'>
-        <h5 Style={"font-size=12.5px"}>  Ratings</h5>
-        
-        </Box>
-        <AccordionIcon />
-      </AccordionButton>
-    </h2>
-    <AccordionPanel pb={4}>
-    <div>
-      <input type="checkbox"/>
-      <lable>
-        4 & up
-      </lable>
+import { Menu, MenuButton, MenuList, Select } from "@chakra-ui/react";
+import { Accordion, AccordionItem, Button } from "@chakra-ui/react";
+import { ChevronDownIcon } from "@chakra-ui/icons";
+import "../AllProduct.css";
+export default function PorMenue(props) {
+  const { setPrice, setSort, setOrderBy } = props;
+  return (
+    <div className="Prod_menu" Style="margin:0.7rem">
+      <Menu>
+        <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+          Filter
+        </MenuButton>
+        <MenuList>
+          <Accordion allowToggle>
+            <AccordionItem>
+              <Select
+                placeholder="Price ₹"
+                onChange={({ target }) => {
+                  let array = target.value.split(":").map(Number);
+                  for (let i = 0; i < array.length; i++) {
+                    array[i] = array[i] / 81;
+                  }
+                  console.log("array", array);
+                  setPrice(array);
+                }}
+                textAlign="center"
+              >
+                <option value="0:500">Below 500</option>
+                <option value="500:1000">500 - 1000</option>
+                <option value="1000:1500">1000 - 1500</option>
+                <option value="1500:2000">1500 - 2000</option>
+                <option value="2000:2500">2000 - 2500</option>
+                <option value="2500:10000000">Above 2500</option>
+              </Select>
+            </AccordionItem>
+            <AccordionItem>
+              <Select
+                placeholder="Reviews"
+                textAlign="center"
+                onChange={({ target }) => {
+                  if (target.value === "increasing") {
+                    setSort("numReviews");
+                    setOrderBy("asc");
+                  } else {
+                    setSort("numReviews");
+                    setOrderBy("desc");
+                  }
+                }}
+              >
+                <option value="increasing">Low to High</option>
+                <option value="decreasing">High to Low</option>
+              </Select>
+            </AccordionItem>
+          </Accordion>
+        </MenuList>
+      </Menu>
     </div>
-    <div>
-      <input type="checkbox"/>
-      <lable>
-        3 & up
-      </lable>
-    </div>
-
-    <div>
-      <input type="checkbox"/>
-      <lable>
-        2 & up
-      </lable>
-    </div>
-    <div>
-      <input type="checkbox"/>
-      <lable>
-        1 & up
-      </lable>
-    </div>
-    </AccordionPanel>
-  </AccordionItem>
-  </Accordion>
-    </MenuGroup>
-    </MenuList>
-</Menu>
-        </div>
-        ) 
-    
+  );
 }
-
