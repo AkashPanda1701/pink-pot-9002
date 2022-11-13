@@ -29,12 +29,14 @@ import {
 
    
     return (
-      <FormControl margin="auto" width="70%" bg="white" id="form" ml={40} p={100}>
+      <FormControl 
+      // margin="auto" width="70%" bg="white" id="form" ml={40} p={100}
+      >
 
-        <Box marginLeft="40">
+        <Box marginLeft="10%">
         <FormLabel>Product Name</FormLabel>
         <Input
-        mb="15px"
+      //   mb="15px"
        width="70%"
           type="text"
           placeholder="Product name"
@@ -49,7 +51,7 @@ import {
         />
         <FormLabel>Image Url</FormLabel>
         <Input
-        mb="15px"
+        // mb="15px"
         width="70%"
           type="url"
           placeholder="Product image url"
@@ -64,7 +66,7 @@ import {
         />
         <FormLabel>Category</FormLabel>
         <Input
-        mb="15px"
+        // mb="15px"
         width="70%"
           type="text"
           placeholder="like... Mackup,hair and mant more"
@@ -80,7 +82,7 @@ import {
 
 <FormLabel>Brand</FormLabel>
         <Input
-        mb="15px"
+        // mb="15px"
         width="70%"
           type="text"
           placeholder="enter brand name"
@@ -96,7 +98,7 @@ import {
 
         <FormLabel>Price</FormLabel>
         <Input
-        mb="15px"
+        // mb="15px"
         width="70%"
           type="number"
           placeholder="in indian ruppes..."
@@ -114,7 +116,7 @@ import {
           submit
         </Button>
 
-        <Button ml="200"mt={4} colorScheme="red" type="button">
+        <Button ml="10%" mt={4} colorScheme="red" type="button">
           reset
         </Button>
 
