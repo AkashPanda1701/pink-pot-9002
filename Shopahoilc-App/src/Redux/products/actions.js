@@ -22,8 +22,8 @@ export const getAllProducts = (query) => async (dispatch) => {
   try {
     dispatch({ type: GET_ALL_PRODUCTS_REQUEST });
     let q = "";
-    for(let key in query){
-      q += `${key}=${query[key]}&`
+    for (let key in query) {
+      q += `${key}=${query[key]}&`;
     }
     console.log(q);
 

@@ -54,6 +54,16 @@
 .proPageImage:hover .prolook {
   opacity: 1;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 15px;
+}
+
 @media screen and (max-width: 1000px) {
   .product_body {
     width: 95%;

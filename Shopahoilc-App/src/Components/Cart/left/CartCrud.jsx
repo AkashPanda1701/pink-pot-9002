@@ -36,7 +36,7 @@ const CartCrud = () => {
   console.log(data);
   return (
     <Box w="100%" mt="30px">
-      {data?.length === 0 ? (
+      {data.length === 0 ? (
         <Flex
           w="90%"
           p="20px 0px"
@@ -48,7 +48,7 @@ const CartCrud = () => {
           flexDirection="column"
         >
           <Heading fontSize={"30px"}>Add something in cart</Heading>
-          <Link to="/products">
+          <Link to="/products?category=">
             <Button
               background={"black"}
               p="20px 40px"
@@ -61,7 +61,7 @@ const CartCrud = () => {
           </Link>
         </Flex>
       ) : (
-        data.map((el) => {
+        data?.map((el) => {
           return (
             <Flex
               w="90%"

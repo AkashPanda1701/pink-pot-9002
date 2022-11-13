@@ -294,13 +294,28 @@ function Checkout() {
                 max={12}
                 isRequired
               />
-              <Button onClick={() => setShoeOtp(true)} mt="15px">
+              <Button
+                mt="15px"
+                onClick={() => {
+                  toast({
+                    title: "Your OTP is 1234",
+                    status: "info",
+                    duration: 3000,
+                    isClosable: true,
+                    position: "top",
+                  });
+                  setShoeOtp(true);
+                }}
+              >
                 Submit Card Details
               </Button>
               {showOtp ? (
                 <Box mt="10px">
-                  <Heading>Enter OTP</Heading>
+                  <Heading fontSize={"25px"} mb="10px">
+                    Enter OTP
+                  </Heading>
                   <Input
+                    fontSize={"16px"}
                     type="number"
                     value={otp}
                     onChange={(e) => setOtp(e.target.value)}
@@ -310,11 +325,11 @@ function Checkout() {
             </ModalBody>
 
             <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={onClose}>
-                Close
-              </Button>
-              <Button variant="ghost" onClick={handleOtp}>
+              <Button colorScheme="blue" onClick={handleOtp}>
                 Submit
+              </Button>
+              <Button variant="ghost" mr={3} onClick={onClose}>
+                Close
               </Button>
             </ModalFooter>
           </ModalContent>

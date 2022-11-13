@@ -17,6 +17,7 @@ import {
   SkeletonText,
   Grid,
   Skeleton,
+  Button,
 } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -24,17 +25,35 @@ import PorMenue from "./Pro_component/pro_menue";
 import { getAllProducts } from "../../Redux/products/actions";
 
 function AllProduct() {
+  let [page, setPage] = useState(1);
   const { data } = useSelector((store) => store.products);
   const search = useLocation().search;
   const query = new URLSearchParams(search).get("category");
+
+  let length;
+  if (query === "") {
+    length = 216;
+  } else if (query === "makeup") {
+    length = 40;
+  } else if (query === "skincare") {
+    length = 58;
+  } else if (query === "hair") {
+    length = 38;
+  } else if (query === "fragrance") {
+    length = 37;
+  } else if (query === "tools") {
+    length = 30;
+  } else if (query === "bath") {
+    length = 39;
+  }
+
   const {
     AllProducts: { loading },
   } = useSelector((store) => store.products);
-  console.log(loading);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllProducts({ category: query }));
-  }, [dispatch, query]);
+    dispatch(getAllProducts({ category: query, page: page }));
+  }, [dispatch, query, page]);
   if (loading) {
     return (
       <Grid
@@ -215,6 +234,18 @@ function AllProduct() {
                 </Link>
               </Box>
             ))}
+        </div>
+        <div className="pagination">
+          <Button disabled={page === 1} onClick={() => setPage(page - 1)}>
+            Prev
+          </Button>
+          <Button>{page}</Button>
+          <Button
+            disabled={page === Math.ceil(length / 20)}
+            onClick={() => setPage(page + 1)}
+          >
+            Next
+          </Button>
         </div>
       </div>
     </div>

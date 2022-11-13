@@ -10,6 +10,7 @@ const Right = () => {
     (ac, ele) => ac + ele.productId.price * ele.quantity,
     0
   );
+
   const checkout = () => {
     navigate("/checkout");
   };
@@ -42,23 +43,36 @@ const Right = () => {
       </Flex>
       <Box w="100%" fontSize="13px">
         <Text>
-          or 4 payments of ₹ {(total * 82) / 4} with <strong>SBI</strong> or <strong> afterpay</strong>
+          or 4 payments of ₹ {(total * 82) / 4} with <strong>SBI</strong> or{" "}
+          <strong> afterpay</strong>
         </Text>
       </Box>
       <Text fontSize={"12px"} color="grey">
         Shipping & taxes calculated during checkout
       </Text>
       <Flex justify={"center"}>
-        <Button
-          w="70%"
-          background={"#cf112c"}
-          color="white"
-          borderRadius={"20px"}
-          _hover={{ background: " rgb(226, 3, 15)", color: "white" }}
-          onClick={checkout}
-        >
-          Checkout
-        </Button>
+        {total == 0 ? (
+          <Button
+            w="70%"
+            background={"#cf112c"}
+            color="white"
+            borderRadius={"20px"}
+            _hover={{ background: " rgb(226, 3, 15)", color: "white" }}
+          >
+            Add Products to checkout
+          </Button>
+        ) : (
+          <Button
+            w="70%"
+            background={"#cf112c"}
+            color="white"
+            borderRadius={"20px"}
+            _hover={{ background: " rgb(226, 3, 15)", color: "white" }}
+            onClick={checkout}
+          >
+            Checkout
+          </Button>
+        )}
       </Flex>
     </Stack>
   );
