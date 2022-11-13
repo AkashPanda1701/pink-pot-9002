@@ -27,7 +27,6 @@ const Form = () => {
     dispatch(addProduct(formData));
   }
 
-<<<<<<< HEAD
   return (
     <FormControl margin="auto" width="70%" bg="white" id="form" ml={40}>
       <Box marginLeft="40">
@@ -35,19 +34,6 @@ const Form = () => {
         <Input
           mb="15px"
           width="70%"
-=======
-   
-    return (
-      <FormControl 
-      // margin="auto" width="70%" bg="white" id="form" ml={40} p={100}
-      >
-
-        <Box marginLeft="10%">
-        <FormLabel>Product Name</FormLabel>
-        <Input
-      //   mb="15px"
-       width="70%"
->>>>>>> 057a69c8754c928407bae9a32ec7a26e9b9e23d4
           type="text"
           placeholder="Product name"
           name="name"
@@ -55,13 +41,8 @@ const Form = () => {
         />
         <FormLabel>Image Url</FormLabel>
         <Input
-<<<<<<< HEAD
           mb="15px"
           width="70%"
-=======
-        // mb="15px"
-        width="70%"
->>>>>>> 057a69c8754c928407bae9a32ec7a26e9b9e23d4
           type="url"
           placeholder="Product image url"
           name="imageUrl"
@@ -69,13 +50,8 @@ const Form = () => {
         />
         <FormLabel>Category</FormLabel>
         <Input
-<<<<<<< HEAD
           mb="15px"
           width="70%"
-=======
-        // mb="15px"
-        width="70%"
->>>>>>> 057a69c8754c928407bae9a32ec7a26e9b9e23d4
           type="text"
           placeholder="product category"
           name="category"
@@ -84,13 +60,8 @@ const Form = () => {
 
         <FormLabel>Brand</FormLabel>
         <Input
-<<<<<<< HEAD
           mb="15px"
           width="70%"
-=======
-        // mb="15px"
-        width="70%"
->>>>>>> 057a69c8754c928407bae9a32ec7a26e9b9e23d4
           type="text"
           placeholder="enter brand name"
           name="brand"
@@ -126,13 +97,8 @@ const Form = () => {
 
         <FormLabel>Price</FormLabel>
         <Input
-<<<<<<< HEAD
           mb="15px"
           width="70%"
-=======
-        // mb="15px"
-        width="70%"
->>>>>>> 057a69c8754c928407bae9a32ec7a26e9b9e23d4
           type="number"
           placeholder="Product price in $"
           name="price"
@@ -148,11 +114,7 @@ const Form = () => {
           submit
         </Button>
 
-<<<<<<< HEAD
         <Button ml="200" mt={4} colorScheme="red" type="button">
-=======
-        <Button ml="10%" mt={4} colorScheme="red" type="button">
->>>>>>> 057a69c8754c928407bae9a32ec7a26e9b9e23d4
           reset
         </Button>
       </Box>
