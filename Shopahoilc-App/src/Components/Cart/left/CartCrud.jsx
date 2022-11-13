@@ -58,6 +58,7 @@ const CartCrud = () => {
           return (
             <Flex
               w="90%"
+              boxShadow={"md"}
               // border="1px solid grey"
               p="20px 0px"
               m="auto"
@@ -67,13 +68,14 @@ const CartCrud = () => {
               justify={{ base: "center" }}
               align={{ base: "center" }}
               flexDirection={{ lg: "row", md: "row", base: "column" }}
+              borderRadius="5px"
             >
               <Image
                 src={el.imageUrl}
                 w={{ lg: "auto", md: "auto", base: "150px" }}
                 h="100px"
               />
-              <Box w="68%">
+              <Box w="68%" textAlign={"center"}>
                 <Text fontWeight={"bold"}>{el.brand}</Text>
                 <Text>{el.name}</Text>
                 <Text>
@@ -81,6 +83,7 @@ const CartCrud = () => {
                 </Text>
                 <Flex
                   mt="10px"
+                  justify={"center"}
                   align={"center"}
                   w={{ lg: "90%", md: "90%", base: "100%" }}
                   gap={{ lg: 3, md: 3, base: 0 }}
@@ -122,16 +125,18 @@ const CartCrud = () => {
                       +
                     </Button>
                   </Flex>
-                  <Button
+                  {/* <Button
                     variant="link"
                     color={"blue"}
                     _hover={{ textDecoration: "underline" }}
                   >
                     Move to loves
-                  </Button>
+                  </Button> */}
                   <Button
-                    variant={"link"}
-                    color="blue"
+                    mb="5px"
+                    p={2}
+                    color="white"
+                    background={"black"}
                     _hover={{ textDecoration: "underline" }}
                   >
                     Remove
