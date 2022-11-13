@@ -6,6 +6,7 @@ import { BsSearch, BsTruck, BsBag } from "react-icons/bs";
 import { AiOutlineUser } from "react-icons/ai";
 import { MdOutlineCancel } from "react-icons/md";
 import { FaBars } from "react-icons/fa";
+import { RiAdminFill } from "react-icons/ri";
 import {
   Button,
   Popover,
@@ -54,10 +55,13 @@ const Navbar = () => {
             </div>
           </div>
           <div className="navIcons">
-            {/* <div>
-              <BsTruck fontSize="20px" onClick={() => Navigate("/orders")} />
+            <div>
+              <RiAdminFill
+                fontSize="20px"
+                onClick={() => Navigate("/admin/dashboard")}
+              />
             </div>
-            | */}
+            |
             <div>
               <BsBag fontSize="20px" onClick={() => Navigate("/cart")} />
             </div>
@@ -121,7 +125,7 @@ const Navbar = () => {
           <input type="radio" name="slide" id="cancelBtn" />
 
           <ul className="navLink">
-            <label for="cancelBtn" className="btn navCancel">
+            <label htmlFor="cancelBtn" className="btn navCancel">
               <MdOutlineCancel />
             </label>
             <li>
@@ -130,7 +134,7 @@ const Navbar = () => {
               </Link>
               <input type="checkbox" id="showMega" />
               <Link to={`/products?category=`}>
-                <label for="showMega" className="mobileItem">
+                <label htmlFor="showMega" className="mobileItem">
                   New
                 </label>
               </Link>
@@ -792,7 +796,7 @@ const Navbar = () => {
               </div>
             </li>
           </ul>
-          <label for="menuBtn" className="btn navMenu">
+          <label htmlFor="menuBtn" className="btn navMenu">
             <FaBars />
           </label>
         </div>

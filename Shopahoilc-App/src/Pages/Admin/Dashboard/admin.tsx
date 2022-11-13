@@ -38,10 +38,11 @@ import { ReactText } from "react";
 interface LinkItemProps {
   name: string;
   icon: IconType;
+  url: string;
 }
 const LinkItems: Array<LinkItemProps> = [
-  { name: "Dashboard", icon: FiCompass },
-  { name: "ProductsAdd", icon: FiStar },
+  { name: "Dashboard", icon: FiCompass, url: "/admin/dashboard" },
+  { name: "Add Product", icon: FiStar, url: "/admin/addProduct" },
 ];
 
 export default function SidebarWithHeader({
@@ -54,7 +55,7 @@ export default function SidebarWithHeader({
     <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
       <SidebarContent
         onClose={() => onClose}
-        display={{ base: "none", md: "block" }}
+        display={{ base: "none", md: "none", lg: "block" }}
       />
       <Drawer
         autoFocus={false}
@@ -71,7 +72,7 @@ export default function SidebarWithHeader({
       </Drawer>
       {/* mobilenav */}
       <MobileNav onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
+      <Box ml={{ base: 0, md: 0, lg: 60 }} p="4">
         {children}
       </Box>
     </Box>
@@ -98,10 +99,15 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
           <Image src="http://localhost:3000/static/media/Logo.bbc24cab81d0da219ebe.jpg" />
         </Text>
-        <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
+        <CloseButton
+          display={{ base: "flex", md: "flex", lg: "none" }}
+          onClick={onClose}
+        />
       </Flex>
-      {LinkItems.map((link) => (
-        <NavItem icon={link.icon}>{link.name}</NavItem>
+      {LinkItems.map((link, index) => (
+        <NavItem url={link.url} key={index} icon={link.icon}>
+          {link.name}
+        </NavItem>
       ))}
     </Box>
   );
@@ -110,8 +116,9 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
 interface NavItemProps extends FlexProps {
   icon: IconType;
   children: ReactText;
+  url: string;
 }
-const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
+const NavItem = ({ icon, children, url }: NavItemProps) => {
   return (
     <Flex
       align="center"
@@ -121,8 +128,7 @@ const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
       role="group"
       cursor="pointer"
     >
-      <p>dashboard</p>
-      <p>Add Product</p>
+      <Link to={`${url}`}>{children}</Link>
     </Flex>
   );
 };
@@ -133,7 +139,7 @@ interface MobileProps extends FlexProps {
 const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
   return (
     <Flex
-      ml={{ base: 0, md: 60 }}
+      ml={{ base: 0, md: 0, lg: 60 }}
       px={{ base: 4, md: 4 }}
       height="20"
       alignItems="center"

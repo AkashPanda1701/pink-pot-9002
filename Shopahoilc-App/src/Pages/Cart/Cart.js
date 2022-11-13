@@ -8,7 +8,7 @@ import { Navigate } from "react-router-dom";
 function Cart() {
   const auth = useSelector((store) => store.auth);
   const toast = useToast();
-  console.log(auth);
+  // console.log(auth);
   if (auth.data.isAuthenticated === false) {
     toast({
       title: "Login Error",

@@ -66,7 +66,7 @@ function SingleProduct() {
   }, [dispatch, id, data.category]);
   const { stars, numReviews } = data;
   const handleChange = (value) => setValue(value);
-  console.log(auth);
+  // console.log(auth);
   const toast = useToast();
   const productAdded = () => {
     toast({
@@ -78,7 +78,7 @@ function SingleProduct() {
       position: "top",
     });
   };
-  console.log(loading);
+  // console.log(loading);
   const ratingStar = Array.from({ length: 5 }, (elem, index) => {
     let number = index + 0.5;
     return (

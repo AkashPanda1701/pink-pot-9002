@@ -77,8 +77,8 @@ function AllProduct() {
         gap="10"
         p="10"
       >
-        {new Array(20).fill(0).map(() => (
-          <Box w=" 100%" m="auto" boxShadow="lg" bg="white">
+        {new Array(20).fill(0).map((e, i) => (
+          <Box w=" 100%" m="auto" boxShadow="lg" bg="white" key={i}>
             <Skeleton size="10" h="180px" />
             <SkeletonText
               w="80%"
@@ -97,7 +97,7 @@ function AllProduct() {
     <div className="product_body">
       <Hide below="1000px">
         <div className="product_el_one ">
-          <h1 Style="font-size:2.1rem">BB & CC Creams</h1>
+          <h1 style={{ fontSize: "1.5rem" }}>Filter</h1>
 
           <Accordion allowToggle>
             <AccordionItem>
@@ -108,7 +108,6 @@ function AllProduct() {
                   for (let i = 0; i < array.length; i++) {
                     array[i] = array[i] / 81;
                   }
-                  console.log("array", array);
                   setPrice(array);
                 }}
                 textAlign="center"
@@ -160,13 +159,14 @@ function AllProduct() {
         </Show>
         <div className="product_el_two">
           {data &&
-            data.map((el) => (
+            data.map((el, i) => (
               <Box
                 maxW="sm"
                 borderWidth="1px"
                 borderRadius="lg"
                 overflow="hidden"
                 boxShadow="md"
+                key={i}
               >
                 <Link to={`/products/${el._id}`}>
                   <div className="proPageImage">

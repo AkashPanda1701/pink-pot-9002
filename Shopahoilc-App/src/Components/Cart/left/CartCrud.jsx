@@ -4,7 +4,7 @@ import {
   Flex,
   Heading,
   Image,
-  // Select,
+ 
   Text,
 } from "@chakra-ui/react";
 import React from "react";
@@ -14,26 +14,12 @@ import {
   removeProductFromCart,
   updateProductInCart,
 } from "../../../Redux/cart/actions";
-import { useState } from "react";
-// const data = [
-//   {
-//     imageUrl:
-//       "https://www.sephora.com/productimages/sku/s2518959-main-zoom.jpg?imwidth=270&imwidth=164",
-//     brand: "Rare Beauty by Selena Gomez",
-//     name: "Soft Pinch Liquid Blush",
-//     stars: 4.5,
-//     numReviews: 2300,
-//     price: 20,
-//     category: "makeup",
-//     type: "face",
-//     id: 1,
-//   },
-// ];
+
 
 const CartCrud = () => {
-  const { carts: data, loading } = useSelector((store) => store.carts);
+  const { carts: data } = useSelector((store) => store.carts);
   const dispatch = useDispatch();
-  console.log(data);
+  // console.log(data);
   return (
     <Box w="100%" mt="30px">
       {data.length === 0 ? (
@@ -61,7 +47,7 @@ const CartCrud = () => {
           </Link>
         </Flex>
       ) : (
-        data?.map((el) => {
+        data?.map((el, i) => {
           return (
             <Flex
               w="90%"
@@ -69,7 +55,7 @@ const CartCrud = () => {
               p="20px 0px"
               m="auto"
               mt="5px"
-              key={el.id}
+              key={i}
               gap={{ lg: 5, md: 4 }}
               justify={{ base: "center" }}
               align={{ base: "center" }}
@@ -123,13 +109,6 @@ const CartCrud = () => {
                       +
                     </Button>
                   </Flex>
-                  {/* <Button
-                    variant="link"
-                    color={"blue"}
-                    _hover={{ textDecoration: "underline" }}
-                  >
-                    Move to loves
-                  </Button> */}
                   <Button
                     mb="5px"
                     p={2}

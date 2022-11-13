@@ -135,8 +135,8 @@ function Home() {
           >
             {Data[0].map((elem, index) => {
               return (
-                <Link to={`/products/${elem._id}`}>
-                  <div key={index} className="proCon">
+                <Link to={`/products/${elem._id}`} key={index}>
+                  <div className="proCon">
                     <div>
                       <img src={elem.imageUrl} alt="proImg" />
                       <span className="homeLook">Quicklook</span>
@@ -160,8 +160,8 @@ function Home() {
           >
             {Data[1].map((elem, index) => {
               return (
-                <Link to={`/products/${elem._id}`}>
-                  <div key={index} className="proCon">
+                <Link to={`/products/${elem._id}`} key={index}>
+                  <div className="proCon">
                     <div>
                       <img src={elem.imageUrl} alt="proImg" />
                       <span className="homeLook">Quiclook</span>
@@ -185,8 +185,8 @@ function Home() {
           >
             {Data[2].map((elem, index) => {
               return (
-                <Link to={`/products/${elem._id}`}>
-                  <div key={index} className="proCon">
+                <Link to={`/products/${elem._id}`} key={index}>
+                  <div className="proCon">
                     <div>
                       <img src={elem.imageUrl} alt="proImg" />
                       <span className="homeLook">Quiclook</span>

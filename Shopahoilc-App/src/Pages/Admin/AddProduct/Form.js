@@ -1,4 +1,11 @@
-import { FormControl, FormLabel, Input, Button, Box } from "@chakra-ui/react";
+import {
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+  Box,
+  Flex,
+} from "@chakra-ui/react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../../Redux/products/actions";
@@ -28,95 +35,133 @@ const Form = () => {
   }
 
   return (
-    <FormControl margin="auto" width="70%" bg="white" id="form" ml={40}>
-      <Box marginLeft="40">
-        <FormLabel>Product Name</FormLabel>
-        <Input
-          mb="15px"
-          width="70%"
-          type="text"
-          placeholder="Product name"
-          name="name"
-          onChange={handleChange}
-        />
-        <FormLabel>Image Url</FormLabel>
-        <Input
-          mb="15px"
-          width="70%"
-          type="url"
-          placeholder="Product image url"
-          name="imageUrl"
-          onChange={handleChange}
-        />
-        <FormLabel>Category</FormLabel>
-        <Input
-          mb="15px"
-          width="70%"
-          type="text"
-          placeholder="product category"
-          name="category"
-          onChange={handleChange}
-        />
-
-        <FormLabel>Brand</FormLabel>
-        <Input
-          mb="15px"
-          width="70%"
-          type="text"
-          placeholder="enter brand name"
-          name="brand"
-          onChange={handleChange}
-        />
-        <FormLabel>Reviews</FormLabel>
-        <Input
-          mb="15px"
-          width="70%"
-          type="number"
-          placeholder="No. of Reviews"
-          name="numReviews"
-          onChange={handleChange}
-        />
-        <FormLabel>Rating</FormLabel>
-        <Input
-          mb="15px"
-          width="70%"
-          type="text"
-          placeholder="enter rating"
-          name="stars"
-          onChange={handleChange}
-        />
-        <FormLabel>Type</FormLabel>
-        <Input
-          mb="15px"
-          width="70%"
-          type="text"
-          placeholder="Enter product type"
-          name="type"
-          onChange={handleChange}
-        />
-
-        <FormLabel>Price</FormLabel>
-        <Input
-          mb="15px"
-          width="70%"
-          type="number"
-          placeholder="Product price in $"
-          name="price"
-          onChange={handleChange}
-        />
-        <br />
-        <Button
-          onClick={() => submit()}
-          mt={4}
-          colorScheme="teal"
-          type="submit"
+    <FormControl margin="auto" width="90%" bg="white" id="form">
+      <Box p={8}>
+        <Flex
+          gap={{ base: 2, md: 10 }}
+          direction={{ base: "column", md: "row" }}
         >
-          submit
-        </Button>
+          <Box w={{ base: "100%", md: "50%" }}>
+            <FormLabel>Product Name</FormLabel>
+            <Input
+              mb="15px"
+              type="text"
+              placeholder="Product name"
+              name="name"
+              onChange={handleChange}
+              value={formData.name}
+            />
+          </Box>
+          <Box w={{ base: "100%", md: "50%" }}>
+            <FormLabel>Image Url</FormLabel>
+            <Input
+              mb="15px"
+              type="url"
+              placeholder="Product image url"
+              name="imageUrl"
+              onChange={handleChange}
+              value={formData.imageUrl}
+            />
+          </Box>
+        </Flex>
+        <Flex
+          gap={{ base: 2, md: 10 }}
+          direction={{ base: "column", md: "row" }}
+        >
+          <Box w={{ base: "100%", md: "50%" }}>
+            <FormLabel>Category</FormLabel>
+            <Input
+              mb="15px"
+              type="text"
+              placeholder="product category"
+              name="category"
+              onChange={handleChange}
+              value={formData.category}
+            />
+          </Box>
+          <Box w={{ base: "100%", md: "50%" }}>
+            <FormLabel>Brand</FormLabel>
+            <Input
+              mb="15px"
+              type="text"
+              placeholder="enter brand name"
+              name="brand"
+              onChange={handleChange}
+              value={formData.brand}
+            />
+          </Box>
+        </Flex>
+        <Flex
+          gap={{ base: 2, md: 10 }}
+          direction={{ base: "column", md: "row" }}
+        >
+          <Box w={{ base: "100%", md: "50%" }}>
+            <FormLabel>Reviews</FormLabel>
+            <Input
+              value={formData.numReviews}
+              mb="15px"
+              type="number"
+              placeholder="No. of Reviews"
+              name="numReviews"
+              onChange={handleChange}
+            />
+          </Box>
+          <Box w={{ base: "100%", md: "50%" }}>
+            <FormLabel>Rating</FormLabel>
+            <Input
+              mb="15px"
+              type="text"
+              placeholder="enter rating"
+              name="stars"
+              onChange={handleChange}
+              value={formData.stars}
+            />
+          </Box>
+        </Flex>
+        <Flex
+          gap={{ base: 2, md: 10 }}
+          direction={{ base: "column", md: "row" }}
+        >
+          <Box w={{ base: "100%", md: "50%" }}>
+            <FormLabel>Type</FormLabel>
+            <Input
+              mb="15px"
+              type="text"
+              placeholder="Enter product type"
+              name="type"
+              onChange={handleChange}
+              value={formData.type}
+            />
+          </Box>
+          <Box w={{ base: "100%", md: "50%" }}>
+            <FormLabel>Price</FormLabel>
+            <Input
+              mb="15px"
+              type="number"
+              placeholder="Product price in $"
+              name="price"
+              onChange={handleChange}
+              value={formData.price}
+            />
+          </Box>
+        </Flex>
 
-        <Button ml="200" mt={4} colorScheme="red" type="button">
-          reset
-        </Button>
+        <br />
+        <Flex justifyContent="center" gap={2}>
+          <Button onClick={() => submit()} colorScheme="teal" type="submit">
+            submit
+          </Button>
+
+          <Button
+            colorScheme="red"
+            type="button"
+            onClick={() => {
+              setFormData(initialState);
+            }}
+          >
+            reset
+          </Button>
+        </Flex>
       </Box>
     </FormControl>
   );

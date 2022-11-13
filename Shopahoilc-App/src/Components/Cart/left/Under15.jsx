@@ -2,71 +2,25 @@ import React, { useEffect } from "react";
 import { Box, Button, filter, Flex, Image, Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../../Redux/products/actions";
-
-const data = [
-  {
-    imageUrl:
-      "https://www.sephora.com/productimages/sku/s2255651-main-zoom.jpg?imwidth=270&pb=2020-03-sephora-value-2020&imwidth=164",
-    brand: "SEPHORA COLLECTION",
-    name: "Jelly Melt Glossy Lip Tint",
-    stars: 4.5,
-    numReviews: 396,
-    price: 5,
-    category: "makeup",
-    type: "lip",
-    id: 21,
-  },
-  {
-    stars: 4.5,
-    imageUrl:
-      "https://www.sephora.com/productimages/sku/s2282978-main-zoom.jpg?imwidth=270&pb=2020-03-sephora-clean-2019&imwidth=164",
-    brand: "SEPHORA COLLECTION",
-    name: "Clean Foot Mask",
-    numReviews: 119,
-    price: 5,
-    category: "skincare",
-    type: "masks",
-    id: 75,
-  },
-  {
-    stars: 5,
-    imageUrl:
-      "https://www.sephora.com/productimages/sku/s2299253-main-zoom.jpg?imwidth=270&imwidth=164",
-    brand: "SEPHORA COLLECTION",
-    name: "Beauty on the Fly Reusable Bag",
-    numReviews: 23,
-    price: 5,
-    category: "tools",
-    type: "travel cases",
-    id: 170,
-  },
-  {
-    stars: 3.5,
-    imageUrl:
-      "https://www.sephora.com/productimages/sku/s2282994-main-zoom.jpg?imwidth=270&pb=2020-03-sephora-clean-2019&imwidth=164",
-    brand: "SEPHORA COLLECTION",
-    name: "Clean Hand Mask",
-    numReviews: 56,
-    price: 5,
-    category: "bath",
-    type: "body moisturizers",
-    id: 191,
-  },
-];
+import { addProductToCart } from "../../../Redux/cart/actions";
 
 const Under15 = () => {
+  const { data } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, [dispatch]);
   return (
     <>
-      {data?.splice(0, 5).map((el) => {
+      {data?.slice(0, 5).map((el, i) => {
         return (
           <Flex
             w="98%"
-            // border="1px solid grey"
             background="white"
-            p="20px 0px"
+            p="20px 10px"
             m="auto"
             mt="5px"
-            key={el.id}
+            key={i}
             gap={{ lg: 5, md: 4 }}
             justify={{ base: "center" }}
             align={{ base: "center" }}
@@ -97,6 +51,9 @@ const Under15 = () => {
                 _hover={{ backgroundColor: "white", color: "black" }}
                 background={"white"}
                 color={"black"}
+                onClick={() => {
+                  dispatch(addProductToCart(el._id, 1));
+                }}
               >
                 Add
               </Button>

@@ -17,164 +17,23 @@ import {
   SimpleGrid,
   Image,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { getAllProducts } from "../../../Redux/products/actions";
 import CartCrud from "./CartCrud";
 import Under15 from "./Under15";
 
-const data = [
-  {
-    imageUrl:
-      "https://www.sephora.com/productimages/sku/s2518959-main-zoom.jpg?imwidth=270&imwidth=164",
-    brand: "Rare Beauty by Selena Gomez",
-    name: "Soft Pinch Liquid Blush",
-    stars: 4.5,
-    numReviews: 2300,
-    price: 20,
-    category: "makeup",
-    type: "face",
-    id: 1,
-  },
-  {
-    imageUrl:
-      "https://www.sephora.com/productimages/sku/s2116028-main-zoom.jpg?imwidth=270&imwidth=164",
-    brand: "Charlotte Tilbury",
-    name: "Hollywood Flawless Filter",
-    stars: 4.5,
-    numReviews: 1700,
-    price: 15,
-    category: "makeup",
-    type: "face",
-    id: 2,
-  },
-  {
-    imageUrl:
-      "https://www.sephora.com/productimages/sku/s2428837-main-zoom.jpg?imwidth=270&pb=allure-clean-2020&imwidth=164",
-    brand: "ILIA",
-    name: "Super Serum Skin Tint SPF 40 Foundation",
-    stars: 4,
-    numReviews: 2500,
-    price: 48,
-    category: "makeup",
-    type: "face",
-    id: 3,
-  },
-  {
-    imageUrl:
-      "https://www.sephora.com/productimages/sku/s1478403-main-zoom.jpg?imwidth=270&imwidth=164",
-    brand: "NARS",
-    name: "Radiant Creamy Concealer",
-    stars: 4.5,
-    numReviews: 12300,
-    price: 13,
-    category: "makeup",
-    type: "face",
-    id: 4,
-  },
-  {
-    imageUrl:
-      "https://www.sephora.com/productimages/sku/s2551851-main-zoom.jpg?imwidth=270&imwidth=164",
-    brand: "Charlotte Tilbury",
-    name: "Beautiful Skin Medium Coverage Liquid Foundation with Hyaluronic Acid",
-    stars: 4.5,
-    numReviews: 287,
-    price: 44,
-    category: "makeup",
-    type: "face",
-    id: 5,
-  },
-  {
-    imageUrl:
-      "https://www.sephora.com/productimages/sku/s2431864-main-zoom.jpg?imwidth=270&imwidth=164",
-    brand: "Fenty Beauty by Rihanna",
-    name: "Eaze Drop Blurring Skin Tint",
-    stars: 4,
-    numReviews: 1100,
-    price: 32,
-    category: "makeup",
-    type: "face",
-    id: 6,
-  },
-  {
-    imageUrl:
-      "https://www.sephora.com/productimages/sku/s2116333-main-zoom.jpg?imwidth=270&imwidth=164",
-    brand: "Charlotte Tilbury",
-    name: "Airbrush Flawless Finish Setting Powder",
-    stars: 4,
-    numReviews: 1600,
-    price: 25,
-    category: "makeup",
-    type: "face",
-    id: 7,
-  },
-  {
-    imageUrl:
-      "https://www.sephora.com/productimages/sku/s2514586-main-zoom.jpg?imwidth=270&imwidth=164",
-    brand: "NARS",
-    name: "Light Reflecting Advanced Skincare Foundation",
-    stars: 4.5,
-    numReviews: 233,
-    price: 49,
-    category: "makeup",
-    type: "face",
-    id: 8,
-  },
-  {
-    imageUrl:
-      "https://www.sephora.com/productimages/sku/s2407294-main-zoom.jpg?imwidth=270&imwidth=164",
-    brand: "Charlotte Tilbury",
-    name: "Mini Hollywood Flawless Filter",
-    stars: 4,
-    numReviews: 218,
-    price: 15,
-    category: "makeup",
-    type: "face",
-    id: 9,
-  },
-  {
-    imageUrl:
-      "https://www.sephora.com/productimages/sku/s2362168-main-zoom.jpg?imwidth=270&imwidth=164",
-    brand: "Rare Beauty by Selena Gomez",
-    name: "Positive Light Liquid Luminizer Highlight",
-    stars: 4.5,
-    numReviews: 634,
-    price: 22,
-    category: "makeup",
-    type: "face",
-    id: 10,
-  },
-  {
-    imageUrl:
-      "https://www.sephora.com/productimages/sku/s2157659-main-zoom.jpg?imwidth=270&pb=2020-03-sephora-value-2020&imwidth=164",
-    brand: "SEPHORA COLLECTION",
-    name: "Eye Love Eyeshadow Palette",
-    stars: 4,
-    numReviews: 468,
-    price: 10,
-    category: "makeup",
-    type: "eye",
-    id: 11,
-  },
-  {
-    imageUrl:
-      "https://www.sephora.com/productimages/sku/s2370773-main-zoom.jpg?imwidth=270&pb=2020-03-allure-best-2019&imwidth=164",
-    brand: "Kaja",
-    name: "Beauty Bento Bouncy Eyeshadow Trio",
-    stars: 4.5,
-    numReviews: 1600,
-    price: 21,
-    category: "makeup",
-    type: "eye",
-    id: 12,
-  },
-];
-
 const GetItShipped = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [count, setCount] = useState(0);
-  console.log('setCount: ', setCount);
-  
+  const { data } = useSelector((state) => state.products);
+  const { carts } = useSelector((state) => state.carts);
   const [display, setDisplay] = useState(false);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, [dispatch]);
+
   return (
     <Box
       w="100%"
@@ -184,7 +43,7 @@ const GetItShipped = () => {
       borderRadius="5px"
       p="10px"
     >
-      <Heading fontSize="20px">Get It Shipped({count})</Heading>
+      <Heading fontSize="20px">Get It Shipped({carts.length})</Heading>
       <Box
         background="white"
         w={{ lg: "100%" }}
@@ -198,7 +57,6 @@ const GetItShipped = () => {
           <svg
             viewBox="0 0 24 24"
             aria-hidden="true"
-            // class="css-psp8z9 eanm77i0"
             data-comp="Icon StyledComponent "
             width="30px"
           >
@@ -313,11 +171,11 @@ const GetItShipped = () => {
             m="auto"
             mt="20px"
           >
-            {data.map((el) => {
+            {data.slice(0, 12).map((el, i) => {
               return (
-                <Box key={el.id}>
+                <Box key={i}>
                   <Image mb="10px" src={el.imageUrl} h="80px" />
-                  <NavLink to="/products">
+                  <NavLink to={`/products?category=${el.category}`}>
                     <Button
                       _hover={{ backgroundColor: "white", color: "black" }}
                       background={"black"}

@@ -54,15 +54,16 @@ function Dashboard() {
         gap={4}
       >
         {data &&
-          data.map((item) => (
+          data.map((item,index) => (
             <Grid
               border="1px"
               borderColor="lightblue"
               alignItems={"center"}
               justifyContent={"center"}
+              key={index}
             >
               <Box m={6}>
-                <div key={item._id}>
+                <div>
                   <Image
                     src={item.imageUrl}
                     alt={`Picture of ${item.name}`}

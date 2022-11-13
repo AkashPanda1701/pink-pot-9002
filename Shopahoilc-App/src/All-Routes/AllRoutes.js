@@ -11,6 +11,7 @@ import Admin from "../Pages/Admin/Dashboard/admin"
 import AddProduct from '../Pages/Admin/AddProduct/AddProduct';
 import Navbar from "../Components/Navbar/Navbar";
 import Footer from "../Components/Footer/Footer";
+import PrivateRoute from './PrivateRoute';
 
 /*
 Dont make any changes to this file
@@ -24,8 +25,8 @@ const AllRoutes = () => {
             <Route path="/signup"           element={<><Navbar />     <Signup  />    </>} />
             <Route path="/products"         element={<><Navbar />    <AllProduct />  <Footer /></>} />
             <Route path="/products/:id"     element={<><Navbar />   <SingleProduct /><Footer /></>} />
-            <Route path="/cart"             element={<><Navbar />       <Cart />     <Footer /></>} />
-            <Route path="/checkout"         element={<><Navbar />      <Checkout />  <Footer /></>} />
+            <Route path="/cart"             element={<><Navbar /><PrivateRoute><Cart /></PrivateRoute>    <Footer /></>} />
+            <Route path="/checkout"         element={<><Navbar /><PrivateRoute><Checkout /> </PrivateRoute> <Footer /></>} />
             {/* Admin Routes */}
             <Route path="/admin/dashboard"  element={ <Admin> <Dashboard /> </Admin >} />
             <Route path="/admin/addProduct" element={ <Admin> <AddProduct/> </Admin >} />

@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { authLogin } from "../../Redux/auth/actions";
 import { AUTH_LOGIN_RESET } from "../../Redux/auth/actionTypes";
 import { getCart } from "../../Redux/cart/actions";
@@ -29,15 +29,15 @@ function Login() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
   const [formData, setFormData] = React.useState(initialState);
-  const authState = useSelector((state) => state.auth.userLogin);
-  console.log("authState: ", authState);
+  const authState = useSelector((state) => state.auth);
+  // console.log("authState: ", authState);
   const dispatch = useDispatch();
-  const cartState = useSelector((state) => state.carts);
 
-  React.useEffect(() => {}, [onOpen]);
+  
+
   React.useEffect(() => {
     onOpen();
-    if (authState.message === "User does not exist") {
+    if (authState.userLogin.message === "User does not exist") {
       toast({
         title: authState.message,
         status: "error",
@@ -46,7 +46,7 @@ function Login() {
         position: "top",
       });
     }
-    if (authState.message === "Password is incorrect") {
+    if (authState.userLogin.message === "Password is incorrect") {
       toast({
         title: authState.message,
         status: "warning",
@@ -55,7 +55,7 @@ function Login() {
         position: "top",
       });
     }
-    if (authState.message === "Login successful") {
+    if (authState.userLogin.message === "Login successful") {
       dispatch(getCart());
       toast({
         title: authState.message,
@@ -69,7 +69,7 @@ function Login() {
         navigate("/");
       }, 2000);
     }
-  }, [dispatch, onOpen, navigate, authState.error, authState.message, toast]);
+  }, [dispatch, onOpen, navigate, authState, toast]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -79,7 +79,10 @@ function Login() {
     // console.log(formData);
     dispatch(authLogin(formData));
   };
-
+   
+  if(authState.data.isAuthenticated) {
+    return <Navigate to={'/'}/>
+  }
   return (
     <>
       {/* <Button onClick={onOpen}>Open Modal</Button> */}
