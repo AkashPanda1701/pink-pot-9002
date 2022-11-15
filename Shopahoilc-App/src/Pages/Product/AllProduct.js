@@ -60,39 +60,40 @@ function AllProduct() {
     );
     setPrevQuery(query);
   }, [dispatch, query, page, prevQuery, price, sort, orderBy]);
-  if (loading) {
-    return (
-      <Grid
-        w={{
-          base: "100%",
-          md: "90%",
-          lg: "80%",
-        }}
-        m="auto"
-        templateColumns={{
-          base: "repeat(2,1fr)",
-          md: "repeat(3,1fr)",
-          lg: "repeat(4,1fr)",
-        }}
-        gap="10"
-        p="10"
-      >
-        {new Array(20).fill(0).map((e, i) => (
-          <Box w=" 100%" m="auto" boxShadow="lg" bg="white" key={i}>
-            <Skeleton size="10" h="180px" />
-            <SkeletonText
-              w="80%"
-              m="auto"
-              mb="20px"
-              mt="4"
-              noOfLines={4}
-              spacing="4"
-            />
-          </Box>
-        ))}
-      </Grid>
-    );
-  }
+
+  if(loading){
+    return <Grid
+      w={{
+        base: "100%",
+        md: "90%",
+        lg: "80%",
+      }}
+      m="auto"
+      templateColumns={{
+        base: "repeat(2,1fr)",
+        md: "repeat(3,1fr)",
+        lg: "repeat(4,1fr)",
+      }}
+      gap="10"
+      p="10"
+    >
+      {new Array(20).fill(0).map((e, i) => (
+        <Box w=" 100%" m="auto" boxShadow="lg" bg="white" key={i}>
+          <Skeleton size="10" h="180px" />
+          <SkeletonText
+            w="80%"
+            m="auto"
+            mb="20px"
+            mt="4"
+            noOfLines={4}
+            spacing="4"
+          />
+        </Box>
+      ))}
+    </Grid>
+  
+      }
+ 
   return (
     <div className="product_body">
       <Hide below="1000px">
@@ -158,7 +159,9 @@ function AllProduct() {
           />
         </Show>
         <div className="product_el_two">
-          {data &&
+          {
+          data &&
+         
             data.map((el, i) => (
               <Box
                 maxW="sm"
@@ -204,7 +207,8 @@ function AllProduct() {
                   </Box>
                 </Link>
               </Box>
-            ))}
+            ))
+            }
         </div>
         <div className="pagination">
           <Button disabled={page === 1} onClick={() => setPage(page - 1)}>

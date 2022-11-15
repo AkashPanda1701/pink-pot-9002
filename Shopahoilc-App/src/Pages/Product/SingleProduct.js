@@ -58,6 +58,7 @@ function SingleProduct() {
     data: products,
   } = useSelector((store) => store.products);
   let auth = useSelector((store) => store.auth);
+  let { carts } = useSelector((store) => store.carts);
   const { id } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -223,8 +224,22 @@ function SingleProduct() {
             {auth.data.isAuthenticated ? (
               <button
                 onClick={() => {
-                  dispatch(addProductToCart(data._id, value));
-                  productAdded();
+                  const existInCart = carts.find(
+                    (item) => item.productId._id === data._id
+                  );
+                  if (existInCart) {
+                    toast({
+                      title: "Product already in cart.",
+                      description: "You can add more from cart page.",
+                      status: "error",
+                      duration: 3000,
+                      isClosable: true,
+                      position: "top",
+                    });
+                  } else {
+                    dispatch(addProductToCart(data._id, value));
+                    productAdded();
+                  }
                 }}
               >
                 Add to Basket

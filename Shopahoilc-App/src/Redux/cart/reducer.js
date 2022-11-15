@@ -32,7 +32,6 @@ export default function cartReducer(state = initialState, { type, payload }) {
         error: false,
       };
     case GET_CART_SUCCESS:
-      console.log("payload", payload);
       return {
         ...state,
         loading: false,

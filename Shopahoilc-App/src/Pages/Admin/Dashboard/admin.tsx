@@ -32,7 +32,6 @@ import {
 } from "react-icons/fi";
 import { IconType } from "react-icons";
 import { ReactText } from "react";
-import { useSelector } from "react-redux";
 
 interface LinkItemProps {
   name: string;

@@ -24,7 +24,6 @@ export const getCart = () => async (dispatch) => {
       },
     });
     const data = await res.json();
-    console.log("res: ", data);
 
     dispatch({ type: GET_CART_SUCCESS, payload: data.carts });
   } catch (error) {
@@ -35,7 +34,7 @@ export const getCart = () => async (dispatch) => {
 };
 
 export const addProductToCart = (id, value) => async (dispatch) => {
-  console.log(id, value);
+
   try {
     dispatch({ type: ADD_TO_CART_REQUEST });
     const res = await fetch(`https://shopaholic.onrender.com/cart`, {
@@ -50,7 +49,6 @@ export const addProductToCart = (id, value) => async (dispatch) => {
       },
     });
     const data = await res.json();
-    console.log("res: ", data);
     dispatch({
       type: ADD_TO_CART_SUCCESS,
       payload: {
@@ -77,7 +75,7 @@ export const updateProductInCart = (id, quantity) => async (dispatch) => {
         message: "Quantity changed successfully",
       },
     });
-    const res = await fetch(`https://shopaholic.onrender.com/cart/${id}`, {
+    await fetch(`https://shopaholic.onrender.com/cart/${id}`, {
       method: "PUT",
       body: JSON.stringify({
         quantity: quantity,
@@ -87,8 +85,8 @@ export const updateProductInCart = (id, quantity) => async (dispatch) => {
         "Content-Type": "application/json",
       },
     });
-    let data = await res.json();
-    console.log("res: ", data);
+
+    
   } catch (error) {
     dispatch({
       type: UPDATE_CART_FAILURE,
@@ -109,7 +107,6 @@ export const removeProductFromCart = (id) => async (dispatch) => {
       },
     });
     let data = await res.json();
-    console.log("res: ", data);
 
     dispatch({
       type: REMOVE_FROM_CART_SUCCESS,

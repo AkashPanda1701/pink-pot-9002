@@ -26,6 +26,7 @@ const Navbar = () => {
   const Navigate = useNavigate();
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+  const {carts} = useSelector((state) => state.carts);
   const toast = useToast();
   useEffect(() => {
     dispatch(getCart());
@@ -65,6 +66,7 @@ const Navbar = () => {
             <div>
               <BsBag fontSize="20px" onClick={() => Navigate("/cart")} />
             </div>
+              <div style={{backgroundColor: 'red', color: 'white', borderRadius: '50%', padding: '0 5px',position: 'absolute', margin:'0 55px 20px 0', fontSize: '12px'}}>{carts?.length}</div>
             |
             <div>
               <p>
@@ -74,8 +76,8 @@ const Navbar = () => {
                 {auth.data.isAuthenticated ? (
                   <Button
                     h="30px"
-                    w="60px"
-                    className="navLogout"
+                    w="70px"
+                    colorScheme={'red'}
                     onClick={() => {
                       dispatch({ type: AUTH_LOGOUT });
                       toast({
@@ -99,14 +101,14 @@ const Navbar = () => {
                         <PopoverContent>
                           <PopoverArrow />
                           <PopoverCloseButton />
-                          <PopoverBody>
+                          <PopoverBody p={6}>
                             <Link to="/login" className="xxx">
-                              <Button colorScheme="blue">Login</Button>
+                              <Button w='80%' borderRadius={'20px'} ml={5} colorScheme="blue">Login</Button>
                             </Link>
                             <br></br>
                             <br></br>
                             <Link to="/signup">
-                              <Button colorScheme="blue">Sign Up</Button>
+                              <Button borderRadius={'20px'} w='80%' ml={5} bg='blackAlpha.600' color='white' _hover={{bg:'blackAlpha.900'}}>Sign Up</Button>
                             </Link>
                           </PopoverBody>
                         </PopoverContent>
@@ -129,14 +131,9 @@ const Navbar = () => {
               <MdOutlineCancel />
             </label>
             <li>
-              <Link to={`/products?category=`} className="desktopItem">
-                New
-              </Link>
               <input type="checkbox" id="showMega" />
               <Link to={`/products?category=`}>
-                <label htmlFor="showMega" className="mobileItem">
-                  New
-                </label>
+                 New
               </Link>
               <div className="megaBox">
                 <div className="contentBox">
@@ -147,19 +144,19 @@ const Navbar = () => {
                         <Link to="">Just Dropped</Link>
                       </li>
                       <li>
-                        <Link to="">New Makeup</Link>
+                        <Link to="/products?category=makeup">New Makeup</Link>
                       </li>
                       <li>
-                        <Link to="">New Skincare</Link>
+                        <Link to="/products?category=skincare">New Skincare</Link>
                       </li>
                       <li>
-                        <Link to="">New Haircare</Link>
+                        <Link to="/products?category=hair">New Haircare</Link>
                       </li>
                       <li>
-                        <Link to="">New Fragrance</Link>
+                        <Link to="/products?category=fragrance">New Fragrance</Link>
                       </li>
                       <li>
-                        <Link to="">New Bath & Body New</Link>
+                        <Link to="/products?category=bath">New Bath & Body New</Link>
                       </li>
                       <li>
                         <Link to="">Tools & Brushes</Link>
@@ -170,19 +167,19 @@ const Navbar = () => {
                     <header className="navHeader">All Products</header>
                     <ul className="linkBox">
                       <li>
-                        <Link to="">The Next Big Thing</Link>
+                        <Link to="/products?category=makeup">The Next Big Thing</Link>
                       </li>
                       <li>
-                        <Link to="">Bestsellers</Link>
+                        <Link to="/products?category=makeup">Bestsellers</Link>
                       </li>
                       <li>
-                        <Link to="">Quizzes & Buying Guides</Link>
+                        <Link to="/products?category=makeup">Quizzes & Buying Guides</Link>
                       </li>
                       <li>
-                        <Link to="">Clean Beauty Guide</Link>
+                        <Link to="/products?category=makeup">Clean Beauty Guide</Link>
                       </li>
                       <li>
-                        <Link to="">Clean+ Planet</Link>
+                        <Link to="/products?category=makeup">Clean+ Planet</Link>
                       </li>
                     </ul>
                   </div>
@@ -211,25 +208,25 @@ const Navbar = () => {
                     <header className="navHeader">All Makeup</header>
                     <ul className="linkBox">
                       <li>
-                        <Link to="">Face Foundation</Link>
+                        <Link to="/products?category=skincare">Face Foundation</Link>
                       </li>
                       <li>
-                        <Link to="">BB & CC Creams</Link>
+                        <Link to="/products?category=skincare">BB & CC Creams</Link>
                       </li>
                       <li>
-                        <Link to="">Tinted Moisturizer</Link>
+                        <Link to="/products?category=skincare">Tinted Moisturizer</Link>
                       </li>
                       <li>
-                        <Link to="">Concealer</Link>
+                        <Link to="/products?category=skincare">Concealer</Link>
                       </li>
                       <li>
-                        <Link to="">Face Primer</Link>
+                        <Link to="/products?category=skincare">Face Primer</Link>
                       </li>
                       <li>
-                        <Link to="">Contour Color</Link>
+                        <Link to="/products?category=skincare">Contour Color</Link>
                       </li>
                       <li>
-                        <Link to="">Correct Face Sets</Link>
+                        <Link to="/products?category=skincare">Correct Face Sets</Link>
                       </li>
                     </ul>
                   </div>
@@ -237,25 +234,25 @@ const Navbar = () => {
                     <header className="navHeader">Eye</header>
                     <ul className="linkBox">
                       <li>
-                        <Link to="">Eye Palettes</Link>
+                        <Link to="/products?category=bath">Eye Palettes</Link>
                       </li>
                       <li>
-                        <Link to="">Mascara</Link>
+                        <Link to="/products?category=bath">Mascara</Link>
                       </li>
                       <li>
-                        <Link to="">Eyeliner</Link>
+                        <Link to="/products?category=bath">Eyeliner</Link>
                       </li>
                       <li>
-                        <Link to="">Eyebrow</Link>
+                        <Link to="/products?category=bath">Eyebrow</Link>
                       </li>
                       <li>
-                        <Link to="">Eyelash Serums</Link>
+                        <Link to="/products?category=bath">Eyelash Serums</Link>
                       </li>
                       <li>
-                        <Link to="">Eye Primer</Link>
+                        <Link to="/products?category=bath">Eye Primer</Link>
                       </li>
                       <li>
-                        <Link to="">Eye Sets</Link>
+                        <Link to="/products?category=bath">Eye Sets</Link>
                       </li>
                     </ul>
                   </div>
@@ -263,25 +260,25 @@ const Navbar = () => {
                     <header className="navHeader">Lip</header>
                     <ul className="linkBox">
                       <li>
-                        <Link to="">Lipstick</Link>
+                        <Link to="/products?category=makeup">Lipstick</Link>
                       </li>
                       <li>
-                        <Link to="">Lip Gloss</Link>
+                        <Link to="/products?category=makeup">Lip Gloss</Link>
                       </li>
                       <li>
-                        <Link to="">Lip Balm & Treatment</Link>
+                        <Link to="/products?category=makeup">Lip Balm & Treatment</Link>
                       </li>
                       <li>
-                        <Link to="">Liquid Lipstick</Link>
+                        <Link to="/products?category=makeup">Liquid Lipstick</Link>
                       </li>
                       <li>
-                        <Link to="">Lip Stain</Link>
+                        <Link to="/products?category=makeup">Lip Stain</Link>
                       </li>
                       <li>
-                        <Link to="">Lip Liner</Link>
+                        <Link to="/products?category=makeup">Lip Liner</Link>
                       </li>
                       <li>
-                        <Link to="">Lip Plumper</Link>
+                        <Link to="/products?category=makeup">Lip Plumper</Link>
                       </li>
                     </ul>
                   </div>
@@ -289,25 +286,25 @@ const Navbar = () => {
                     <header className="navHeader">Cheek</header>
                     <ul className="linkBox">
                       <li>
-                        <Link to="">Blush</Link>
+                        <Link to="/products?category=tools">Blush</Link>
                       </li>
                       <li>
-                        <Link to="">Bronzer</Link>
+                        <Link to="/products?category=tools">Bronzer</Link>
                       </li>
                       <li>
-                        <Link to="">Highlighter</Link>
+                        <Link to="/products?category=tools">Highlighter</Link>
                       </li>
                       <li>
-                        <Link to="">Contour</Link>
+                        <Link to="/products?category=tools">Contour</Link>
                       </li>
                       <li>
-                        <Link to="">Accessories</Link>
+                        <Link to="/products?category=tools">Accessories</Link>
                       </li>
                       <li>
-                        <Link to="">Makeup Palettes</Link>
+                        <Link to="/products?category=tools">Makeup Palettes</Link>
                       </li>
                       <li>
-                        <Link to="">Cheek Palettes</Link>
+                        <Link to="/products?category=tools">Cheek Palettes</Link>
                       </li>
                     </ul>
                   </div>
@@ -315,22 +312,22 @@ const Navbar = () => {
                     <header className="navHeader">New</header>
                     <ul className="linkBox">
                       <li>
-                        <Link to="">Bestsellers</Link>
+                        <Link to="/products?category=bath">Bestsellers</Link>
                       </li>
                       <li>
-                        <Link to="">Clean Makeup</Link>
+                        <Link to="/products?category=makeup">Clean Makeup</Link>
                       </li>
                       <li>
-                        <Link to="">Vegan Makeup</Link>
+                        <Link to="/products?category=makeup">Vegan Makeup</Link>
                       </li>
                       <li>
-                        <Link to="">Mini Size</Link>
+                        <Link to="/products?category=bath">Mini Size</Link>
                       </li>
                       <li>
-                        <Link to="">Value Size</Link>
+                        <Link to="/products?category=bath">Value Size</Link>
                       </li>
                       <li>
-                        <Link to=""> Sephora Collection</Link>
+                        <Link to="/products?category=bath"> Sephora Collection</Link>
                       </li>
                     </ul>
                   </div>
@@ -347,25 +344,25 @@ const Navbar = () => {
                     <header className="navHeader">All Skincare</header>
                     <ul className="linkBox">
                       <li>
-                        <Link to="">Moisturizers</Link>
+                        <Link to="/products?category=bath">Moisturizers</Link>
                       </li>
                       <li>
-                        <Link to="">Night Creams</Link>
+                        <Link to="/products?category=bath">Night Creams</Link>
                       </li>
                       <li>
-                        <Link to="">Face Oils</Link>
+                        <Link to="/products?category=bath">Face Oils</Link>
                       </li>
                       <li>
-                        <Link to="">Mists & Essences</Link>
+                        <Link to="/products?category=bath">Mists & Essences</Link>
                       </li>
                       <li>
-                        <Link to="">BB & CC</Link>
+                        <Link to="/products?category=bath">BB & CC</Link>
                       </li>
                       <li>
-                        <Link to="">Creams Cleansers</Link>
+                        <Link to="/products?category=bath">Creams Cleansers</Link>
                       </li>
                       <li>
-                        <Link to="">Exfoliators Makeup</Link>
+                        <Link to="/products?category=bath">Exfoliators Makeup</Link>
                       </li>
                     </ul>
                   </div>
@@ -373,25 +370,25 @@ const Navbar = () => {
                     <header className="navHeader">Treatments</header>
                     <ul className="linkBox">
                       <li>
-                        <Link to="">Face Serums</Link>
+                        <Link to="/products?category=skincare">Face Serums</Link>
                       </li>
                       <li>
-                        <Link to="">Blemish & Acne</Link>
+                        <Link to="/products?category=skincare">Blemish & Acne</Link>
                       </li>
                       <li>
-                        <Link to="">Facial Peels</Link>
+                        <Link to="/products?category=skincare">Facial Peels</Link>
                       </li>
                       <li>
-                        <Link to="">Face Masks</Link>
+                        <Link to="/products?category=skincare">Face Masks</Link>
                       </li>
                       <li>
-                        <Link to="">Sheet Masks</Link>
+                        <Link to="/products?category=skincare">Sheet Masks</Link>
                       </li>
                       <li>
-                        <Link to="">Masks</Link>
+                        <Link to="/products?category=skincare">Masks</Link>
                       </li>
                       <li>
-                        <Link to="">Eye Masks</Link>
+                        <Link to="/products?category=skincare">Eye Masks</Link>
                       </li>
                     </ul>
                   </div>
@@ -399,25 +396,25 @@ const Navbar = () => {
                     <header className="navHeader">Eye Care</header>
                     <ul className="linkBox">
                       <li>
-                        <Link to="">Eye Creams</Link>
+                        <Link to="/products?category=makeup">Eye Creams</Link>
                       </li>
                       <li>
-                        <Link to="">Eye Masks</Link>
+                        <Link to="/products?category=makeup">Eye Masks</Link>
                       </li>
                       <li>
-                        <Link to="">Sunscreen</Link>
+                        <Link to="/products?category=makeup">Sunscreen</Link>
                       </li>
                       <li>
-                        <Link to="">Lip Balms</Link>
+                        <Link to="/products?category=makeup">Lip Balms</Link>
                       </li>
                       <li>
-                        <Link to="">Wellness</Link>
+                        <Link to="/products?category=makeup">Wellness</Link>
                       </li>
                       <li>
-                        <Link to="">High Tech Tools</Link>
+                        <Link to="/products?category=tools">High Tech Tools</Link>
                       </li>
                       <li>
-                        <Link to="">Body Sunscreen</Link>
+                        <Link to="/products?category=bath">Body Sunscreen</Link>
                       </li>
                     </ul>
                   </div>
@@ -425,25 +422,25 @@ const Navbar = () => {
                     <header className="navHeader">Shop by Concern</header>
                     <ul className="linkBox">
                       <li>
-                        <Link to="">Acne & Blemishes</Link>
+                        <Link to="/products?category=bath">Acne & Blemishes</Link>
                       </li>
                       <li>
-                        <Link to="">Anti-Aging</Link>
+                        <Link to="/products?category=makeup">Anti-Aging</Link>
                       </li>
                       <li>
-                        <Link to="">Dark Spots</Link>
+                        <Link to="/products?category=makeup">Dark Spots</Link>
                       </li>
                       <li>
-                        <Link to="">Pores</Link>
+                        <Link to="/products?category=makeup">Pores</Link>
                       </li>
                       <li>
-                        <Link to="">Dryness</Link>
+                        <Link to="/products?category=makeup">Dryness</Link>
                       </li>
                       <li>
-                        <Link to="">Fine Lines & Wrinkles</Link>
+                        <Link to="/products?category=makeup">Fine Lines & Wrinkles</Link>
                       </li>
                       <li>
-                        <Link to="">Dullness</Link>
+                        <Link to="/products?category=makeup">Dullness</Link>
                       </li>
                     </ul>
                   </div>
@@ -464,16 +461,16 @@ const Navbar = () => {
                     <header className="navHeader">All Hair</header>
                     <ul className="linkBox">
                       <li>
-                        <Link to="">Shampoo </Link>
+                        <Link to="/products?category=bath">Shampoo </Link>
                       </li>
                       <li>
-                        <Link to="">Conditioner</Link>
+                        <Link to="/products?category=bath">Conditioner</Link>
                       </li>
                       <li>
-                        <Link to="">Scalp Scrub</Link>
+                        <Link to="/products?category=bath">Scalp Scrub</Link>
                       </li>
                       <li>
-                        <Link to="">Hair oil</Link>
+                        <Link to="/products?category=bath">Hair oil</Link>
                       </li>
                     </ul>
                   </div>
@@ -481,25 +478,25 @@ const Navbar = () => {
                     <header className="navHeader">Treatments</header>
                     <ul className="linkBox">
                       <li>
-                        <Link to="">Hair Masks</Link>
+                        <Link to="/products?category=bath">Hair Masks</Link>
                       </li>
                       <li>
-                        <Link to="">Leave-in Conditioners</Link>
+                        <Link to="/products?category=bath">Leave-in Conditioners</Link>
                       </li>
                       <li>
-                        <Link to="">Hair Oil</Link>
+                        <Link to="/products?category=bath">Hair Oil</Link>
                       </li>
                       <li>
-                        <Link to="">Hair Serums</Link>
+                        <Link to="/products?category=bath">Hair Serums</Link>
                       </li>
                       <li>
-                        <Link to="">Scalp Treatments</Link>
+                        <Link to="/products?category=bath">Scalp Treatments</Link>
                       </li>
                       <li>
-                        <Link to="">Hair Supplements</Link>
+                        <Link to="/products?category=bath">Hair Supplements</Link>
                       </li>
                       <li>
-                        <Link to="">Thinning & Hair Loss</Link>
+                        <Link to="/products?category=bath">Thinning & Hair Loss</Link>
                       </li>
                     </ul>
                   </div>
@@ -507,16 +504,16 @@ const Navbar = () => {
                     <header className="navHeader">All Hair</header>
                     <ul className="linkBox">
                       <li>
-                        <Link to="">Shampoo </Link>
+                        <Link to="/products?category=bath">Shampoo </Link>
                       </li>
                       <li>
-                        <Link to="">Conditioner</Link>
+                        <Link to="/products?category=bath">Conditioner</Link>
                       </li>
                       <li>
-                        <Link to="">Scalp Scrub</Link>
+                        <Link to="/products?category=bath">Scalp Scrub</Link>
                       </li>
                       <li>
-                        <Link to="">Hair oil</Link>
+                        <Link to="/products?category=bath">Hair oil</Link>
                       </li>
                     </ul>
                   </div>
@@ -543,25 +540,25 @@ const Navbar = () => {
                     <header className="navHeader">All Fragrances</header>
                     <ul className="linkBox">
                       <li>
-                        <Link to="">Just Dropped</Link>
+                        <Link to="/products?category=bath">Just Dropped</Link>
                       </li>
                       <li>
-                        <Link to="">New Makeup</Link>
+                        <Link to="/products?category=makeup">New Makeup</Link>
                       </li>
                       <li>
-                        <Link to="">New Skincare</Link>
+                        <Link to="/products?category=skincare">New Skincare</Link>
                       </li>
                       <li>
-                        <Link to="">New Haircare</Link>
+                        <Link to="/products?category=hair">New Haircare</Link>
                       </li>
                       <li>
-                        <Link to="">New Fragrance</Link>
+                        <Link to="/products?category=fragrance">New Fragrance</Link>
                       </li>
                       <li>
-                        <Link to="">New Bath & Body New</Link>
+                        <Link to="/products?category=bath">New Bath & Body New</Link>
                       </li>
                       <li>
-                        <Link to="">Tools & Brushes</Link>
+                        <Link to="/products?category=tools">Tools & Brushes</Link>
                       </li>
                     </ul>
                   </div>
@@ -569,19 +566,19 @@ const Navbar = () => {
                     <header className="navHeader">Fragrance</header>
                     <ul className="linkBox">
                       <li>
-                        <Link to="">The Next Big Thing</Link>
+                        <Link to="/products?category=tools">The Next Big Thing</Link>
                       </li>
                       <li>
-                        <Link to="">Bestsellers</Link>
+                        <Link to="/products?category=tools">Bestsellers</Link>
                       </li>
                       <li>
-                        <Link to="">Quizzes & Buying Guides</Link>
+                        <Link to="/products?category=tools">Quizzes & Buying Guides</Link>
                       </li>
                       <li>
-                        <Link to="">Clean Beauty Guide</Link>
+                        <Link to="/products?category=tools">Clean Beauty Guide</Link>
                       </li>
                       <li>
-                        <Link to="">Clean+ Planet</Link>
+                        <Link to="/products?category=tools">Clean+ Planet</Link>
                       </li>
                     </ul>
                   </div>
@@ -607,26 +604,26 @@ const Navbar = () => {
                   <div className="rowBox">
                     <header className="navHeader">All New</header>
                     <ul className="linkBox">
-                      <li>
-                        <Link to="">Just Dropped</Link>
+                    <li>
+                        <Link to="/products?category=bath">Just Dropped</Link>
                       </li>
                       <li>
-                        <Link to="">New Makeup</Link>
+                        <Link to="/products?category=makeup">New Makeup</Link>
                       </li>
                       <li>
-                        <Link to="">New Skincare</Link>
+                        <Link to="/products?category=skincare">New Skincare</Link>
                       </li>
                       <li>
-                        <Link to="">New Haircare</Link>
+                        <Link to="/products?category=hair">New Haircare</Link>
                       </li>
                       <li>
-                        <Link to="">New Fragrance</Link>
+                        <Link to="/products?category=fragrance">New Fragrance</Link>
                       </li>
                       <li>
-                        <Link to="">New Bath & Body New</Link>
+                        <Link to="/products?category=bath">New Bath & Body New</Link>
                       </li>
                       <li>
-                        <Link to="">Tools & Brushes</Link>
+                        <Link to="/products?category=tools">Tools & Brushes</Link>
                       </li>
                     </ul>
                   </div>
@@ -634,19 +631,19 @@ const Navbar = () => {
                     <header className="navHeader">All Products</header>
                     <ul className="linkBox">
                       <li>
-                        <Link to="">The Next Big Thing</Link>
+                        <Link to="/products?category=tools">The Next Big Thing</Link>
                       </li>
                       <li>
-                        <Link to="">Bestsellers</Link>
+                        <Link to="/products?category=bath">Bestsellers</Link>
                       </li>
                       <li>
-                        <Link to="">Quizzes & Buying Guides</Link>
+                        <Link to="/products?category=makeup">Quizzes & Buying Guides</Link>
                       </li>
                       <li>
-                        <Link to="">Clean Beauty Guide</Link>
+                        <Link to="/products?category=fragrance">Clean Beauty Guide</Link>
                       </li>
                       <li>
-                        <Link to="">Clean+ Planet</Link>
+                        <Link to="/products?category=tools">Clean+ Planet</Link>
                       </li>
                     </ul>
                   </div>
@@ -672,46 +669,46 @@ const Navbar = () => {
                   <div className="rowBox">
                     <header className="navHeader">All New</header>
                     <ul className="linkBox">
-                      <li>
-                        <Link to="">Just Dropped</Link>
+                    <li>
+                        <Link to="/products?category=bath">Just Dropped</Link>
                       </li>
                       <li>
-                        <Link to="">New Makeup</Link>
+                        <Link to="/products?category=makeup">New Makeup</Link>
                       </li>
                       <li>
-                        <Link to="">New Skincare</Link>
+                        <Link to="/products?category=skincare">New Skincare</Link>
                       </li>
                       <li>
-                        <Link to="">New Haircare</Link>
+                        <Link to="/products?category=hair">New Haircare</Link>
                       </li>
                       <li>
-                        <Link to="">New Fragrance</Link>
+                        <Link to="/products?category=fragrance">New Fragrance</Link>
                       </li>
                       <li>
-                        <Link to="">New Bath & Body New</Link>
+                        <Link to="/products?category=bath">New Bath & Body New</Link>
                       </li>
                       <li>
-                        <Link to="">Tools & Brushes</Link>
+                        <Link to="/products?category=tools">Tools & Brushes</Link>
                       </li>
                     </ul>
                   </div>
                   <div className="rowBox">
                     <header className="navHeader">All Products</header>
                     <ul className="linkBox">
-                      <li>
-                        <Link to="">The Next Big Thing</Link>
+                    <li>
+                        <Link to="/products?category=tools">The Next Big Thing</Link>
                       </li>
                       <li>
-                        <Link to="">Bestsellers</Link>
+                        <Link to="/products?category=bath">Bestsellers</Link>
                       </li>
                       <li>
-                        <Link to="">Quizzes & Buying Guides</Link>
+                        <Link to="/products?category=makeup">Quizzes & Buying Guides</Link>
                       </li>
                       <li>
-                        <Link to="">Clean Beauty Guide</Link>
+                        <Link to="/products?category=fragrance">Clean Beauty Guide</Link>
                       </li>
                       <li>
-                        <Link to="">Clean+ Planet</Link>
+                        <Link to="/products?category=tools">Clean+ Planet</Link>
                       </li>
                     </ul>
                   </div>
@@ -737,46 +734,46 @@ const Navbar = () => {
                   <div className="rowBox">
                     <header className="navHeader">All New</header>
                     <ul className="linkBox">
-                      <li>
-                        <Link to="">Just Dropped</Link>
+                    <li>
+                        <Link to="/products?category=bath">Just Dropped</Link>
                       </li>
                       <li>
-                        <Link to="">New Makeup</Link>
+                        <Link to="/products?category=makeup">New Makeup</Link>
                       </li>
                       <li>
-                        <Link to="">New Skincare</Link>
+                        <Link to="/products?category=skincare">New Skincare</Link>
                       </li>
                       <li>
-                        <Link to="">New Haircare</Link>
+                        <Link to="/products?category=hair">New Haircare</Link>
                       </li>
                       <li>
-                        <Link to="">New Fragrance</Link>
+                        <Link to="/products?category=fragrance">New Fragrance</Link>
                       </li>
                       <li>
-                        <Link to="">New Bath & Body New</Link>
+                        <Link to="/products?category=bath">New Bath & Body New</Link>
                       </li>
                       <li>
-                        <Link to="">Tools & Brushes</Link>
+                        <Link to="/products?category=tools">Tools & Brushes</Link>
                       </li>
                     </ul>
                   </div>
                   <div className="rowBox">
                     <header className="navHeader">All Products</header>
                     <ul className="linkBox">
-                      <li>
-                        <Link to="">The Next Big Thing</Link>
+                    <li>
+                        <Link to="/products?category=tools">The Next Big Thing</Link>
                       </li>
                       <li>
-                        <Link to="">Bestsellers</Link>
+                        <Link to="/products?category=bath">Bestsellers</Link>
                       </li>
                       <li>
-                        <Link to="">Quizzes & Buying Guides</Link>
+                        <Link to="/products?category=makeup">Quizzes & Buying Guides</Link>
                       </li>
                       <li>
-                        <Link to="">Clean Beauty Guide</Link>
+                        <Link to="/products?category=fragrance">Clean Beauty Guide</Link>
                       </li>
                       <li>
-                        <Link to="">Clean+ Planet</Link>
+                        <Link to="/products?category=tools">Clean+ Planet</Link>
                       </li>
                     </ul>
                   </div>

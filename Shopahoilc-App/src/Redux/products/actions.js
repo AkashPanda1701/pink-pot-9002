@@ -18,17 +18,16 @@ import {
 } from "./actionTypes";
 
 export const getAllProducts = (query) => async (dispatch) => {
-  console.log(query);
+
   try {
     dispatch({ type: GET_ALL_PRODUCTS_REQUEST });
     let q = "";
     for (let key in query) {
       q += `${key}=${query[key]}&`;
     }
-    console.log(q);
-
+    
     const res = await axios.get(`https://shopaholic.onrender.com/product?${q}`);
-    console.log("res: ", res);
+  
 
     dispatch({ type: GET_ALL_PRODUCTS_SUCCESS, payload: res.data });
   } catch (error) {
@@ -45,7 +44,7 @@ export const getSingleProduct = (id) => async (dispatch) => {
     const res = await axios.get(
       `https://shopaholic.onrender.com/product/${id}`
     );
-    // console.log("res: ", res);
+    
 
     dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: res.data.product });
   } catch (error) {
@@ -56,7 +55,8 @@ export const getSingleProduct = (id) => async (dispatch) => {
 };
 
 export const addProduct = (data) => async (dispatch) => {
-  console.log(data);
+ 
+  
   try {
     dispatch({ type: ADD_PRODUCT_REQUEST });
 
@@ -69,7 +69,7 @@ export const addProduct = (data) => async (dispatch) => {
       },
     });
     let data1 = await res.json();
-    console.log("res: ", data1);
+    
 
     dispatch({ type: ADD_PRODUCT_SUCCESS, payload: data1 });
   } catch (error) {
@@ -80,11 +80,11 @@ export const addProduct = (data) => async (dispatch) => {
 };
 
 export const updateProduct = (id, data) => async (dispatch) => {
-  console.log(id);
+  
   try {
     dispatch({ type: UPDATE_PRODUCT_REQUEST });
 
-    const res = await fetch(`https://shopaholic.onrender.com/product/${id}`, {
+    await fetch(`https://shopaholic.onrender.com/product/${id}`, {
       body: JSON.stringify(data),
       method: "PUT",
       headers: {
@@ -92,8 +92,7 @@ export const updateProduct = (id, data) => async (dispatch) => {
         "Content-Type": "application/json",
       },
     });
-    let data1 = await res.json();
-    console.log("res: ", data1);
+    
 
     dispatch({ type: UPDATE_PRODUCT_SUCCESS, payload: data });
   } catch (error) {
@@ -107,15 +106,13 @@ export const deleteProduct = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_PRODUCT_REQUEST });
 
-    const res = await fetch(`https://shopaholic.onrender.com/product/${id}`, {
+    await fetch(`https://shopaholic.onrender.com/product/${id}`, {
       method: "DELETE",
       headers: {
         token: localStorage.getItem("token"),
         "Content-Type": "application/json",
       },
     });
-    let data1 = await res.json();
-    console.log("res: ", data1);
     dispatch({ type: DELETE_PRODUCT_SUCCESS, payload: id });
   } catch (error) {
     dispatch({

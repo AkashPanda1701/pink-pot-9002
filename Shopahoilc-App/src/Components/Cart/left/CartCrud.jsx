@@ -6,6 +6,7 @@ import {
   Image,
  
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -17,6 +18,7 @@ import {
 
 
 const CartCrud = () => {
+  const toast = useToast();
   const { carts: data } = useSelector((store) => store.carts);
   const dispatch = useDispatch();
   // console.log(data);
@@ -52,24 +54,25 @@ const CartCrud = () => {
             <Flex
               w="90%"
               boxShadow={"md"}
-              p="20px 0px"
+              p={4}
               m="auto"
               mt="5px"
               key={i}
               gap={{ lg: 5, md: 4 }}
-              justify={{ base: "center" }}
-              align={{ base: "center" }}
+              alignItems="center"
               flexDirection={{ lg: "row", md: "row", base: "column" }}
               borderRadius="5px"
             >
+              <Link   to={`/products/${el.productId._id}`}>
               <Image
                 src={el.productId.imageUrl}
                 w={{ lg: "auto", md: "auto", base: "150px" }}
                 h="100px"
               />
-              <Box w="68%" textAlign={"center"}>
-                <Text fontWeight={"bold"}>{el.productId.brand}</Text>
-                <Text>{el.productId.name}</Text>
+              </Link>
+              <Box w="68%" >
+                <Text fontWeight={"bold"}>{el.productId.name}</Text>
+                <Text>{el.productId.brand}</Text>
                 <Text>
                   <strong>Category</strong>: {el.productId.category}
                 </Text>
@@ -113,9 +116,18 @@ const CartCrud = () => {
                     mb="5px"
                     p={2}
                     color="white"
-                    background={"black"}
-                    _hover={{ textDecoration: "underline" }}
-                    onClick={() => dispatch(removeProductFromCart(el._id))}
+                    colorScheme={"red"}
+                    onClick={() => {
+                      toast(
+                        {
+                          title: `${el.productId.name} removed from cart.`,
+                          status: "error",
+                          duration: 2000,
+                          isClosable: true,
+                          position: "top",
+                        },
+                      )
+                      dispatch(removeProductFromCart(el._id))}}
                     disabled={el.quantity === 20}
                   >
                     Remove

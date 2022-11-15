@@ -94,7 +94,6 @@ export default function productsReducer(
         UpdateProduct: { loading: true, error: false },
       };
     case UPDATE_PRODUCT_SUCCESS:
-      console.log(payload);
       return {
         ...state,
         UpdateProduct: { loading: false, error: false },
