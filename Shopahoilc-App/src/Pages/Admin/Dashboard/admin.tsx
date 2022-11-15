@@ -24,6 +24,7 @@ import {
   ButtonGroup,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import Logo from "./Logo.jpg";
 import {
   FiCompass,
   FiStar,
@@ -34,6 +35,7 @@ import {
 } from "react-icons/fi";
 import { IconType } from "react-icons";
 import { ReactText } from "react";
+import { useSelector } from "react-redux";
 
 interface LinkItemProps {
   name: string;
@@ -51,6 +53,7 @@ export default function SidebarWithHeader({
   children: ReactNode;
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
       <SidebarContent
@@ -97,7 +100,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          <Image src="http://localhost:3000/static/media/Logo.bbc24cab81d0da219ebe.jpg" />
+          <Image src={Logo} />
         </Text>
         <CloseButton
           display={{ base: "flex", md: "flex", lg: "none" }}
@@ -212,7 +215,6 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                   spacing="1px"
                   ml="2"
                 >
-                  <Text fontSize="sm">Yogesh Yadav</Text>
                   <Text fontSize="xs" color="gray.600">
                     Admin
                   </Text>

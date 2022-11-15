@@ -58,7 +58,7 @@ function Login() {
     if (authState.userLogin.message === "Login successful") {
       dispatch(getCart());
       toast({
-        title: authState.message,
+        title: "Login Successfully",
         status: "success",
         duration: 3000,
         isClosable: true,

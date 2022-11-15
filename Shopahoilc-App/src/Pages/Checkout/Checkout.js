@@ -40,7 +40,8 @@ function Checkout() {
   const [otp, setOtp] = useState("");
   const navigate = useNavigate();
   const [showOtp, setShoeOtp] = useState(false);
-
+  const totalPrice = localStorage.getItem("totalPrice");
+  console.log(totalPrice);
   const handleOtp = () => {
     if (otp !== "1234") {
       toast({
@@ -191,7 +192,7 @@ function Checkout() {
         >
           <Flex w="100%" justify={"space-between"}>
             <Text>Merchandise Subtotal</Text>
-            <Text fontWeight={"bold"}>$15.00</Text>
+            <Text fontWeight={"bold"}>₹ {totalPrice*81}</Text>
           </Flex>
           <Flex w="100%" justify={"space-between"}>
             <Text>Shipping & Handling</Text>
@@ -204,11 +205,11 @@ function Checkout() {
           <Divider />
           <Flex w="100%" justify={"space-between"}>
             <Text>Estimated Total</Text>
-            <Text fontWeight={"bold"}>$15.00</Text>
+            <Text fontWeight={"bold"}>₹ {totalPrice*81}</Text>
           </Flex>
           <Box w="70%">
             <Text>
-              or 4 payments of $3.75 with <strong>Klarna.</strong> or{" "}
+              or 4 payments of ₹ {(totalPrice*81)/4} with <strong>SBI</strong> or{" "}
               <strong>afterpay</strong>
             </Text>
           </Box>

@@ -13,6 +13,7 @@ const Right = () => {
 
   const checkout = () => {
     navigate("/checkout");
+    localStorage.setItem("totalPrice", total);
   };
 
   return (

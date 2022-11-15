@@ -13,6 +13,7 @@ import {
   useDisclosure,
   Flex,
   Grid,
+  useToast,
 } from "@chakra-ui/react";
 import { Box, Image, Text, SimpleGrid, Button } from "@chakra-ui/react";
 import {
@@ -28,6 +29,7 @@ function Dashboard() {
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
   const { data } = useSelector((store) => store.products);
+  const toast = useToast();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllProducts());
@@ -42,6 +44,14 @@ function Dashboard() {
   };
   const handleSubmit = () => {
     dispatch(updateProduct(product._id, product));
+    onClose();
+    toast({
+      title: "Product updated",
+      status: "info",
+      duration: 2000,
+      isClosable: true,
+      position: "top",
+    });
   };
   return (
     <Box>
@@ -54,7 +64,7 @@ function Dashboard() {
         gap={4}
       >
         {data &&
-          data.map((item,index) => (
+          data.map((item, index) => (
             <Grid
               border="1px"
               borderColor="lightblue"
@@ -84,7 +94,16 @@ function Dashboard() {
                       marginTop={5}
                       colorScheme="red"
                       variant="outline"
-                      onClick={() => dispatch(deleteProduct(item._id))}
+                      onClick={() => {
+                        dispatch(deleteProduct(item._id));
+                        toast({
+                          title: "Product Deleted",
+                          status: "info",
+                          duration: 2000,
+                          isClosable: true,
+                          position: "top",
+                        });
+                      }}
                     >
                       Delete
                     </Button>
@@ -115,7 +134,7 @@ function Dashboard() {
         >
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Create your account</ModalHeader>
+            <ModalHeader>Add A Product</ModalHeader>
             <ModalCloseButton />
             <ModalBody pb={6}>
               <FormControl>
