@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Box, Button, filter, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Button,Flex, Image, Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../../Redux/products/actions";
 import { addProductToCart } from "../../../Redux/cart/actions";

@@ -7,7 +7,6 @@ import {
   Flex,
   HStack,
   VStack,
-  Icon,
   useColorModeValue,
   Drawer,
   DrawerContent,
@@ -21,14 +20,12 @@ import {
   MenuItem,
   MenuList,
   Image,
-  ButtonGroup,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import Logo from "./Logo.jpg";
 import {
   FiCompass,
   FiStar,
-  FiSettings,
   FiMenu,
   FiBell,
   FiChevronDown,
