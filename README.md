@@ -12,7 +12,7 @@ It is an ecommerce website which deals in variety of beauty and care products fo
 - Node JS
 - Express JS
 
-## External libraries an frameworks
+## External libraries and frameworks
 
 - Redux
 - Chakra UI
