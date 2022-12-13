@@ -1,13 +1,61 @@
-Team Members-
+## Hello Everyone
 
-Team Members Name- Student_ID-
+This is our construct week project where we have cloned Sephora.com website. This is a collaborative project of team of 5 members and a duration of 5 days.We have renamed the website as "Shopaholic"
 
-1.Akash Kumar Panda fw20_1148(team lead)
+## About Website
 
-2.Yadav Yogesh fw18_0129
+It is an ecommerce website which deals in variety of beauty and care products for women.
 
-3.Nikhil Walwatkar fw18_0273
+## Tech Stacks
 
-4.Nikhil Sahni  fw20_0532
+- React Js
+- Node JS
+- Express JS
 
-5.Piyush Agarawal fw20_0931
+## External libraries an frameworks
+
+- Redux
+- Chakra UI
+
+## Features
+
+- Responsive UI
+- Login/signup functionality
+- Filter functionality
+- Add to cart functionality
+- Rest Api's
+- CRUD functionalitites for products
+
+## Landing Page
+
+![Landing Image 1](Shopahoilc-App/src/Images/landing1.jpg)
+
+![Landing Image 2](Shopahoilc-App/src/Images/landing2.jpg)
+
+![Landing Image 3](Shopahoilc-App/src/Images/landing3.jpg)
+
+## Product Pages
+
+![New Page](Shopahoilc-App/src/Images/new.jpg)
+
+![Makeup Page](Shopahoilc-App/src/Images/makeup.jpg)
+
+## Single Product Page
+
+![Single Product Page](Shopahoilc-App/src/Images/single.jpg)
+
+## Cart Page
+
+![Cart Page](Shopahoilc-App/src/Images/cart.jpg)
+
+## Admin Dashboard Page
+
+![admin dashboard](Shopahoilc-App/src/Images/admindash.jpg)
+
+## Update form
+
+![update form](Shopahoilc-App/src/Images/update.jpg)
+
+## Add new Product Page
+
+![add new product](Shopahoilc-App/src/Images/addnew.jpg)
